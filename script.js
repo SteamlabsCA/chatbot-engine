@@ -4,11 +4,16 @@ function initData() {
 
 var responses = [
   "Jeez, for a guy with a ton of clocks, you sure don't pay much attention to time.",
-  "Show me the money!"
+  "Show me the money!",
+  "I'm late!",
+  "xckjfh jskdh"
 ];
 
 // Choose some movie characters to include
-
+var characters = [
+  "airplane: striker",
+  "airplane: Elaine"
+]
 
 // Include some AI generated responses from GPT-2 based on some question prompts. Change these prompts to your liking
 
