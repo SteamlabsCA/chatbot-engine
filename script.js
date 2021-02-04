@@ -1,3 +1,5 @@
+
+function initData() {
 //Add your custom responses here
 
 var responses = [
@@ -8,12 +10,25 @@ var responses = [
 // Choose some movie characters to include
 
 
-// Include some AI generated text from GPT-2
+// Include some AI generated responses from GPT-2 based on some question prompts. Change these prompts to your liking
+
+for (var i = 0; i < 5; i++) {
+  responses.push(GPT2Generate("What should we order for dinner?"));
+}
+
+for (var i = 0; i < 5; i++) {
+  responses.push(GPT2Generate("What do you think of this t-shirt?"));
+}
 
 
 // Add some scripted answers to specific questions
 
-customQuestion = "What time is it?";
-customAnswer = Date.now();
+var customQuestion = "What time is it?";
+var customAnswer = Date.now();
+}
 
+function GPT2Generate(textPrompt) {
+  // Call GPT2 API
+  
+}
 
