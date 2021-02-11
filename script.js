@@ -7,14 +7,8 @@ function pickResponse(inputPrompt) {
 
 
 
-
-
-
-
-
-
 // Utility scripts
 function bestResponse(inputPrompt, responseList) {
-  
+  // Call the server-side API here  
 }
 
