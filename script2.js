@@ -5,8 +5,8 @@ function pickResponse(inputPrompt) {
     responseList = "Austin.txt";
   }
   
-  if (detectIntent(inputPrompt, ["New subscriber"])) {
-    responseList = "Congratulations.txt";
+  if (detectIntent(inputPrompt, ["Make a car reservation", "Book a car"])) {
+    responseList = "Book_Car.txt";
   }
   
   responseList = fillInTheBlanks(inputPrompt, responseList);
