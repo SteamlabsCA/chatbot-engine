@@ -9,6 +9,10 @@ function pickResponse(inputPrompt) {
     responseList = "Book_Car.txt";
   }
   
+  if (detectIntent(inputPrompt, ["Magic 8 ball"])) {
+    responseList = "Random_8-ball_responses.txt";
+  }
+  
   responseList = fillInTheBlanks(inputPrompt, responseList);
   
   return bestResponse(inputPrompt, responseList);
