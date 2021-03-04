@@ -21,6 +21,8 @@ function pickResponse(inputPrompt) {
 
 
 
+
+
 // Utility scripts
 
 function fillInTheBlanks (inputPrompt, responseList) {
