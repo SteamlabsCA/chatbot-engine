@@ -5,7 +5,7 @@ function pickResponse(inputPrompt) {
     responseList = "Austin.txt";
   }
   
-  if (detectIntent(inputPrompt, ["Make a car reservation", "Book a car"])) {
+  if (detectIntent(inputPrompt, ["Make a car reservation", "Book a car", "I need to drive to Toronto"])) {
     responseList = "Book_Car.txt";
   }
   
