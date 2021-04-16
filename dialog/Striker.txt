@@ -25,8 +25,8 @@ Is it? Because of my mistake six men didn't return from that raid.
 Headquarters!? What is it?
 That's the way I've always wanted it to be, Elaine.
 Elaine, just hear me out. I know things haven't been right for a long time. But it will be different...like it was in the beginning. Remember?
-I love you, {Elaine}.
-My orders came through. My squadron ships out tomorrow. I'll be leading a very important mission.
+I love you, Elaine.
+My orders came through. My squadron ships out {tomorrow}. I'll be leading a very important mission.
 Elaine, I've got to talk to you.
 But if you'll just give me...
 You expect me to believe that?

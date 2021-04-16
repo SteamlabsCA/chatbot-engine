@@ -1,8 +1,13 @@
 function pickResponse(inputPrompt) {
   var responseList = "Striker.txt";
+  var responseMethod = "Best"
   
   if (detectMood(inputPrompt, "Happy")) {
     responseList = "Austin.txt";
+  }
+  
+  if (detectMood(inputPrompt, "Angry")) {
+    responseList = "Striker.txt";
   }
   
   if (detectIntent(inputPrompt, ["Make a car reservation", "Book a car", "I need to drive to Toronto"])) {
@@ -10,12 +15,13 @@ function pickResponse(inputPrompt) {
   }
   
   if (detectIntent(inputPrompt, ["Magic 8 ball"])) {
+    responseMethod = "Random"
     responseList = "Random_8-ball_responses.txt";
   }
   
   responseList = fillInTheBlanks(inputPrompt, responseList);
   
-  return bestResponse(inputPrompt, responseList);
+  return bestResponse(inputPrompt, responseList, responseMethod);
 }
 
 
