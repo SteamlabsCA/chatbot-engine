@@ -1,3 +1,1 @@
-$( document ).ready(function() {
-  $('#response').html('<p>Hello</p>')
-}
+ $('#response').html('<p>Hello</p>')
