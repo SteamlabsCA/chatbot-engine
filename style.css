@@ -2,9 +2,10 @@
 
 body {
   font-family: helvetica, arial, sans-serif;
-  margin: 2em;
+  margin: 2em; 
 }
 
-h1 {
-  color: #373fff;
+#response{
+  border: 1px solid #000;
+  padding: 10px;
 }
