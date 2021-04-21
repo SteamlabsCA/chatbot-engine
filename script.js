@@ -1,1 +1,3 @@
- $('#response').html('<p>Hello</p>')
+jQuery(document).ready(function() {
+  $('#response').html('<p>Hello</p>');
+});
