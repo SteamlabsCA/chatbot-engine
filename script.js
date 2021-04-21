@@ -26,7 +26,7 @@ jQuery(document).ready(function() {
     
     let url = "";
 
-    //Post data to the API
+    //Post data to the API - hash the response and send it, if the hash doesnt work send the entire response list
     var posting = $.post(url,data);
 
     posting.done(function(responseData) {
