@@ -3,23 +3,17 @@ jQuery(document).ready(function() {
   
   //When the "Clear All" button is pressed
   $("#clear_all").click(function(){
-      $("#input_prompt").val("");
+    $("#input_prompt").val("");
+    $("#clear_all").hide();
   });
   
-  function hideBtn(){
-if($("#input_prompt").length === 0){
-      $("#clear_all").hide();}
-    // }else{
-    //   $("#clear_all").show();
-    // }
-  }
-  $("#input_prompt").change(function(){
-    if($("#input_prompt").length === 0){
-      $("#clear_all").hide();}
-    // }else{
-    //   $("#clear_all").show();
-    // }
-  });
+  $('#input_prompt').on('input', function() {
+    if(!$("#input_prompt").val()){
+       $("#clear_all").hide();
+    }else{
+      $("#clear_all").show();
+    }
+});
   
   //When the input prompt form is submitted
   $("#prompt_form").submit(function(event){
