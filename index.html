@@ -25,11 +25,11 @@
     <h1>Chatbot Engine</h1>
     <form id="prompt_form" action="">
       <label for="fname">Input Prompt:</label><br>
-      <input type="text" id="input_prompt" name="fname" required>
-      <input type="submit">
+      <textarea type="text" id="input_prompt" name="input_prompt" required></textarea>
+      <input type="submit" value="Clear All">
+      <input type="submit" class="submit" value="Submit Prompt">
     </form>  
-    
-    <textarea id="response"></textarea>
+    <textarea id="response" readonly></textarea>
     <script src="https://button.glitch.me/button.js" defer></script>
   </body>
 </html>

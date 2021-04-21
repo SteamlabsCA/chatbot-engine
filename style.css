@@ -2,14 +2,26 @@
 
 body {
   font-family: helvetica, arial, sans-serif;
-  margin: 2em; 
+  margin: 1em; 
+}
+
+#prompt_form .submit{
+  float: right;
+}
+
+#input_prompt{
+  adding: 10px;
+  margin: 20px 0;
+  min-height: 150px;
+  width: 99%; 
+  height: 200px;
 }
 
 #response{
-  border: 1px solid #000;
+  border: 2px solid #000;
   padding: 10px;
   margin: 20px 0;
-  min-width: 50%;
-  width: fit-content; 
+  min-height: 150px;
+  width: 97%; 
   height: 336px;
 }
