@@ -13,8 +13,8 @@ body {
   min-width: 25%;
   width: fit-content;
   padding: 10px;
-  border: 2px solid #000;
-  border-radius: 38px;
+  border: 2px solid #afafaf;
+  border-radius: 20px;
   cursor: pointer;
 }
 
@@ -22,16 +22,20 @@ body {
   background-color: #c5c4c4;
 }
 
+.form_button:focus{
+  border: 2px solid #000;
+}
+
 #prompt_form .submit{
   float: right;
 }
 
 #input_prompt{
-  adding: 10px;
+  padding: 10px;
   margin: 20px 0;
   min-height: 150px;
-  min-width: 99%; 
-  max-width: 99%; 
+  min-width: 97%; 
+  max-width: 97%; 
   height: 200px;
 }
 
