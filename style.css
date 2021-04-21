@@ -5,12 +5,16 @@ body {
   margin: 1em; 
 }
 
+#prompt_form h3{
+  margin: 0;
+}
+
 .form_button{
   min-width: 25%;
   width: fit-content;
   padding: 10px;
   border: 2px solid #000;
-  border-radius: 29px;
+  border-radius: 38px;
   cursor: pointer;
 }
 

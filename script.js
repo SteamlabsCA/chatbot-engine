@@ -4,14 +4,14 @@ jQuery(document).ready(function() {
   //When the "Clear All" button is pressed
   $("#clear_all").click(function(){
     $("#input_prompt").val("");
-    $("#clear_all").hide();
+    $("#clear_all").fadeOut("fast");
   });
   
   $('#input_prompt').on('input', function() {
     if(!$("#input_prompt").val()){
-       $("#clear_all").hide();
+       $("#clear_all").fadeOut("fast");
     }else{
-      $("#clear_all").show();
+      $("#clear_all").fadeIn("fast");
     }
 });
   
@@ -24,7 +24,7 @@ jQuery(document).ready(function() {
   });
   
   function pickResponse(inputPrompt, responseList, options) {
-    alert("api called");
+    alert("api called: "+inputPrompt);
     //Hash the response list
     let combResponses = "";
     for(let i of responseList){
