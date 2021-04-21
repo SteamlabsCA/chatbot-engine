@@ -1,60 +1,63 @@
 jQuery(document).ready(function() {
   $('#response').html(sha256("hello")); 
   
-  $("").submit(function(event){
+  $("#prompt_form").submit(function(event){
     event.preventDefault();
-    var $inputs = $('#prompt_form :input');
-    var inputValues = {};
-    $inputs.each(function() {
-        inputValues[this.name] = $(this).val();
-    });
-    pickResponses()
+    let responseList = [];
+    let options = {};
+    pickResponse($("#input_prompt").val(),responseList,options);
   });
   
   function pickResponse(inputPrompt, responseList, options) {
-      let combResponses = "";
-      for(let i of responseList){
-        combResponses += responseList[i];
-      }
     
-      let responseHash = sha256(combResponses);
+    //Hash the response list
+    let combResponses = "";
+    for(let i of responseList){
+      combResponses += responseList[i];
+    }
+    let responseHash = sha256(combResponses);
     
-      var $form = $(this)
+    //Load the data to be sent to the API
+    let data = {
+      inputPrompt: inputPrompt,
+      responseList: responseHash,
+      options: options
+    }
     
-      let data = {
-        inputPrompt: "",
-        responseList: "",
-        options: {}
-      }
-      
-      var posting = $.post(url,data);
+    let url = "";
 
-      posting.done(function(data) {
-        if(data === -1){ //If server doesn’t have that list cached
-          var $form = $(this),
-          url = $form.attr('action');
+    //Post data to the API
+    var posting = $.post(url,data);
 
-          let data = {
-            inputPrompt: "",
-            responseList: "",
-            options: {}
-          }
-
-          var posting = $.post(url,data);
-
-          posting.done(function(data) {
-            if(data === -1){ //If server doesn’t have that list cached
-
-          }else{
-            $('#response').text(data[0].response);
-          }
-        }else{
-          $('#response').text(data[0].response);
+    posting.done(function(responseData) {
+      if(responseData === -1){ //If server doesn’t have that list cached
+        let newData = {
+          inputPrompt: inputPrompt,
+          responseList: responseList,
+          options: options
         }
+
+        var posting = $.post(url,data);
+
+        posting.done(function(data) {
+          if(data){ //If server doesn’t have that list cached
+              $('#response').text(data[0].response);
+          }else{
+            $('#response').text("response failed");
+          }
+        });
+        
+        posting.fail(function(data) {
+        $('#response').text('posting failed');
       });
+        
+      } else{
+        $('#response').text(data[0].response);
+      }
+    });
 
       posting.fail(function(data) {
-        $('#response').text('failed');
+        $('#response').text('posting failed');
       });
 	}
   
