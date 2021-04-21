@@ -6,6 +6,21 @@ jQuery(document).ready(function() {
       $("#input_prompt").val("");
   });
   
+  function hideBtn(){
+if($("#input_prompt").length === 0){
+      $("#clear_all").hide();}
+    // }else{
+    //   $("#clear_all").show();
+    // }
+  }
+  $("#input_prompt").change(function(){
+    if($("#input_prompt").length === 0){
+      $("#clear_all").hide();}
+    // }else{
+    //   $("#clear_all").show();
+    // }
+  });
+  
   //When the input prompt form is submitted
   $("#prompt_form").submit(function(event){
     event.preventDefault();
