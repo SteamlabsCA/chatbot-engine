@@ -1,6 +1,12 @@
 jQuery(document).ready(function() {
   $('#response').html(sha256("hello")); 
   
+  //When the "Clear All" button is pressed
+  $("#clear_all").onclick(function(){
+      alert(" ")
+  });
+  
+  //When the input prompt form is submitted
   $("#prompt_form").submit(function(event){
     event.preventDefault();
     let responseList = [];
