@@ -1,16 +1,25 @@
 jQuery(document).ready(function() {
   $('#response').html(sha256("hello")); 
   
-  $("").submit(fucntion(event) {
-      event.preventDefault();
+  $("").submit(function(event){
+    event.preventDefault();
+    var $inputs = $('#prompt_form :input');
+    var inputValues = {};
+    $inputs.each(function() {
+        inputValues[this.name] = $(this).val();
+    });
+    pickResponses()
   });
   
   function pickResponse(inputPrompt, responseList, options) {
       let combResponses = "";
-      for()
+      for(let i of responseList){
+        combResponses += responseList[i];
+      }
     
-      var $form = $(this),
-      url = $form.attr('action');
+      let responseHash = sha256(combResponses);
+    
+      var $form = $(this)
     
       let data = {
         inputPrompt: "",
@@ -22,7 +31,23 @@ jQuery(document).ready(function() {
 
       posting.done(function(data) {
         if(data === -1){ //If server doesn’t have that list cached
-          
+          var $form = $(this),
+          url = $form.attr('action');
+
+          let data = {
+            inputPrompt: "",
+            responseList: "",
+            options: {}
+          }
+
+          var posting = $.post(url,data);
+
+          posting.done(function(data) {
+            if(data === -1){ //If server doesn’t have that list cached
+
+          }else{
+            $('#response').text(data[0].response);
+          }
         }else{
           $('#response').text(data[0].response);
         }
