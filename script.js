@@ -1,8 +1,13 @@
 jQuery(document).ready(function() {
   $('#response').html(sha256("hello")); 
   
-  $("").submit(function(event) {
+  $("").submit(fucntion(event) {
       event.preventDefault();
+  });
+  
+  function pickResponse(inputPrompt, responseList, options) {
+      let combResponses = "";
+      for()
     
       var $form = $(this),
       url = $form.attr('action');
@@ -16,16 +21,35 @@ jQuery(document).ready(function() {
       var posting = $.post(url,data);
 
       posting.done(function(data) {
+        if(data === -1){ //If server doesn’t have that list cached
+          
+        }else{
+          $('#response').text(data[0].response);
+        }
+      });
+
+      posting.fail(function(data) {
+        $('#response').text('failed');
+      });
+	}
+  
+  function generateText(inputPrompt,options){
+      let url = "";
+    
+      let data = {
+        inputPrompt: inputPrompt,
+        options: options
+      }
+      
+      var posting = $.post(url,data);
+
+      posting.done(function(data) {
         $('#response').text(data[0].response);
       });
 
       posting.fail(function(data) {
         $('#response').text('failed');
       });
-		});
-  
-  function generateText(inputPrompt,options){
-    
   }
 });
 
