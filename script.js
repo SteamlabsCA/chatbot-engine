@@ -1,26 +1,32 @@
 jQuery(document).ready(function() {
-  $('#response').html(sha256("hell")); 
+  $('#response').html(sha256("hello")); 
   
   $("").submit(function(event) {
       event.preventDefault();
     
       var $form = $(this),
-      url = "";
-
-      var posting = $.post(url, {
+      url = $form.attr('action');
+    
+      let data = {
         inputPrompt: "",
         responseList: "",
         options: {}
-      });
+      }
+      
+      var posting = $.post(url,data);
 
       posting.done(function(data) {
-        $('#result').text('failed');
+        $('#response').text(data[0].response);
       });
 
       posting.fail(function(data) {
-        $('#result').text('failed');
+        $('#response').text('failed');
       });
 		});
+  
+  function generateText(inputPrompt,options){
+    
+  }
 });
 
 
