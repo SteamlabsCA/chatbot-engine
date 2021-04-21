@@ -23,8 +23,13 @@
           to make it easier for folks to view source and remix -->
     <div class="glitchButton" style="position:fixed;top:20px;right:20px;"></div>
     <h1>Chatbot Engine</h1>
+    <form id="prompt_form" action="">
+      <label for="fname">Input Prompt:</label><br>
+      <input type="text" id="input_prompt" name="fname" required>
+      <input type="submit">
+    </form>  
     
-    <div id="response"></div>
+    <textarea id="response"></textarea>
     <script src="https://button.glitch.me/button.js" defer></script>
   </body>
 </html>

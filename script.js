@@ -24,6 +24,7 @@ jQuery(document).ready(function() {
       options: options
     }
     
+    //Response list API url
     let url = "";
 
     //Post data to the API - hash the response and send it, if the hash doesnt work send the entire response list
