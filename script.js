@@ -2,8 +2,8 @@ jQuery(document).ready(function() {
   $('#response').html(sha256("hello")); 
   
   //When the "Clear All" button is pressed
-  $("#clear_all").onclick(function(){
-      alert(" ")
+  $("#clear_all").click(function(){
+      $("#input_prompt").val("");
   });
   
   //When the input prompt form is submitted
@@ -15,7 +15,7 @@ jQuery(document).ready(function() {
   });
   
   function pickResponse(inputPrompt, responseList, options) {
-    
+    alert("api called");
     //Hash the response list
     let combResponses = "";
     for(let i of responseList){
