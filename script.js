@@ -33,12 +33,11 @@ jQuery(document).ready(function() {
        })
   });
 
-  $.when.apply($, deferreds).then(function(results){
+  $.when(deferreds).done(function(results){
       // results will be array of each `data.value` in proper order
       var datalist = results;
-      // now do whatever you were doing with original datalist
-      // $.each(datalist....
-    console.log(datalist);
+     $.each(datalist, function(data){console.log(data)});
+      
 
   }).fail(function(){
       // Probably want to catch failure
