@@ -28,7 +28,6 @@ jQuery(document).ready(function() {
     li.innerHTML = i.response+": "+ i.topscore;
     ul.appendChild(li);
   }
-  
   //----End: Test Response Output----
   
   //----Start: "Clear All" button----
@@ -46,14 +45,16 @@ jQuery(document).ready(function() {
   });
   //----End: "Clear All" button----
   
-  //Input prompt form is submitted
+  //----Start: Input prompt form is submit----
   $("#prompt_form").submit(function(event){
     event.preventDefault();
     let responseList = [];
     let options = {};
     pickResponse($("#input_prompt").val(),responseList,options);
   });
+  //----End: Input prompt form is submit----
   
+  //----Start: Pick Response----
   function pickResponse(inputPrompt, responseList, options) {
     alert("api called: "+inputPrompt);
     //Hash the response list
@@ -121,7 +122,9 @@ jQuery(document).ready(function() {
         $('#response').text('posting failed');
       });
 	}
+  //----End: Pick Response----
   
+  //----Start: Generate Text----
   function generateText(inputPrompt,options){
       let url = "";
     
