@@ -1,34 +1,46 @@
 jQuery(document).ready(function() {
+  let responseList = ["assets/testText.txt","assets/testText2.txt","assets/testText3.txt"]
+  $.ajax({
+        url : "assets",
+        success : function (data) {
+           $.each(data,function(i,item){
+                var $fileHolder = $("<div></div>");
+                $fileHolder.attr("filename",item.filename).click(function(){
+                      $("#file-content").load($(this).attr("filename"));
+                }).html(item.filename).appendTo("#fileList");  
+          });
+        }
+    });
   
-  //----Start: Test Response Output----
-  let responsesTest = [
-    {
-      response: "The best response", 
-      topscore: 0.2989
-    }, 
-    {response: "The second best response", 
-     topscore: 0.2139
-    },
-    {response: "The third best response", 
-     topscore: 0.2017
-    },
-    {response: "The fourth best response", 
-     topscore: 0.2000
-    },
-    {response: "The fifth best response", 
-     topscore: 0.1985
-    }
-  ]
+//   //----Start: Test Response Output----
+//   let responsesTest = [
+//     {
+//       response: "The best response", 
+//       topscore: 0.2989
+//     }, 
+//     {response: "The second best response", 
+//      topscore: 0.2139
+//     },
+//     {response: "The third best response", 
+//      topscore: 0.2017
+//     },
+//     {response: "The fourth best response", 
+//      topscore: 0.2000
+//     },
+//     {response: "The fifth best response", 
+//      topscore: 0.1985
+//     }
+//   ]
 
-  var ul = document.createElement("ul");
-  $('#response').append(ul);
+//   var ul = document.createElement("ul");
+//   $('#response').append(ul);
   
-  for(let i of responsesTest){
-    var li = document.createElement("li");  
-    li.innerHTML = i.response+": "+ i.topscore;
-    ul.appendChild(li);
-  }
-  //----End: Test Response Output----
+//   for(let i of responsesTest){
+//     var li = document.createElement("li");  
+//     li.innerHTML = i.response+": "+ i.topscore;
+//     ul.appendChild(li);
+//   }
+//   //----End: Test Response Output----
   
   //----Start: "Clear All" button----
   $("#clear_all").click(function(){
