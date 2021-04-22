@@ -5,7 +5,7 @@ jQuery(document).ready(function() {
   
   
   // Get Text files for response list and concatenate
-  async function getResponseList(){
+  function getResponseList(){
     let responseListConcat = "";
     for(let i of responseList){
       $.ajax({
@@ -15,11 +15,16 @@ jQuery(document).ready(function() {
               responseListConcat += data+"<br>";
               $("#response").html(responseListConcat);
             }
-      });
+      })
     }
-    return responseListConcat;
   }
-  console.log(getResponseList())
+  $.when(getResponseList()).done(function(getResponseList){
+    // the code here will be executed when all four ajax requests resolve.
+    // a1, a2, a3 and a4 are lists of length 3 containing the response text,
+    // status, and jqXHR object for each of the four ajax calls respectively.
+  } );
+  
+  
 //   //----Start: Test Response Output----
 //   let responsesTest = [
 //     {
