@@ -1,26 +1,26 @@
 jQuery(document).ready(function() {
   
-  //Start: Test Response Output
-  let responsesTest = [
-    {
-      response: "The best response", 
-      topscore: 0.2989
-    }, 
-    {response: "The second best response", 
-     topscore: 0.2139
-    }
-  ]
+//   //Start: Test Response Output
+//   let responsesTest = [
+//     {
+//       response: "The best response", 
+//       topscore: 0.2989
+//     }, 
+//     {response: "The second best response", 
+//      topscore: 0.2139
+//     }
+//   ]
 
-  var ul = document.createElement("ul");
-  $('#response').append(ul);
+//   var ul = document.createElement("ul");
+//   $('#response').append(ul);
   
-  for(let i of responsesTest){
-    var li = document.createElement("li");  
-    li.innerHTML = i.response;
-    ul.appendChild(li);
-  }
+//   for(let i of responsesTest){
+//     var li = document.createElement("li");  
+//     li.innerHTML = i.response+": "+ i.topscore;
+//     ul.appendChild(li);
+//   }
   
-  //End: Test Response Output
+//   //End: Test Response Output
   
   // $('#response').html(sha256("hello")); 
   
@@ -79,8 +79,15 @@ jQuery(document).ready(function() {
         var posting = $.post(url,data);
 
         posting.done(function(data) {
-          if(data){ //If server doesn’t have that list cached
-              $('#response').text(data[0].response);
+          if(data){ 
+              var ul = document.createElement("ul");
+              $('#response').append(ul);
+
+              for(let i of data){
+                var li = document.createElement("li");  
+                li.innerHTML = i.response+": "+ i.topscore;
+                ul.appendChild(li);
+              }
           }else{
             $('#response').text("response failed");
           }
@@ -91,7 +98,14 @@ jQuery(document).ready(function() {
       });
         
       } else{
-        $('#response').text(data[0].response);
+        var ul = document.createElement("ul");
+        $('#response').append(ul);
+
+        for(let i of data){
+          var li = document.createElement("li");  
+          li.innerHTML = i.response+": "+ i.topscore;
+          ul.appendChild(li);
+        }
       }
     });
 
