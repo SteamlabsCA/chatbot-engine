@@ -1,18 +1,25 @@
 jQuery(document).ready(function() {
-  let responseList = ["testText.txt","testText2.txt","testText3.txt"];
-  let responseListConcat = "";
-  for(let i of responseList){
-    $.ajax({
-          url : "assets/"+i,
-          dataType: "text",
-          success : function (data) {
-            responseListConcat += data+"<br>";
-            $("#response").html(responseListConcat);
-          }
-    });
-  }
-
   
+  let responseList = ["testText.txt","testText2.txt","testText3.txt"];
+  
+  
+  
+  // Get Text files for response list and concatenate
+  async function getResponseList(){
+    let responseListConcat = "";
+    for(let i of responseList){
+      $.ajax({
+            url : "assets/"+i,
+            dataType: "text",
+            success : function (data) {
+              responseListConcat += data+"<br>";
+              $("#response").html(responseListConcat);
+            }
+      });
+    }
+    return responseListConcat;
+  }
+  console.log(getResponseList())
 //   //----Start: Test Response Output----
 //   let responsesTest = [
 //     {
