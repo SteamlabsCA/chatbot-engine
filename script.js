@@ -1,16 +1,17 @@
 jQuery(document).ready(function() {
-  let responseList = ["assets/testText.txt","assets/testText2.txt","assets/testText3.txt"]
-  $.ajax({
-        url : "assets",
-        success : function (data) {
-           $.each(data,function(i,item){
-                var $fileHolder = $("<div></div>");
-                $fileHolder.attr("filename",item.filename).click(function(){
-                      $("#file-content").load($(this).attr("filename"));
-                }).html(item.filename).appendTo("#fileList");  
-          });
-        }
+  let responseList = ["testText.txt","testText2.txt","testText3.txt"];
+  let responseListConcat = "";
+  for(let i of responseList){
+    $.ajax({
+          url : "assets/"+i,
+          dataType: "text",
+          success : function (data) {
+            responseListConcat += data+"<br>";
+            $("#response").html(responseListConcat);
+          }
     });
+  }
+
   
 //   //----Start: Test Response Output----
 //   let responsesTest = [
