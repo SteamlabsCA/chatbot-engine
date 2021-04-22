@@ -69,11 +69,8 @@ jQuery(document).ready(function() {
 
   //----Start: Input prompt form is submit----
   $("#prompt_form").submit(function(event) {
-    
-    let resX = [];
-    
     event.preventDefault();
-  
+
     var deferreds = responseList.map(function(url) {
       // return the promise that `$.ajax` returns
       return $.ajax({
@@ -89,7 +86,7 @@ jQuery(document).ready(function() {
         // results will be array of each `data.value` in proper order
         var datalist = results;
         for (let i of datalist) {
-          i.then(res => (resX.push(res));
+          i.then(res => (responseListConcat += res));
         }
 
         let responseList = [];
