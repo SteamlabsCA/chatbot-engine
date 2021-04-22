@@ -1,5 +1,23 @@
 jQuery(document).ready(function() {
-  $('#response').html(sha256("hello")); 
+  
+  //Start: Test Response Output
+  let responsesTest = [
+    {
+      response: "The best response", 
+      topscore: 0.2989
+    }, 
+    {response: "The second best response", 
+     topscore: 0.2139
+    }
+  ]
+
+  
+  for(let i of responsesTest){
+    $('#response').text("<li></li");
+  }
+  //End: Test Response Output
+  
+  // $('#response').html(sha256("hello")); 
   
   //When the "Clear All" button is pressed
   $("#clear_all").click(function(){
