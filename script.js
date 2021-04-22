@@ -1,30 +1,37 @@
 jQuery(document).ready(function() {
   
-//   //Start: Test Response Output
-//   let responsesTest = [
-//     {
-//       response: "The best response", 
-//       topscore: 0.2989
-//     }, 
-//     {response: "The second best response", 
-//      topscore: 0.2139
-//     }
-//   ]
+  //----Start: Test Response Output----
+  let responsesTest = [
+    {
+      response: "The best response", 
+      topscore: 0.2989
+    }, 
+    {response: "The second best response", 
+     topscore: 0.2139
+    },
+    {response: "The third best response", 
+     topscore: 0.2017
+    },
+    {response: "The fourth best response", 
+     topscore: 0.2000
+    },
+    {response: "The fifth best response", 
+     topscore: 0.1985
+    }
+  ]
 
-//   var ul = document.createElement("ul");
-//   $('#response').append(ul);
+  var ul = document.createElement("ul");
+  $('#response').append(ul);
   
-//   for(let i of responsesTest){
-//     var li = document.createElement("li");  
-//     li.innerHTML = i.response+": "+ i.topscore;
-//     ul.appendChild(li);
-//   }
+  for(let i of responsesTest){
+    var li = document.createElement("li");  
+    li.innerHTML = i.response+": "+ i.topscore;
+    ul.appendChild(li);
+  }
   
-//   //End: Test Response Output
+  //----End: Test Response Output----
   
-  // $('#response').html(sha256("hello")); 
-  
-  //When the "Clear All" button is pressed
+  //----Start: "Clear All" button----
   $("#clear_all").click(function(){
     $("#input_prompt").val("");
     $("#clear_all").fadeOut("fast");
@@ -36,9 +43,10 @@ jQuery(document).ready(function() {
     }else{
       $("#clear_all").fadeIn("fast");
     }
-});
+  });
+  //----End: "Clear All" button----
   
-  //When the input prompt form is submitted
+  //Input prompt form is submitted
   $("#prompt_form").submit(function(event){
     event.preventDefault();
     let responseList = [];
