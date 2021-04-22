@@ -11,10 +11,15 @@ jQuery(document).ready(function() {
     }
   ]
 
+  var ul = document.createElement("ul");
+  $('#response').append(ul);
   
   for(let i of responsesTest){
-    $('#response').text("<li></li");
+    var li = document.createElement("li");  
+    li.innerHTML = i.response;
+    ul.appendChild(li);
   }
+  
   //End: Test Response Output
   
   // $('#response').html(sha256("hello")); 
