@@ -4,25 +4,45 @@ jQuery(document).ready(function() {
   
   
   
-  // Get Text files for response list and concatenate
-  function getResponseList(){
-    let responseListConcat = "";
-    for(let i of responseList){
-      $.ajax({
-            url : "assets/"+i,
-            dataType: "text",
-            success : function (data) {
-              responseListConcat += data+"<br>";
-              $("#response").html(responseListConcat);
-            }
-      })
-    }
-  }
-  $.when(getResponseList()).done(function(getResponseList){
-    // the code here will be executed when all four ajax requests resolve.
-    // a1, a2, a3 and a4 are lists of length 3 containing the response text,
-    // status, and jqXHR object for each of the four ajax calls respectively.
-  } );
+  // // Get Text files for response list and concatenate
+  // function getResponseList(){
+  //   let responseListConcat = "";
+  //   for(let i of responseList){
+  //     return $.ajax({
+  //           url : "assets/"+i,
+  //           dataType: "text",
+  //           success : function (data) {
+  //             responseListConcat += data+"<br>";
+  //             $("#response").html(responseListConcat);
+  //           }
+  //     })
+  //   }
+  // }
+  // $.when(getResponseList()).done(function(getResponseList){
+  //     console.log(getResponseList)
+  // } );
+  
+  // map an array of promises
+  var deferreds = responseList.map(function(url){
+      // return the promise that `$.ajax` returns
+      return  $.ajax({         
+        url: "assets/"+url,
+        dataType: "text",
+       }).then(function(data){
+           return data;
+       })
+  });
+
+  $.when.apply($, deferreds).then(function(results){
+      // results will be array of each `data.value` in proper order
+      var datalist = results;
+      // now do whatever you were doing with original datalist
+      // $.each(datalist....
+    console.log(datalist);
+
+  }).fail(function(){
+      // Probably want to catch failure
+  })
   
   
 //   //----Start: Test Response Output----
