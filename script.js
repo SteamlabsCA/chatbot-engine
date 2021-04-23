@@ -9,10 +9,10 @@ jQuery(document).ready(function() {
       response: "The best response",
       topscore: 0.2989
     },
-    // { response: "The second best response", topscore: 0.2139 },
-    // { response: "The third best response", topscore: 0.2017 },
-    // { response: "The fourth best response", topscore: 0.2 },
-    // { response: "The fifth best response", topscore: 0.1985 }
+    { response: "The second best response", topscore: 0.2139 },
+    { response: "The third best response", topscore: 0.2017 },
+    { response: "The fourth best response", topscore: 0.2 },
+    { response: "The fifth best response", topscore: 0.1985 }
   ];
 
   $("#response")
@@ -75,10 +75,10 @@ jQuery(document).ready(function() {
     }
     
     $(".chat_response").append(
-      "<li class='input_message'>" + inputPrompt + "</li><br><br>"
+      "<li class='input_message'>" + inputPrompt + "</li><br><br><br><br><br><br>"
     );
     $(".chat_response").append(
-      "<li class='bot_response'>boop</li>"
+      "<li class='bot_response'>ssssssssss aaaaaaaaaaaaa bbbbbbbbbbbbbbb ssssssssssssssssssssss</li>"
     );
     pickResponse(inputPrompt);
   });
