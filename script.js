@@ -3,36 +3,50 @@ jQuery(document).ready(function() {
   let responseListConcat = "";
   let responseListHash = "";
 
+//   //----Start: Test Response Output----
+//   let responsesTest = [
+//     {
+//       response: "The best response",
+//       topscore: 0.2989
+//     },
+//     { response: "The second best response", topscore: 0.2139 },
+//     { response: "The third best response", topscore: 0.2017 },
+//     { response: "The fourth best response", topscore: 0.2 },
+//     { response: "The fifth best response", topscore: 0.1985 }
+//   ];
 
-    //----Start: Test Response Output----
-    let responsesTest = [
-      {
-        response: "The best response",
-        topscore: 0.2989
-      },
-      {response: "The second best response",
-       topscore: 0.2139
-      },
-      {response: "The third best response",
-       topscore: 0.2017
-      },
-      {response: "The fourth best response",
-       topscore: 0.2000
-      },
-      {response: "The fifth best response",
-       topscore: 0.1985
+//   $("#response")
+//     .append("<ul></ul>")
+//     .addClass("chat_response");
+//   for (let i of responsesTest) {
+//     $(".chat_response").append(
+//       "<li class='bot_response'>" + i.response + ": " + i.topscore + "</li>"
+//     );
+//   }
+//   //----End: Test Response Output----
+
+  //----Start: Get the lists of text files and concatenate them ----
+  $.when
+    .apply(
+      $,
+      responseList.map(function(url) {
+        return $.ajax({
+          url: "assets/" + url,
+          dataType: "text"
+        });
+      })
+    )
+    .done(function() {
+      var results = [];
+      for (var i = 0; i < arguments.length; i++) {
+        responseListConcat += arguments[i][0];
       }
-    ]
-
-    var ul = document.createElement("ul");
-    $('#response').append(ul);
-
-    for(let i of responsesTest){
-      var li = document.createElement("li");
-      li.innerHTML = i.response+": "+ i.topscore;
-      ul.appendChild(li);
-    }
-    //----End: Test Response Output----
+      responseListHash = sha256(responseListConcat);
+    })
+    .fail(function(error) {
+      console.log("Text File Retrieval Error: " + error);
+    });
+  //----End: Get the lists of text files and concatenate them ----
 
   //----Start: "Clear All" button----
   $("#clear_all").click(function() {
@@ -48,45 +62,39 @@ jQuery(document).ready(function() {
     }
   });
   //----End: "Clear All" button----
-  
-  //----Start: Get the lists of text files and concatenate them ----
-  $.when.apply($, responseList.map(function(url) {
-    return $.ajax({
-      url: "assets/" + url,
-      dataType: "text"
-    });
-  })).done(function() {
-      var results = [];
-      for (var i = 0; i < arguments.length; i++) {
-          responseListConcat += arguments[i][0]
-      }
-      responseListHash = sha256(responseListConcat);
-  })
-  .fail(function(error) {
-      console.log("Text File Retrieval Error: "+error)
-  });
-  //----End: Get the lists of text files and concatenate them ----
-  
+
   //----Start: Input prompt form is submit----
   $("#prompt_form").submit(function(event) {
+    let inputPrompt = $("#input_prompt").val();
     event.preventDefault();
-    pickResponse();
+    
+    if(!$(".chat_response").length){
+      $("#response")
+      .append("<ul></ul>")
+      .addClass("chat_response");
+    }
+    
+    $(".chat_response").append(
+      "<li class='input_message'>" + inputPrompt + "</li><br><br><br><br>"
+    );
+    $(".chat_response").append(
+      "<li class='bot_response'>boop beep boop bop!!! boop beep boop bop!!! boop beep boop bop!!!</li>"
+    );
+    pickResponse(inputPrompt);
   });
   //----End: Input prompt form is submit----
 
   //----Start: Pick Response----
-  function pickResponse() {
-    
-    let inputPrompt = $("#input_prompt").val();
+  function pickResponse(inputPrompt) {
     let options = {};
-    
+
     //Load the data to be sent to the API
     let data = {
       inputPrompt: inputPrompt,
       responseList: responseListHash,
       options: options
     };
-    
+
     console.log(data);
 
     //Response list API url
@@ -108,46 +116,46 @@ jQuery(document).ready(function() {
 
         posting.done(function(data) {
           if (data) {
-            var ul = document.createElement("ul");
-            $("#response").append(ul);
-
+            $("#response")
+              .append("<ul></ul>")
+              .addClass("chat_response");
             for (let i of data) {
-              var li = document.createElement("li");
-              li.innerHTML = i.response + ": " + i.topscore;
-              ul.appendChild(li);
+              $(".chat_response").append(
+                "<li>" + i.response + ": " + i.topscore + "</li>"
+              );
             }
           } else {
-            $("#response").text("response failed");
+            $(".api_return").text("response failed");
           }
         });
 
         posting.fail(function(data) {
-          $("#response").text("Posting Full Response List Failed");
+          $(".api_return").text("Posting Full Response List Failed");
         });
       } else {
-        var ul = document.createElement("ul");
-        $("#response").append(ul);
-
-        for (let i of data) {
-          var li = document.createElement("li");
-          li.innerHTML = i.response + ": " + i.topscore;
-          ul.appendChild(li);
+        $("#response")
+          .append("<ul></ul>")
+          .addClass("chat_response");
+        for (let i of responseData) {
+          $(".chat_response").append(
+            "<li>" + i.response + ": " + i.topscore + "</li>"
+          );
         }
       }
     });
 
     posting.fail(function(data) {
-      $("#response").text("Posting Hashed Response List Failed");
+      $(".api_return").text("Posting Hashed Response List Failed");
+      // $("#response").text("Posting Hashed Response List Failed");
     });
   }
   //----End: Pick Response----
 
   //----Start: Generate Text----
   function generateText() {
-    
     let inputPrompt = $("#input_prompt").val();
     let options = {};
-    
+
     let url = "";
 
     let data = {
@@ -162,12 +170,11 @@ jQuery(document).ready(function() {
     });
 
     posting.fail(function(data) {
-      $("#response").text("failed");
+      $(".api_return").text("failed");
     });
   }
 });
 //----End: Generate Text----
-
 
 // Hash
 var sha256 = function a(b) {

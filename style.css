@@ -46,12 +46,43 @@ body {
 #response{
   border: 2px solid #000;
   padding: 10px;
-  min-height: 110px;
+  height: 190px;
+  min-width: 97%; 
+  max-width: 97%; 
+  overflow: auto;
+}
+
+.chat_response{
+  list-style-type: none;
+} 
+
+
+.bot_response{
+  background-color: #008fb3;
+  color: #fff;
+  padding: 10px 5px 10px 15px;
+  margin: 20px 0;
+  width: fit-content;
+  max-width: 220px;
+  word-wrap: break-word;
+  border-radius: 29px 29px 29px 0;
+}
+
+.input_message{
+  background-color: #32CD32	;
+  padding: 10px;
+  max-width: 220px;
+   word-wrap: break-word;
+  border-radius: 29px 0 29px 29px;
+  float: right;
+  margin: 20px;
+}
+
+.api_return{
+  border: 2px solid #000;
+  padding: 10px;
+  min-height: 40px;
   height: fit-content;
   min-width: 97%; 
   max-width: 97%; 
-}
-
-#response ul li{
-  color: blue;
 }
