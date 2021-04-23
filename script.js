@@ -71,31 +71,21 @@ jQuery(document).ready(function() {
 //       // Probably want to catch failure
 //     });
   
+  // Get the lists of text files and concatenate them
   $.when.apply($, responseList.map(function(url) {
-    return $.ajax("assets/"+url);
+    return $.ajax({
+      url: "assets/" + url,
+      dataType: "text"
+    });
   })).done(function() {
       var results = [];
-      // there will be one argument passed to this callback for each ajax call
-      // each argument is of this form [data, statusText, jqXHR]
       for (var i = 0; i < arguments.length; i++) {
           responseListConcat += arguments[i][0]
       }
-      // all data is now in the results array in order
+  })
+  .fail(function(error) {
+      console.log("Text File Retrieval Error: "+error)
   });
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   
   
   //----Start: Input prompt form is submit----
