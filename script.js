@@ -3,7 +3,6 @@ jQuery(document).ready(function() {
   let responseListConcat = "";
   let responseListHash = "";
 
-  // map an array of promises
 
   //   //----Start: Test Response Output----
   //   let responsesTest = [
@@ -50,7 +49,7 @@ jQuery(document).ready(function() {
   });
   //----End: "Clear All" button----
   
-  // Get the lists of text files and concatenate them
+  //----Start: Get the lists of text files and concatenate them ----
   $.when.apply($, responseList.map(function(url) {
     return $.ajax({
       url: "assets/" + url,
@@ -66,19 +65,20 @@ jQuery(document).ready(function() {
   .fail(function(error) {
       console.log("Text File Retrieval Error: "+error)
   });
-  
+  //----End: Get the lists of text files and concatenate them ----
   
   //----Start: Input prompt form is submit----
   $("#prompt_form").submit(function(event) {
     event.preventDefault();
-    let options = {};
-    pickResponse($("#input_prompt").val(), responseList, options);
+    pickResponse();
   });
   //----End: Input prompt form is submit----
 
   //----Start: Pick Response----
-  function pickResponse(inputPrompt, responseList, options) {
-    console.log("api called: " + responseListHash);
+  function pickResponse() {
+    
+    let inputPrompt = $("#input_prompt").val();
+    let options = {};
     
     //Load the data to be sent to the API
     let data = {
@@ -86,6 +86,8 @@ jQuery(document).ready(function() {
       responseList: responseListHash,
       options: options
     };
+    
+    console.log(data);
 
     //Response list API url
     let url = "";
@@ -98,7 +100,7 @@ jQuery(document).ready(function() {
         //If server doesn’t have that list cached
         let newData = {
           inputPrompt: inputPrompt,
-          responseList: responseList,
+          responseList: responseListConcat,
           options: options
         };
 
@@ -120,7 +122,7 @@ jQuery(document).ready(function() {
         });
 
         posting.fail(function(data) {
-          $("#response").text("posting failed");
+          $("#response").text("Posting Full Response List Failed");
         });
       } else {
         var ul = document.createElement("ul");
@@ -135,13 +137,17 @@ jQuery(document).ready(function() {
     });
 
     posting.fail(function(data) {
-      $("#response").text("posting failed");
+      $("#response").text("Posting Hashed Response List Failed");
     });
   }
   //----End: Pick Response----
 
   //----Start: Generate Text----
-  function generateText(inputPrompt, options) {
+  function generateText() {
+    
+    let inputPrompt = $("#input_prompt").val();
+    let options = {};
+    
     let url = "";
 
     let data = {
@@ -160,6 +166,8 @@ jQuery(document).ready(function() {
     });
   }
 });
+//----End: Generate Text----
+
 
 // Hash
 var sha256 = function a(b) {
