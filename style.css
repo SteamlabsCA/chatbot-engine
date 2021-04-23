@@ -52,12 +52,12 @@ body {
   max-width: 97%; 
 }
 
-#response ul{
+.chat_response{
   list-style-type: none;
 } 
 
 
-#response ul li{
+.chat_response li{
   background-color: #008fb3;
   color: #fff;
   padding: 10px;
@@ -69,5 +69,5 @@ body {
 .input_message{
   background-color: #32CD32	!important;
   margin: 0 !important;
-    border-radius: 29px 0 29px 29px !important;
+  border-radius: 29px 0 29px 29px !important;
 }

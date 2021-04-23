@@ -24,13 +24,12 @@ jQuery(document).ready(function() {
       }
     ]
 
-    var ul = document.createElement("ul");
-    $('#response').append(ul);
-
+    
+    $('#response')
+      .append("<ul></ul>")
+      .addClass("chat_response");
     for(let i of responsesTest){
-      var li = document.createElement("li");
-      li.innerHTML = i.response+": "+ i.topscore;
-      ul.appendChild(li);
+      $('.chat_response').append("<li class>"+i.response+": "+ i.topscore+"</li>");
     }
     //----End: Test Response Output----
 
@@ -127,13 +126,10 @@ jQuery(document).ready(function() {
           $("#response").text("Posting Full Response List Failed");
         });
       } else {
-        var ul = document.createElement("ul");
-        $("#response").append(ul);
+        $('#response').append("<ul></ul>");
 
         for (let i of data) {
-          var li = document.createElement("li");
-          li.innerHTML = i.response + ": " + i.topscore;
-          ul.appendChild(li);
+           $('#response ul').append("<li>"+i.response+": "+ i.topscore+"</li>");
         }
       }
     });
