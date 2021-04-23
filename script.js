@@ -34,21 +34,6 @@ jQuery(document).ready(function() {
     }
     //----End: Test Response Output----
 
-  //----Start: "Clear All" button----
-  $("#clear_all").click(function() {
-    $("#input_prompt").val("");
-    $("#clear_all").fadeOut("fast");
-  });
-
-  $("#input_prompt").on("input", function() {
-    if (!$("#input_prompt").val()) {
-      $("#clear_all").fadeOut("fast");
-    } else {
-      $("#clear_all").fadeIn("fast");
-    }
-  });
-  //----End: "Clear All" button----
-  
   //----Start: Get the lists of text files and concatenate them ----
   $.when.apply($, responseList.map(function(url) {
     return $.ajax({
@@ -66,6 +51,23 @@ jQuery(document).ready(function() {
       console.log("Text File Retrieval Error: "+error)
   });
   //----End: Get the lists of text files and concatenate them ----
+  
+  //----Start: "Clear All" button----
+  $("#clear_all").click(function() {
+    $("#input_prompt").val("");
+    $("#clear_all").fadeOut("fast");
+  });
+
+  $("#input_prompt").on("input", function() {
+    if (!$("#input_prompt").val()) {
+      $("#clear_all").fadeOut("fast");
+    } else {
+      $("#clear_all").fadeIn("fast");
+    }
+  });
+  //----End: "Clear All" button----
+  
+  
   
   //----Start: Input prompt form is submit----
   $("#prompt_form").submit(function(event) {

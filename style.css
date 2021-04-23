@@ -61,5 +61,7 @@ body {
   background-color: #008fb3;
   color: #fff;
   padding: 10px;
-  margin: 20px
+  margin: 20px 0;
+  width: fit-content;
+  border-radius: 29px 29px 29px 0;
 }
