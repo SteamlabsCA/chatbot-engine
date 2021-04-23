@@ -71,15 +71,15 @@ jQuery(document).ready(function() {
   
   //----Start: Input prompt form is submit----
   $("#prompt_form").submit(function(event) {
+    let inputPrompt = $("#input_prompt").val();
     event.preventDefault();
-    pickResponse();
+    $('#response ul').append("<li class='input_message'>"+inputPrompt+"</li><br>");
+    pickResponse(inputPrompt);
   });
   //----End: Input prompt form is submit----
 
   //----Start: Pick Response----
-  function pickResponse() {
-    
-    let inputPrompt = $("#input_prompt").val();
+  function pickResponse(inputPrompt) {
     let options = {};
     
     //Load the data to be sent to the API
@@ -139,7 +139,8 @@ jQuery(document).ready(function() {
     });
 
     posting.fail(function(data) {
-      $("#response").text("Posting Hashed Response List Failed");
+      $('#response').append("Posting Hashed Response List Failed<br>");
+      // $("#response").text("Posting Hashed Response List Failed");
     });
   }
   //----End: Pick Response----
