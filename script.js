@@ -55,7 +55,7 @@ jQuery(document).ready(function() {
   //----Start: "Clear All" button----
   $("#clear_all").click(function() {
     $("#input_prompt").val("");
-    $("#clear_all").fadeOut("fast");
+    //$("#clear_all").fadeOut("fast");
   });
 
   $("#input_prompt").on("input", function() {
