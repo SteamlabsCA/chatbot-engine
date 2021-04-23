@@ -57,7 +57,7 @@ body {
 } 
 
 
-.chat_response li{
+.bot_response{
   background-color: #008fb3;
   color: #fff;
   padding: 10px;
@@ -67,9 +67,11 @@ body {
 }
 
 .input_message{
-  background-color: #32CD32	!important;
-  margin: 0 !important;
-  border-radius: 29px 0 29px 29px !important;
+  background-color: #32CD32	;
+  padding: 10px;
+  border-radius: 29px 0 29px 29px;
+  float: right;
+  margin: 20px;
 }
 
 .api_return{

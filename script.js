@@ -20,7 +20,7 @@ jQuery(document).ready(function() {
     .addClass("chat_response");
   for (let i of responsesTest) {
     $(".chat_response").append(
-      "<li>" + i.response + ": " + i.topscore + "</li>"
+      "<li class='bot_response'>" + i.response + ": " + i.topscore + "</li>"
     );
   }
   //----End: Test Response Output----
@@ -75,7 +75,10 @@ jQuery(document).ready(function() {
     }
     
     $(".chat_response").append(
-      "<li class='input_message'>" + inputPrompt + "</li><br>"
+      "<li class='input_message'>" + inputPrompt + "</li><br><br>"
+    );
+    $(".chat_response").append(
+      "<li class='bot_response'>boop</li>"
     );
     pickResponse(inputPrompt);
   });
