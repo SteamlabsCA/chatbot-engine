@@ -51,3 +51,7 @@ body {
   min-width: 97%; 
   max-width: 97%; 
 }
+
+#response ul li{
+  color: blue;
+}

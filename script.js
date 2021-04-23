@@ -4,35 +4,35 @@ jQuery(document).ready(function() {
   let responseListHash = "";
 
 
-  //   //----Start: Test Response Output----
-  //   let responsesTest = [
-  //     {
-  //       response: "The best response",
-  //       topscore: 0.2989
-  //     },
-  //     {response: "The second best response",
-  //      topscore: 0.2139
-  //     },
-  //     {response: "The third best response",
-  //      topscore: 0.2017
-  //     },
-  //     {response: "The fourth best response",
-  //      topscore: 0.2000
-  //     },
-  //     {response: "The fifth best response",
-  //      topscore: 0.1985
-  //     }
-  //   ]
+    //----Start: Test Response Output----
+    let responsesTest = [
+      {
+        response: "The best response",
+        topscore: 0.2989
+      },
+      {response: "The second best response",
+       topscore: 0.2139
+      },
+      {response: "The third best response",
+       topscore: 0.2017
+      },
+      {response: "The fourth best response",
+       topscore: 0.2000
+      },
+      {response: "The fifth best response",
+       topscore: 0.1985
+      }
+    ]
 
-  //   var ul = document.createElement("ul");
-  //   $('#response').append(ul);
+    var ul = document.createElement("ul");
+    $('#response').append(ul);
 
-  //   for(let i of responsesTest){
-  //     var li = document.createElement("li");
-  //     li.innerHTML = i.response+": "+ i.topscore;
-  //     ul.appendChild(li);
-  //   }
-  //   //----End: Test Response Output----
+    for(let i of responsesTest){
+      var li = document.createElement("li");
+      li.innerHTML = i.response+": "+ i.topscore;
+      ul.appendChild(li);
+    }
+    //----End: Test Response Output----
 
   //----Start: "Clear All" button----
   $("#clear_all").click(function() {
