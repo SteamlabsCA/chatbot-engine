@@ -3,54 +3,51 @@ jQuery(document).ready(function() {
   let responseListConcat = "";
   let responseListHash = "";
 
+//   //----Start: Test Response Output----
+//   let responsesTest = [
+//     {
+//       response: "The best response",
+//       topscore: 0.2989
+//     },
+//     { response: "The second best response", topscore: 0.2139 },
+//     { response: "The third best response", topscore: 0.2017 },
+//     { response: "The fourth best response", topscore: 0.2 },
+//     { response: "The fifth best response", topscore: 0.1985 }
+//   ];
 
-    //----Start: Test Response Output----
-    let responsesTest = [
-      {
-        response: "The best response",
-        topscore: 0.2989
-      },
-      {response: "The second best response",
-       topscore: 0.2139
-      },
-      {response: "The third best response",
-       topscore: 0.2017
-      },
-      {response: "The fourth best response",
-       topscore: 0.2000
-      },
-      {response: "The fifth best response",
-       topscore: 0.1985
-      }
-    ]
-
-    
-    $('#response')
-      .append("<ul></ul>")
-      .addClass("chat_response");
-    for(let i of responsesTest){
-      $('.chat_response').append("<li class>"+i.response+": "+ i.topscore+"</li>");
-    }
-    //----End: Test Response Output----
+//   $("#response")
+//     .append("<ul></ul>")
+//     .addClass("chat_response");
+//   for (let i of responsesTest) {
+//     $(".chat_response").append(
+//       "<li>" + i.response + ": " + i.topscore + "</li>"
+//     );
+//   }
+//   //----End: Test Response Output----
 
   //----Start: Get the lists of text files and concatenate them ----
-  $.when.apply($, responseList.map(function(url) {
-    return $.ajax({
-      url: "assets/" + url,
-      dataType: "text"
-    });
-  })).done(function() {
+  $.when
+    .apply(
+      $,
+      responseList.map(function(url) {
+        return $.ajax({
+          url: "assets/" + url,
+          dataType: "text"
+        });
+      })
+    )
+    .done(function() {
       var results = [];
       for (var i = 0; i < arguments.length; i++) {
-          responseListConcat += arguments[i][0]
+        responseListConcat += arguments[i][0];
       }
       responseListHash = sha256(responseListConcat);
-  })
-  .fail(function(error) {
-      console.log("Text File Retrieval Error: "+error)
-  });
+    })
+    .fail(function(error) {
+      console.log("Text File Retrieval Error: " + error);
+    });
   //----End: Get the lists of text files and concatenate them ----
-  
+
   //----Start: "Clear All" button----
   $("#clear_all").click(function() {
     $("#input_prompt").val("");
@@ -65,14 +62,21 @@ jQuery(document).ready(function() {
     }
   });
   //----End: "Clear All" button----
-  
-  
-  
+
   //----Start: Input prompt form is submit----
   $("#prompt_form").submit(function(event) {
     let inputPrompt = $("#input_prompt").val();
     event.preventDefault();
-    $('#response ul').append("<li class='input_message'>"+inputPrompt+"</li><br>");
+    
+    if(!$(".chat_response").length){
+      $("#response")
+      .append("<ul></ul>")
+      .addClass("chat_response");
+    }
+    
+    $(".chat_response").append(
+      "<li class='input_message'>" + inputPrompt + "</li><br>"
+    );
     pickResponse(inputPrompt);
   });
   //----End: Input prompt form is submit----
@@ -80,14 +84,14 @@ jQuery(document).ready(function() {
   //----Start: Pick Response----
   function pickResponse(inputPrompt) {
     let options = {};
-    
+
     //Load the data to be sent to the API
     let data = {
       inputPrompt: inputPrompt,
       responseList: responseListHash,
       options: options
     };
-    
+
     console.log(data);
 
     //Response list API url
@@ -109,13 +113,13 @@ jQuery(document).ready(function() {
 
         posting.done(function(data) {
           if (data) {
-            var ul = document.createElement("ul");
-            $("#response").append(ul);
-
+            $("#response")
+              .append("<ul></ul>")
+              .addClass("chat_response");
             for (let i of data) {
-              var li = document.createElement("li");
-              li.innerHTML = i.response + ": " + i.topscore;
-              ul.appendChild(li);
+              $(".chat_response").append(
+                "<li>" + i.response + ": " + i.topscore + "</li>"
+              );
             }
           } else {
             $("#response").text("response failed");
@@ -126,16 +130,19 @@ jQuery(document).ready(function() {
           $("#response").text("Posting Full Response List Failed");
         });
       } else {
-        $('#response').append("<ul></ul>");
-
-        for (let i of data) {
-           $('#response ul').append("<li>"+i.response+": "+ i.topscore+"</li>");
+        $("#response")
+          .append("<ul></ul>")
+          .addClass("chat_response");
+        for (let i of responseData) {
+          $(".chat_response").append(
+            "<li>" + i.response + ": " + i.topscore + "</li>"
+          );
         }
       }
     });
 
     posting.fail(function(data) {
-      $('#response').append("Posting Hashed Response List Failed<br>");
+      $("#response").append("Posting Hashed Response List Failed<br>");
       // $("#response").text("Posting Hashed Response List Failed");
     });
   }
@@ -143,10 +150,9 @@ jQuery(document).ready(function() {
 
   //----Start: Generate Text----
   function generateText() {
-    
     let inputPrompt = $("#input_prompt").val();
     let options = {};
-    
+
     let url = "";
 
     let data = {
@@ -166,7 +172,6 @@ jQuery(document).ready(function() {
   }
 });
 //----End: Generate Text----
-
 
 // Hash
 var sha256 = function a(b) {

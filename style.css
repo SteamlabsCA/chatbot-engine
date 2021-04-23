@@ -50,6 +50,7 @@ body {
   height: fit-content;
   min-width: 97%; 
   max-width: 97%; 
+  overflow: auto;
 }
 
 .chat_response{
@@ -70,4 +71,13 @@ body {
   background-color: #32CD32	!important;
   margin: 0 !important;
   border-radius: 29px 0 29px 29px !important;
+}
+
+.api_return{
+  border: 2px solid #000;
+  padding: 10px;
+  min-height: 40px;
+  height: fit-content;
+  min-width: 97%; 
+  max-width: 97%; 
 }
