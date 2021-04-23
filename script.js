@@ -67,35 +67,35 @@ jQuery(document).ready(function() {
   });
   //----End: "Clear All" button----
 
+  var deferreds = responseList.map(function(url) {
+    // return the promise that `$.ajax` returns
+    return $.ajax({
+      url: "assets/" + url,
+      dataType: "text"
+    }).then(function(data) {
+      return data;
+    });
+  });
+
+  $.when(deferreds)
+    .done(function(results) {
+      // results will be array of each `data.value` in proper order
+      var datalist = results;
+      for (let i of datalist) {
+        i.then(res => (responseListConcat += res));
+      }
+    })
+    .fail(function() {
+      // Probably want to catch failure
+    });
+
   //----Start: Input prompt form is submit----
   $("#prompt_form").submit(function(event) {
     event.preventDefault();
 
-    var deferreds = responseList.map(function(url) {
-      // return the promise that `$.ajax` returns
-      return $.ajax({
-        url: "assets/" + url,
-        dataType: "text"
-      }).then(function(data) {
-        return data;
-      });
-    });
-
-    $.when(deferreds)
-      .done(function(results) {
-        // results will be array of each `data.value` in proper order
-        var datalist = results;
-        for (let i of datalist) {
-          i.then(res => (responseListConcat += res));
-        }
-
-        let responseList = [];
-        let options = {};
-        pickResponse($("#input_prompt").val(), responseList, options);
-      })
-      .fail(function() {
-        // Probably want to catch failure
-      });
+    let responseList = [];
+    let options = {};
+    pickResponse($("#input_prompt").val(), responseList, options);
   });
   //----End: Input prompt form is submit----
 
