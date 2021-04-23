@@ -59,4 +59,7 @@ body {
 
 #response ul li{
   background-color: #008fb3;
+  color: #fff;
+  padding: 10px;
+  margin: 20px
 }
