@@ -2,24 +2,6 @@ jQuery(document).ready(function() {
   let responseList = ["testText.txt", "testText2.txt", "testText3.txt"];
   let responseListConcat = "";
 
-  // // Get Text files for response list and concatenate
-  // function getResponseList(){
-  //   let responseListConcat = "";
-  //   for(let i of responseList){
-  //     return $.ajax({
-  //           url : "assets/"+i,
-  //           dataType: "text",
-  //           success : function (data) {
-  //             responseListConcat += data+"<br>";
-  //             $("#response").html(responseListConcat);
-  //           }
-  //     })
-  //   }
-  // }
-  // $.when(getResponseList()).done(function(getResponseList){
-  //     console.log(getResponseList)
-  // } );
-
   // map an array of promises
 
   //   //----Start: Test Response Output----
@@ -67,32 +49,58 @@ jQuery(document).ready(function() {
   });
   //----End: "Clear All" button----
 
-  var deferreds = responseList.map(function(url) {
-    // return the promise that `$.ajax` returns
-    return $.ajax({
-      url: "assets/" + url,
-      dataType: "text"
-    }).then(function(data) {
-      return data;
-    });
-  });
+//   var deferreds = responseList.map(function(url) {
+//     // return the promise that `$.ajax` returns
+//     return $.ajax({
+//       url: "assets/" + url,
+//       dataType: "text"
+//     }).then(function(data) {
+//       return data;
+//     });
+//   });
 
-  $.when(deferreds)
-    .done(function(results) {
-      // results will be array of each `data.value` in proper order
-      var datalist = results;
-      for (let i of datalist) {
-        i.then(res => (responseListConcat += res));
+//   $.when(deferreds)
+//     .done(function(results) {
+//       // results will be array of each `data.value` in proper order
+//       var datalist = results;
+//       for (let i of datalist) {
+//         i.then(res => (responseListConcat += res));
+//       }
+//     })
+//     .fail(function() {
+//       // Probably want to catch failure
+//     });
+  
+  $.when.apply($, responseList.map(function(url) {
+    return $.ajax("assets/"+url);
+  })).done(function() {
+      var results = [];
+      // there will be one argument passed to this callback for each ajax call
+      // each argument is of this form [data, statusText, jqXHR]
+      for (var i = 0; i < arguments.length; i++) {
+          responseListConcat += arguments[i][0]
       }
-    })
-    .fail(function() {
-      // Probably want to catch failure
-    });
-
+      // all data is now in the results array in order
+  });
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   //----Start: Input prompt form is submit----
   $("#prompt_form").submit(function(event) {
     event.preventDefault();
-
     let responseList = [];
     let options = {};
     pickResponse($("#input_prompt").val(), responseList, options);
