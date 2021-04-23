@@ -3,27 +3,27 @@ jQuery(document).ready(function() {
   let responseListConcat = "";
   let responseListHash = "";
 
-//   //----Start: Test Response Output----
-//   let responsesTest = [
-//     {
-//       response: "The best response",
-//       topscore: 0.2989
-//     },
-//     { response: "The second best response", topscore: 0.2139 },
-//     { response: "The third best response", topscore: 0.2017 },
-//     { response: "The fourth best response", topscore: 0.2 },
-//     { response: "The fifth best response", topscore: 0.1985 }
-//   ];
+  //----Start: Test Response Output----
+  let responsesTest = [
+    {
+      response: "The best response",
+      topscore: 0.2989
+    },
+    // { response: "The second best response", topscore: 0.2139 },
+    // { response: "The third best response", topscore: 0.2017 },
+    // { response: "The fourth best response", topscore: 0.2 },
+    // { response: "The fifth best response", topscore: 0.1985 }
+  ];
 
-//   $("#response")
-//     .append("<ul></ul>")
-//     .addClass("chat_response");
-//   for (let i of responsesTest) {
-//     $(".chat_response").append(
-//       "<li>" + i.response + ": " + i.topscore + "</li>"
-//     );
-//   }
-//   //----End: Test Response Output----
+  $("#response")
+    .append("<ul></ul>")
+    .addClass("chat_response");
+  for (let i of responsesTest) {
+    $(".chat_response").append(
+      "<li>" + i.response + ": " + i.topscore + "</li>"
+    );
+  }
+  //----End: Test Response Output----
 
   //----Start: Get the lists of text files and concatenate them ----
   $.when
@@ -122,12 +122,12 @@ jQuery(document).ready(function() {
               );
             }
           } else {
-            $("#response").text("response failed");
+            $(".api_return").text("response failed");
           }
         });
 
         posting.fail(function(data) {
-          $("#response").text("Posting Full Response List Failed");
+          $(".api_return").text("Posting Full Response List Failed");
         });
       } else {
         $("#response")
@@ -142,7 +142,7 @@ jQuery(document).ready(function() {
     });
 
     posting.fail(function(data) {
-      $("#response").append("Posting Hashed Response List Failed<br>");
+      $(".api_return").text("Posting Hashed Response List Failed");
       // $("#response").text("Posting Hashed Response List Failed");
     });
   }
@@ -167,7 +167,7 @@ jQuery(document).ready(function() {
     });
 
     posting.fail(function(data) {
-      $("#response").text("failed");
+      $(".api_return").text("failed");
     });
   }
 });
