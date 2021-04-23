@@ -1,6 +1,7 @@
 jQuery(document).ready(function() {
-  let responseList = ["testText.txt", "testText2.txt", "testText3.txt"];
+  let responseList = ["testText.txt", "testText2.txt"];
   let responseListConcat = "";
+  let responseListHash = "";
 
   // map an array of promises
 
@@ -48,28 +49,6 @@ jQuery(document).ready(function() {
     }
   });
   //----End: "Clear All" button----
-
-//   var deferreds = responseList.map(function(url) {
-//     // return the promise that `$.ajax` returns
-//     return $.ajax({
-//       url: "assets/" + url,
-//       dataType: "text"
-//     }).then(function(data) {
-//       return data;
-//     });
-//   });
-
-//   $.when(deferreds)
-//     .done(function(results) {
-//       // results will be array of each `data.value` in proper order
-//       var datalist = results;
-//       for (let i of datalist) {
-//         i.then(res => (responseListConcat += res));
-//       }
-//     })
-//     .fail(function() {
-//       // Probably want to catch failure
-//     });
   
   // Get the lists of text files and concatenate them
   $.when.apply($, responseList.map(function(url) {
@@ -82,6 +61,7 @@ jQuery(document).ready(function() {
       for (var i = 0; i < arguments.length; i++) {
           responseListConcat += arguments[i][0]
       }
+      responseListHash = sha256(responseListConcat);
   })
   .fail(function(error) {
       console.log("Text File Retrieval Error: "+error)
@@ -91,7 +71,6 @@ jQuery(document).ready(function() {
   //----Start: Input prompt form is submit----
   $("#prompt_form").submit(function(event) {
     event.preventDefault();
-    let responseList = [];
     let options = {};
     pickResponse($("#input_prompt").val(), responseList, options);
   });
@@ -99,18 +78,12 @@ jQuery(document).ready(function() {
 
   //----Start: Pick Response----
   function pickResponse(inputPrompt, responseList, options) {
-    alert("api called: " + responseListConcat);
-    //Hash the response list
-    let combResponses = "";
-    for (let i of responseList) {
-      combResponses += responseList[i];
-    }
-    let responseHash = sha256(combResponses);
-
+    console.log("api called: " + responseListHash);
+    
     //Load the data to be sent to the API
     let data = {
       inputPrompt: inputPrompt,
-      responseList: responseHash,
+      responseList: responseListHash,
       options: options
     };
 
@@ -188,6 +161,7 @@ jQuery(document).ready(function() {
   }
 });
 
+// Hash
 var sha256 = function a(b) {
   function c(a, b) {
     return (a >>> b) | (a << (32 - b));
