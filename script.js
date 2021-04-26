@@ -75,7 +75,7 @@ jQuery(document).ready(function() {
     }
     
     $(".chat_response").append(
-      "<li class='input_message'>" + inputPrompt + "</li><br><br><br><br>"
+      "<li class='input_message'>" + inputPrompt + "</li><br><br><br>"
     );
     $(".chat_response").append(
       "<li class='bot_response'>boop beep boop bop!!! boop beep boop bop!!! boop beep boop bop!!!</li>"
