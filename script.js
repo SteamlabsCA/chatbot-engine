@@ -70,12 +70,11 @@ jQuery(document).ready(function() {
     
     if(!$(".chat_response").length){
       $("#response")
-      .append("<ul></ul>")
-      .addClass("chat_response");
+      .append("<ul class='chat_response'></ul>")
     }
     
     $(".chat_response").append(
-      "<li class='input_message'>" + inputPrompt + "</li><br><br><br>"
+      "<li class='input_message'>" + inputPrompt + "</li>"
     );
     $(".chat_response").append(
       "<li class='bot_response'>boop beep boop bop!!! boop beep boop bop!!! boop beep boop bop!!!</li>"

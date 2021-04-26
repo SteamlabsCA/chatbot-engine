@@ -54,6 +54,7 @@ body {
 
 .chat_response{
   list-style-type: none;
+  padding: 0;
 } 
 
 
@@ -64,7 +65,7 @@ body {
   margin: 20px 0;
   width: fit-content;
   max-width: 220px;
-   word-wrap: break-word;
+  word-wrap: break-word;
   border-radius: 29px 29px 29px 0;
 }
 
@@ -72,10 +73,9 @@ body {
   background-color: #32CD32	;
   padding: 10px;
   max-width: 220px;
-   word-wrap: break-word;
+  word-wrap: break-word;
   border-radius: 29px 0 29px 29px;
-  float: right;
-  margin: 20px;
+  margin: 20px 0;
 }
 
 .api_return{
