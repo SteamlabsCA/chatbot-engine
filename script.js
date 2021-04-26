@@ -21,7 +21,7 @@ jQuery(document).ready(function() {
   $("#response")
     .append("<ul class='chat_response'></ul>")
   for (let i of responsesTest) {
-    let $bot_response = "<li class='bot_response'><span class='bot_profile'></span><span class='content_container'><span><h3>Bot</h3><p>"+date.toString()+"</p></span><p>" + i.response + ": " + i.topscore + "</p></span></li>";
+    let $bot_response = "<li class='bot_response'><span class='bot_profile'></span><span class='content_container'><span class='name_date'><h3>Bot</h3><p>"+date.toLocaleTimeString() + "</p></span><p>" + i.response + ": " + i.topscore + "</p></span></li>";
     $(".chat_response").append($bot_response);
   }
   //----End: Test Response Output----
