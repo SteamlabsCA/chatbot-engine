@@ -2,10 +2,10 @@ jQuery(document).ready(function() {
   let responseList = ["testText.txt", "testText2.txt"];
   let responseListConcat = "";
   let responseListHash = "";
-  let milli = new Date().getTime();
-  let time = {
-    miuntes: Math.floor((milli)/ 60),
-  }
+  var time = new Date().getTime(); // get your number
+  var date = new Date(time); // create Date object
+
+  console.log(date.toString()); // result: Wed Jan 12 2011 12:42:46 GMT-0800 (PST)
   //----Start: Test Response Output----
   let responsesTest = [
     {
@@ -21,7 +21,7 @@ jQuery(document).ready(function() {
   $("#response")
     .append("<ul class='chat_response'></ul>")
   for (let i of responsesTest) {
-    let $bot_response = "<li class='bot_response'><span class='bot_profile'></span><span class='content_container'><span><h3>Bot</h3><p>"+time.miuntes+"</p></span><p>" + i.response + ": " + i.topscore + "</p></span></li>";
+    let $bot_response = "<li class='bot_response'><span class='bot_profile'></span><span class='content_container'><span><h3>Bot</h3><p>"+date.toString()+"</p></span><p>" + i.response + ": " + i.topscore + "</p></span></li>";
     $(".chat_response").append($bot_response);
   }
   //----End: Test Response Output----
