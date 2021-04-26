@@ -44,9 +44,8 @@ body {
 }
 
 #response{
-  background-color: 
   border: 2px solid #d1d0d0;
-  padding: 10px 0;
+  padding: 0 10px;
   height: 190px;
   min-width: 97%;
   min-height: 250px;
@@ -67,6 +66,7 @@ body {
   margin: 20px 0;
   width: 98%;
   word-wrap: break-word;
+  border-radius: 10px;
   display:flex;
   align-items: flex-start;
 }
@@ -124,6 +124,7 @@ body {
   margin: 20px 0;
   width: 98%;
   word-wrap: break-word;
+  border-radius: 10px;
   display:flex;
   align-items: flex-start;
 }
