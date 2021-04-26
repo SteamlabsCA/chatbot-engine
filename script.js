@@ -2,28 +2,28 @@ jQuery(document).ready(function() {
   let responseList = ["testText.txt", "testText2.txt"];
   let responseListConcat = "";
   let responseListHash = "";
+  var time = new Date().getTime(); // get your number
+  var date = new Date(time); // create Date object
 
-//   //----Start: Test Response Output----
-//   let responsesTest = [
-//     {
-//       response: "The best response",
-//       topscore: 0.2989
-//     },
-//     { response: "The second best response", topscore: 0.2139 },
-//     { response: "The third best response", topscore: 0.2017 },
-//     { response: "The fourth best response", topscore: 0.2 },
-//     { response: "The fifth best response", topscore: 0.1985 }
-//   ];
+  //----Start: Test Response Output----
+  let responsesTest = [
+    {
+      response: "The best response",
+      topscore: 0.2989
+    },
+    // { response: "The second best response", topscore: 0.2139 },
+    // { response: "The third best response", topscore: 0.2017 },
+    // { response: "The fourth best response", topscore: 0.2 },
+    // { response: "The fifth best response", topscore: 0.1985 }
+  ];
 
-//   $("#response")
-//     .append("<ul></ul>")
-//     .addClass("chat_response");
-//   for (let i of responsesTest) {
-//     $(".chat_response").append(
-//       "<li class='bot_response'>" + i.response + ": " + i.topscore + "</li>"
-//     );
-//   }
-//   //----End: Test Response Output----
+  $("#response")
+    .append("<ul class='chat_response'></ul>")
+  for (let i of responsesTest) {
+    let $bot_response = "<li class='bot_response'><span class='bot_profile'></span><span class='content_container'><span class='name_date'><h3>Bot</h3><p>"+date.toLocaleTimeString() + "</p></span><p>" + i.response + ": " + i.topscore + "</p></span></li>";
+    $(".chat_response").append($bot_response);
+  }
+  //----End: Test Response Output----
 
   //----Start: Get the lists of text files and concatenate them ----
   $.when
@@ -70,20 +70,19 @@ jQuery(document).ready(function() {
     
     if(!$(".chat_response").length){
       $("#response")
-      .append("<ul></ul>")
-      .addClass("chat_response");
+      .append("<ul class='chat_response'></ul>")
     }
     
-    $(".chat_response").append(
-      "<li class='input_message'>" + inputPrompt + "</li><br><br><br>"
-    );
-    $(".chat_response").append(
-      "<li class='bot_response'>boop beep boop bop!!! boop beep boop bop!!! boop beep boop bop!!!</li>"
-    );
+    let $user_response = "<li class='input_message'><span class='user_profile'></span><span class='content_container'><span class='name_date'><h3>You</h3><p>"+date.toLocaleTimeString() + "</p></span><p>" + inputPrompt + "</p></span></li>";
+    $(".chat_response").append($user_response);
+    
+    let $bot_response = "<li class='bot_response'><span class='bot_profile'></span><span class='content_container'><span class='name_date'><h3>Bot</h3><p>"+date.toLocaleTimeString() + "</p></span><p>boop beep boop bop!!! boop beep boop bop!!! boop beep boop bop!!!</p></span></li>";
+    $(".chat_response").append($bot_response);
+    (document.getElementById("response")).scrollTop = (document.getElementById("response")).scrollHeight;
     pickResponse(inputPrompt);
   });
   //----End: Input prompt form is submit----
-
+  
   //----Start: Pick Response----
   function pickResponse(inputPrompt) {
     let options = {};
