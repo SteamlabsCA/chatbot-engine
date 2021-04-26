@@ -115,13 +115,9 @@ jQuery(document).ready(function() {
 
         posting.done(function(data) {
           if (data) {
-            $("#response")
-              .append("<ul></ul>")
-              .addClass("chat_response");
             for (let i of data) {
-              $(".chat_response").append(
-                "<li>" + i.response + ": " + i.topscore + "</li>"
-              );
+              let $bot_response = "<li class='bot_response'><span class='bot_profile'></span><span class='content_container'><span class='name_date'><h3>Bot</h3><p>"+date.toLocaleTimeString() + "</p></span><p>"+ i.response + ": " + i.topscore + "</p></span></li>";
+              $(".chat_response").append($bot_response);
             }
           } else {
             $(".api_return").text("response failed");
@@ -132,13 +128,10 @@ jQuery(document).ready(function() {
           $(".api_return").text("Posting Full Response List Failed");
         });
       } else {
-        $("#response")
-          .append("<ul></ul>")
-          .addClass("chat_response");
+        
         for (let i of responseData) {
-          $(".chat_response").append(
-            "<li>" + i.response + ": " + i.topscore + "</li>"
-          );
+          let $bot_response = "<li class='bot_response'><span class='bot_profile'></span><span class='content_container'><span class='name_date'><h3>Bot</h3><p>"+date.toLocaleTimeString() + "</p></span><p>"+ i.response + ": " + i.topscore + "</p></span></li>";
+          $(".chat_response").append($bot_response);
         }
       }
     });
@@ -165,7 +158,8 @@ jQuery(document).ready(function() {
     var posting = $.post(url, data);
 
     posting.done(function(data) {
-      $("#response").text(data[0].response);
+      let $bot_response = "<li class='bot_response'><span class='bot_profile'></span><span class='content_container'><span class='name_date'><h3>Bot</h3><p>"+date.toLocaleTimeString() + "</p></span><p>"+data+"</p></span></li>";
+      $(".chat_response").append($bot_response);
     });
 
     posting.fail(function(data) {
