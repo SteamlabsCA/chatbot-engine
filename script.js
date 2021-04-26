@@ -5,7 +5,6 @@ jQuery(document).ready(function() {
   var time = new Date().getTime(); // get your number
   var date = new Date(time); // create Date object
 
-  console.log(date.toString()); // result: Wed Jan 12 2011 12:42:46 GMT-0800 (PST)
   //----Start: Test Response Output----
   let responsesTest = [
     {
@@ -79,12 +78,11 @@ jQuery(document).ready(function() {
     
     let $bot_response = "<li class='bot_response'><span class='bot_profile'></span><span class='content_container'><span class='name_date'><h3>Bot</h3><p>"+date.toLocaleTimeString() + "</p></span><p>boop beep boop bop!!! boop beep boop bop!!! boop beep boop bop!!!</p></span></li>";
     $(".chat_response").append($bot_response);
-    var objDiv = document.getElementById("your_div");
-    objDiv.scrollTop = objDiv.scrollHeight;
+    (document.getElementById("response")).scrollTop = (document.getElementById("response")).scrollHeight;
     pickResponse(inputPrompt);
   });
   //----End: Input prompt form is submit----
-
+  
   //----Start: Pick Response----
   function pickResponse(inputPrompt) {
     let options = {};
