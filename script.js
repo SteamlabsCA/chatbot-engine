@@ -79,7 +79,8 @@ jQuery(document).ready(function() {
     
     let $bot_response = "<li class='bot_response'><span class='bot_profile'></span><span class='content_container'><span class='name_date'><h3>Bot</h3><p>"+date.toLocaleTimeString() + "</p></span><p>boop beep boop bop!!! boop beep boop bop!!! boop beep boop bop!!!</p></span></li>";
     $(".chat_response").append($bot_response);
-    
+    var objDiv = document.getElementById("your_div");
+    objDiv.scrollTop = objDiv.scrollHeight;
     pickResponse(inputPrompt);
   });
   //----End: Input prompt form is submit----

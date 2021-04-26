@@ -97,6 +97,7 @@ body {
 
 .name_date p{
   font-size: 0.8rem;
+  color: #b7aeae;
 }
 
 .content_container h3{
@@ -112,7 +113,7 @@ body {
   width: 30px;
   min-height: 30px;
   min-width: 30px;
-  background-color: #000;
+  background-color: #04d458;
   border-radius: 50%;
 }
 
