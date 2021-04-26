@@ -73,8 +73,6 @@ body {
 .bot_profile{
   height: 30px;
   width: 30px;
-  max-height: 30px;
-  max-width: 30px;
   min-height: 30px;
   min-width: 30px;
   background-color: #bbb;
@@ -95,15 +93,25 @@ body {
   margin: 0;
 }
 
-
+.user_profile{
+  height: 30px;
+  width: 30px;
+  min-height: 30px;
+  min-width: 30px;
+  background-color: #000;
+  border-radius: 50%;
+}
 
 .input_message{
-  background-color: #32CD32	;
+  background-color: #008fb3;
+  color: #fff;
   padding: 10px;
-  max-width: 220px;
-  word-wrap: break-word;
-  border-radius: 29px 0 29px 29px;
   margin: 20px 0;
+  width: 98%;
+  word-wrap: break-word;
+  border-radius: 7px;
+  display:flex;
+  align-items: flex-start;
 }
 
 .api_return{

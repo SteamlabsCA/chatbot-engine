@@ -71,12 +71,12 @@ jQuery(document).ready(function() {
       .append("<ul class='chat_response'></ul>")
     }
     
-    $(".chat_response").append(
-      "<li class='input_message'>" + inputPrompt + "</li>"
-    );
-    $(".chat_response").append(
-      "<li class='bot_response'>boop beep boop bop!!! boop beep boop bop!!! boop beep boop bop!!!</li>"
-    );
+    let $user_response = "<li class='input_message'><span class='user_profile'></span><span class='content_container'><h3>User</h3><p>" + inputPrompt + "</p></span></li>";
+    $(".chat_response").append($user_response);
+    
+    let $bot_response = "<li class='bot_response'><span class='bot_profile'></span><span class='content_container'><h3>Bot</h3><p>boop beep boop bop!!! boop beep boop bop!!! boop beep boop bop!!!</p></span></li>";
+    $(".chat_response").append($bot_response);
+    
     pickResponse(inputPrompt);
   });
   //----End: Input prompt form is submit----
