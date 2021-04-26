@@ -63,17 +63,21 @@ body {
   color: #fff;
   padding: 10px;
   margin: 20px 0;
-  width: fit-content;
-  max-width: 220px;
+  width: 98%;
   word-wrap: break-word;
-  border-radius: 29px 29px 29px 0;
+  border-radius: 7px;
+  display:flex;
+  align-items: center;
+}
+.bot_response p{
+  margin: 0;
 }
 
 .bot_profile{
-  border-radius: 50%;
-  background-color: #000;
   height: 30px;
   width: 30px;
+  background-color: #bbb;
+  border-radius: 50%;
 }
 
 .input_message{
