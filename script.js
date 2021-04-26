@@ -3,27 +3,26 @@ jQuery(document).ready(function() {
   let responseListConcat = "";
   let responseListHash = "";
 
-//   //----Start: Test Response Output----
-//   let responsesTest = [
-//     {
-//       response: "The best response",
-//       topscore: 0.2989
-//     },
-//     { response: "The second best response", topscore: 0.2139 },
-//     { response: "The third best response", topscore: 0.2017 },
-//     { response: "The fourth best response", topscore: 0.2 },
-//     { response: "The fifth best response", topscore: 0.1985 }
-//   ];
+  //----Start: Test Response Output----
+  let responsesTest = [
+    {
+      response: "The best response",
+      topscore: 0.2989
+    },
+    // { response: "The second best response", topscore: 0.2139 },
+    // { response: "The third best response", topscore: 0.2017 },
+    // { response: "The fourth best response", topscore: 0.2 },
+    // { response: "The fifth best response", topscore: 0.1985 }
+  ];
 
-//   $("#response")
-//     .append("<ul></ul>")
-//     .addClass("chat_response");
-//   for (let i of responsesTest) {
-//     $(".chat_response").append(
-//       "<li class='bot_response'>" + i.response + ": " + i.topscore + "</li>"
-//     );
-//   }
-//   //----End: Test Response Output----
+  $("#response")
+    .append("<ul class='chat_response'></ul>")
+  for (let i of responsesTest) {
+    $(".chat_response").append(
+      "<li class='bot_response'><p>" + i.response + ": " + i.topscore + "</p></li>"
+    );
+  }
+  //----End: Test Response Output----
 
   //----Start: Get the lists of text files and concatenate them ----
   $.when

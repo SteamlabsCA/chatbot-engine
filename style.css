@@ -69,6 +69,13 @@ body {
   border-radius: 29px 29px 29px 0;
 }
 
+.bot_profile{
+  border-radius: 50%;
+  background-color: #000;
+  height: 30px;
+  width: 30px;
+}
+
 .input_message{
   background-color: #32CD32	;
   padding: 10px;
