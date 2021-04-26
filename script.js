@@ -6,23 +6,23 @@ jQuery(document).ready(function() {
   var date = new Date(time); // create Date object
 
   //----Start: Test Response Output----
-  let responsesTest = [
-    {
-      response: "The best response",
-      topscore: 0.2989
-    },
-    // { response: "The second best response", topscore: 0.2139 },
-    // { response: "The third best response", topscore: 0.2017 },
-    // { response: "The fourth best response", topscore: 0.2 },
-    // { response: "The fifth best response", topscore: 0.1985 }
-  ];
+//   let responsesTest = [
+//     {
+//       response: "The best response",
+//       topscore: 0.2989
+//     },
+//     // { response: "The second best response", topscore: 0.2139 },
+//     // { response: "The third best response", topscore: 0.2017 },
+//     // { response: "The fourth best response", topscore: 0.2 },
+//     // { response: "The fifth best response", topscore: 0.1985 }
+//   ];
 
-  $("#response")
-    .append("<ul class='chat_response'></ul>")
-  for (let i of responsesTest) {
-    let $bot_response = "<li class='bot_response'><span class='bot_profile'></span><span class='content_container'><span class='name_date'><h3>Bot</h3><p>"+date.toLocaleTimeString() + "</p></span><p>" + i.response + ": " + i.topscore + "</p></span></li>";
-    $(".chat_response").append($bot_response);
-  }
+//   $("#response")
+//     .append("<ul class='chat_response'></ul>")
+//   for (let i of responsesTest) {
+//     let $bot_response = "<li class='bot_response'><span class='bot_profile'></span><span class='content_container'><span class='name_date'><h3>Bot</h3><p>"+date.toLocaleTimeString() + "</p></span><p>" + i.response + ": " + i.topscore + "</p></span></li>";
+//     $(".chat_response").append($bot_response);
+//   }
   //----End: Test Response Output----
 
   //----Start: Get the lists of text files and concatenate them ----
