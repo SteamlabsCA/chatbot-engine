@@ -89,6 +89,7 @@ body {
   display: flex;
   flex-direction: column;
   margin-left: 20px;
+    word-wrap: break-word;
 }
 .name_date{
   display: flex;
@@ -136,8 +137,8 @@ body {
 .api_return{
   border: 2px solid #000;
   padding: 10px;
-  min-height: 40px;
   height: fit-content;
   min-width: 97%; 
   max-width: 97%; 
+  text-align: center;
 }
