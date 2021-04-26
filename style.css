@@ -67,18 +67,35 @@ body {
   word-wrap: break-word;
   border-radius: 7px;
   display:flex;
-  align-items: center;
-}
-.bot_response p{
-  margin: 0;
+  align-items: flex-start;
 }
 
 .bot_profile{
   height: 30px;
   width: 30px;
+  max-height: 30px;
+  max-width: 30px;
+  min-height: 30px;
+  min-width: 30px;
   background-color: #bbb;
   border-radius: 50%;
 }
+
+.content_container{
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+}
+
+.content_container h3{
+  margin: 5px 0;
+}
+
+.content_container p{
+  margin: 0;
+}
+
+
 
 .input_message{
   background-color: #32CD32	;

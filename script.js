@@ -18,9 +18,8 @@ jQuery(document).ready(function() {
   $("#response")
     .append("<ul class='chat_response'></ul>")
   for (let i of responsesTest) {
-    let $bot_response = "<li class='bot_response'><span class='bot_profile'></span><span><p>" + i.response + ": " + i.topscore + "</p></li>";
-    $(".chat_response").append(
-    );
+    let $bot_response = "<li class='bot_response'><span class='bot_profile'></span><span class='content_container'><h3>Bot</h3><p>" + i.response + ": " + i.topscore + "</p></span></li>";
+    $(".chat_response").append($bot_response);
   }
   //----End: Test Response Output----
 
