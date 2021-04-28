@@ -73,7 +73,7 @@ jQuery(document).ready(function() {
       .append("<ul class='chat_response'></ul>")
     }
     
-    let $user_response = "<li class='input_message'><span class='user_profile'></span><span class='content_container'><span class='name_date'><h3>You</h3><p>"+date.toLocaleTimeString() + "</p></span><p>" + sha256(inputPrompt) + "</p></span></li>";
+    let $user_response = "<li class='input_message'><img src='' class='user_profile'></img><span class='content_container'><span class='name_date'><h3>You</h3><p>"+date.toLocaleTimeString() + "</p></span><p>" + inputPrompt + "</p></span></li>";
     $(".chat_response").append($user_response);
     
     let $bot_response = "<li class='bot_response'><img src='https://cdn.glitch.com/a1898aab-94e6-4c8f-8dd2-5de4e5ff6a2b%2FSteamLabs_Monogram_RGB_Black.png?v=1619620318564' class='bot_profile'></img><span class='content_container'><span class='name_date'><h3>Bot</h3><p>"+date.toLocaleTimeString() + "</p></span><p>boop beep boop bop!!! boop beep boop bop!!! boop beep boop bop!!!</p></span></li>";
@@ -158,7 +158,7 @@ jQuery(document).ready(function() {
     var posting = $.post(url, data);
 
     posting.done(function(data) {
-      let $bot_response = "<li class='bot_response'><img src='https://cdn.glitch.com/a1898aab-94e6-4c8f-8dd2-5de4e5ff6a2b%2FSteamLabs_Monogram_RGB_Black.png?v=1619620318564' class='bot_profile'></span><span class='content_container'><span class='name_date'><h3>Bot</h3><p>"+date.toLocaleTimeString() + "</p></span><p>"+data+"</p></span></li>";
+      let $bot_response = "<li class='bot_response'><img src='https://cdn.glitch.com/a1898aab-94e6-4c8f-8dd2-5de4e5ff6a2b%2FSteamLabs_Monogram_RGB_Black.png?v=1619620318564' class='bot_profile'></img><span class='content_container'><span class='name_date'><h3>Bot</h3><p>"+date.toLocaleTimeString() + "</p></span><p>"+data+"</p></span></li>";
       $(".chat_response").append($bot_response);
     });
 
