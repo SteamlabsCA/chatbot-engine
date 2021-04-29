@@ -3,11 +3,7 @@ Welcome to the SteamLabs Chatbot Engine!
 
 Click `Show` in the header to see your the chatbot live. Updates to your code will instantly deploy and update live.
 
-**Glitch** is the friendly community where you'll build the app of your dreams. Glitch lets you instantly create, remix, edit, and host an app, bot or site, and you can invite collaborators or helpers to simultaneously edit code with you.
-![alt text]( | width=100)
-<img src="https://cdn.glitch.com/a1898aab-94e6-4c8f-8dd2-5de4e5ff6a2b%2Fglitch_logo.svg?v=1619722015800" alt="drawing" width="100"/>
-
-Find out more [about Glitch](https://glitch.com/about).
+You can instantly remix and edit the code to get different response from the engine!
 
 
 Your Project
@@ -33,7 +29,3 @@ If you're feeling fancy you can add interactivity to your site with JavaScript.
 
 Drag in `assets`, like images or music, to add them to your project
 
-Made by [Glitch](https://glitch.com/)
--------------------
-
-\ ゜o゜)ノ
