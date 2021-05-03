@@ -98,20 +98,13 @@ jQuery(document).ready(function() {
       inputPrompt: "What's for dinner?",
       responseList:["I like pie","Roasted goat is nice but takes a long time to <cook>","a fresh fruit bowl sounds <nice>","AMD is better than Nvidia"]
     }
-
+    
+    let url = 'https://th2cr483s1.execute-api.us-east-1.amazonaws.com/Beta/resources';
+    
     console.log(data);
 
     //Post data to the API - hash the response and send it, if the hash doesnt work send the entire response list
-    var posting = $.ajax({
-    type: "POST",
-    url: "https://th2cr483s1.execute-api.us-east-1.amazonaws.com/Beta/resources",
-    data: JSON.stringify(data),
-    dataType: "json",
-    success: function(data){console.log(data);},
-    error: function(errMsg) {
-        console.log("error: " + errMsg);
-      },
-    });
+    var posting = $.post(url, JSON.stringify(data));
 
     posting.done(function(responseData) {
       if (responseData === -1) {
