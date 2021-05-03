@@ -105,8 +105,19 @@ jQuery(document).ready(function() {
     //Response list API url
     let url = "https://7k68111zvf.execute-api.us-west-2.amazonaws.com/Beta/resources";
 
+    var posting = $.ajax({
+          url: url,
+        });
+    
+    posting.done(function(res) {
+      var results = [];
+      for (var i = 0; i < arguments.length; i++) {
+        responseListConcat += arguments[i][0];
+      }
+      res
+    
     //Post data to the API - hash the response and send it, if the hash doesnt work send the entire response list
-    var posting = $.post(url, data);
+    // var posting = $.post(url, data);
 
     posting.done(function(responseData) {
       if (responseData === -1) {
@@ -145,7 +156,8 @@ jQuery(document).ready(function() {
     });
 
     posting.fail(function(data) {
-      $(".api_return").text("Posting Hashed Response List Failed" + data);
+      $(".api_return").text("Posting Hashed Response List Failed: " + data);
+      console.log(data);
       // $("#response").text("Posting Hashed Response List Failed");
     });
   }
