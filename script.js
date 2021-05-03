@@ -112,9 +112,9 @@ jQuery(document).ready(function() {
     // The key needs to match your method's input parameter (case-sensitive).
     data: JSON.stringify(data),
     dataType: "json",
-    success: function(data){alert(data);},
+    success: function(data){console.log(data);},
     error: function(errMsg) {
-        alert(errMsg);
+        console.log("error: " + errMsg);
       },
     headers: {
               "accept": "application/json",
@@ -159,7 +159,7 @@ jQuery(document).ready(function() {
     });
 
     posting.fail(function(data) {
-      $(".api_return").text("Posting Hashed Response List Failed:");
+      $(".api_return").text("Posting Hashed Response List Failed:" +data);
       // $("#response").text("Posting Hashed Response List Failed");
     });
   }
