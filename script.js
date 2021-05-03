@@ -105,7 +105,6 @@ jQuery(document).ready(function() {
     var posting = $.ajax({
     type: "POST",
     url: "https://7k68111zvf.execute-api.us-west-2.amazonaws.com/Beta/resources",
-    headers: {  'Access-Control-Allow-Origin': 'http://glitch.com' },
     data: JSON.stringify(data),
     dataType: "json",
     success: function(data){console.log(data);},
