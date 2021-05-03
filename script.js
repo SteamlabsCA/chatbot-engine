@@ -113,10 +113,6 @@ jQuery(document).ready(function() {
     error: function(errMsg) {
         console.log("error: " + errMsg);
       },
-    headers: {
-        "accept": "application/json",
-        "Access-Control-Allow-Origin":"*"
-    }
     });
 
     posting.done(function(responseData) {
