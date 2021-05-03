@@ -102,13 +102,10 @@ jQuery(document).ready(function() {
 
     console.log(data);
 
-    //Response list API url
-    let url = "https://7k68111zvf.execute-api.us-west-2.amazonaws.com/Beta/resources";
-
     //Post data to the API - hash the response and send it, if the hash doesnt work send the entire response list
     var posting = $.ajax({
     type: "POST",
-    url: url,
+    url: "https://7k68111zvf.execute-api.us-west-2.amazonaws.com/Beta/resources",
     // The key needs to match your method's input parameter (case-sensitive).
     data: JSON.stringify(data),
     dataType: "json",
@@ -117,8 +114,8 @@ jQuery(document).ready(function() {
         console.log("error: " + errMsg);
       },
     headers: {
-              "accept": "application/json",
-              "Access-Control-Allow-Origin":"*"
+        "accept": "application/json",
+        "Access-Control-Allow-Origin":"*"
     }
     });
 
