@@ -88,16 +88,22 @@ jQuery(document).ready(function() {
     let options = {};
 
     //Load the data to be sent to the API
+    // let data = {
+    //   inputPrompt: inputPrompt,
+    //   responseList: responseListHash,
+    //   options: options
+    // };
+    
     let data = {
-      inputPrompt: inputPrompt,
-      responseList: responseListHash,
-      options: options
-    };
+      inputPrompt: "What's for dinner?",
+      responseList:["I like pie","Roasted goat is nice but takes a long time to <cook>","a fresh fruit bowl sounds <nice>","AMD is better than Nvidia"],
+      //options: options
+    }
 
     console.log(data);
 
     //Response list API url
-    let url = "";
+    let url = "https://7k68111zvf.execute-api.us-west-2.amazonaws.com/Beta/resources";
 
     //Post data to the API - hash the response and send it, if the hash doesnt work send the entire response list
     var posting = $.post(url, data);
