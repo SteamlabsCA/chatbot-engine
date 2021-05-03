@@ -104,7 +104,7 @@ jQuery(document).ready(function() {
     //Post data to the API - hash the response and send it, if the hash doesnt work send the entire response list
     var posting = $.ajax({
     type: "POST",
-    url: "https://7k68111zvf.execute-api.us-west-2.amazonaws.com/Beta/resources",
+    url: "https://th2cr483s1.execute-api.us-east-1.amazonaws.com/Beta/resources",
     data: JSON.stringify(data),
     dataType: "json",
     success: function(data){console.log(data);},
