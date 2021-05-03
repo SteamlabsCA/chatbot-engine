@@ -95,8 +95,8 @@ jQuery(document).ready(function() {
     // };
     
     let data = {
-      "inputPrompt": "What's for dinner?",
-      "responseList":["I like pie","Roasted goat is nice but takes a long time to <cook>","a fresh fruit bowl sounds <nice>","AMD is better than Nvidia"],
+      inputPrompt: "What's for dinner?",
+      responseList:["I like pie","Roasted goat is nice but takes a long time to <cook>","a fresh fruit bowl sounds <nice>","AMD is better than Nvidia"],
       //options: options
     }
 
@@ -105,19 +105,19 @@ jQuery(document).ready(function() {
     //Response list API url
     let url = "https://7k68111zvf.execute-api.us-west-2.amazonaws.com/Beta/resources";
 
-    var posting = $.ajax({
-          url: url,
-        });
-    
-    posting.done(function(res) {
-      var results = [];
-      for (var i = 0; i < arguments.length; i++) {
-        responseListConcat += arguments[i][0];
-      }
-      res
-    
     //Post data to the API - hash the response and send it, if the hash doesnt work send the entire response list
-    // var posting = $.post(url, data);
+    var posting = $.ajax({
+    type: "POST",
+    url: url,
+    // The key needs to match your method's input parameter (case-sensitive).
+    data: JSON.stringify(data),
+    contentType: "application/json; charset=utf-8",
+    dataType: "json",
+    success: function(data){alert(data);},
+    error: function(errMsg) {
+        alert(errMsg);
+      }
+    });
 
     posting.done(function(responseData) {
       if (responseData === -1) {
@@ -156,8 +156,7 @@ jQuery(document).ready(function() {
     });
 
     posting.fail(function(data) {
-      $(".api_return").text("Posting Hashed Response List Failed: " + data);
-      console.log(data);
+      $(".api_return").text("Posting Hashed Response List Failed:");
       // $("#response").text("Posting Hashed Response List Failed");
     });
   }
