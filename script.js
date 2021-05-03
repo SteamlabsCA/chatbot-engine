@@ -96,8 +96,7 @@ jQuery(document).ready(function() {
     
     let data = {
       inputPrompt: "What's for dinner?",
-      responseList:["I like pie","Roasted goat is nice but takes a long time to <cook>","a fresh fruit bowl sounds <nice>","AMD is better than Nvidia"],
-      //options: options
+      responseList:["I like pie","Roasted goat is nice but takes a long time to <cook>","a fresh fruit bowl sounds <nice>","AMD is better than Nvidia"]
     }
 
     console.log(data);
@@ -106,7 +105,7 @@ jQuery(document).ready(function() {
     var posting = $.ajax({
     type: "POST",
     url: "https://7k68111zvf.execute-api.us-west-2.amazonaws.com/Beta/resources",
-    // The key needs to match your method's input parameter (case-sensitive).
+    headers: {  'Access-Control-Allow-Origin': 'http://glitch.com' },
     data: JSON.stringify(data),
     dataType: "json",
     success: function(data){console.log(data);},
