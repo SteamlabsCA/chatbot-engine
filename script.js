@@ -111,12 +111,15 @@ jQuery(document).ready(function() {
     url: url,
     // The key needs to match your method's input parameter (case-sensitive).
     data: JSON.stringify(data),
-    contentType: "application/json; charset=utf-8",
     dataType: "json",
     success: function(data){alert(data);},
     error: function(errMsg) {
         alert(errMsg);
-      }
+      },
+    headers: {
+              "accept": "application/json",
+              "Access-Control-Allow-Origin":"*"
+    }
     });
 
     posting.done(function(responseData) {
