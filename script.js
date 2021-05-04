@@ -110,9 +110,6 @@ jQuery(document).ready(function() {
                       type: 'post',
                       dataType: 'json',
                       data: JSON.stringify(data),
-                      headers: {
-                        "Access-Control-Allow-Origin" : "*", 
-                      },
                   });
     
     posting.done(function(responseData) {
