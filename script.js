@@ -111,7 +111,7 @@ jQuery(document).ready(function() {
                       dataType: 'json',
                       data: JSON.stringify(data),
                       headers: {
-                        "Access-Control-Allow-Origin" : "https://y24ps1nccg.execute-api.us-west-2.amazonaws.com/Beta/resources", 
+                        "Access-Control-Allow-Origin" : "*", 
                       },
                   });
     
