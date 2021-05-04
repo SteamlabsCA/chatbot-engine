@@ -99,13 +99,23 @@ jQuery(document).ready(function() {
       responseList: ["I like pie","Roasted goat is nice but takes a long time to <cook>","a fresh fruit bowl sounds <nice>"]
     }
     
-    let url = 'https://u1n3l8w1kd.execute-api.us-east-1.amazonaws.com/convert';
+    let url = 'https://y24ps1nccg.execute-api.us-west-2.amazonaws.com/Beta/resources';
     
     console.log(data);
 
     //Post data to the API - hash the response and send it, if the hash doesnt work send the entire response list
-    var posting = $.post(url, JSON.stringify(data));
-
+    //var posting = $.post(url, JSON.stringify(data));
+      var posting = $.ajax({
+                      url: url,
+                      type: 'post',
+                      dataType: 'json',
+                      data: JSON.stringify(data),
+                      headers: {
+                        "Access-Control-Allow-Origin" : "*", 
+                        "Access-Control-Allow-Credentials" : true 
+                      },
+                  });
+    
     posting.done(function(responseData) {
       if (responseData === -1) {
         //If server doesn’t have that list cached
