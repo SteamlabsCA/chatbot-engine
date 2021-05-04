@@ -96,10 +96,10 @@ jQuery(document).ready(function() {
     
     let data = {
       inputPrompt: "What's for dinner?",
-      responseList:["I like pie","Roasted goat is nice but takes a long time to <cook>","a fresh fruit bowl sounds <nice>","AMD is better than Nvidia"]
+      responseList: ["I like pie","Roasted goat is nice but takes a long time to <cook>","a fresh fruit bowl sounds <nice>"]
     }
     
-    let url = 'https://th2cr483s1.execute-api.us-east-1.amazonaws.com/Beta/resources';
+    let url = 'https://u1n3l8w1kd.execute-api.us-east-1.amazonaws.com/convert';
     
     console.log(data);
 
