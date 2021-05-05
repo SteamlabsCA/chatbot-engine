@@ -97,7 +97,7 @@ jQuery(document).ready(function() {
     console.log(data);
 
     //Response list API url
-    let url = "";
+    let url = "https://kx9ltbnh08.execute-api.us-east-1.amazonaws.com/convert";
 
     //Post data to the API - hash the response and send it, if the hash doesnt work send the entire response list
     var posting = $.post(url, data);
