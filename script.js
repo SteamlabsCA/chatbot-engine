@@ -106,11 +106,9 @@ jQuery(document).ready(function() {
     //Post data to the API - hash the response and send it, if the hash doesnt work send the entire response list
     //var posting = $.post(url, JSON.stringify(data));
       var posting = $.ajax({
-                      headers: { "Accept": "application/json"},
                       url: url,
                       type: 'post',
-                      crossDomain: true,
-                      dataType: 'jsonp',
+                      dataType: 'json',
                       data: JSON.stringify(data),
                   });
     
