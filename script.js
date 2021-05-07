@@ -99,7 +99,7 @@ jQuery(document).ready(function() {
       responseList: ["I like pie","Roasted goat is nice but takes a long time to <cook>","a fresh fruit bowl sounds <nice>"]
     }
     
-    let url = 'https://eeamphw8n0.execute-api.us-west-2.amazonaws.com/Beta/resources';
+    let url = ' http://a5d7cef22d6544b0bb71568c03631b65-48a33fb82d344553.elb.us-east-1.amazonaws.com/convert';
     
     console.log(data);
 
