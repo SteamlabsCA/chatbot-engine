@@ -107,6 +107,9 @@ jQuery(document).ready(function() {
     //var posting = $.post(url, JSON.stringify(data));
       var posting = $.ajax({
                       url: url,
+                      headers: {
+                          'Access-Control-Allow-Origin':'*'
+                      },
                       type: 'post',
                       dataType: 'json',
                       data: JSON.stringify(data),
