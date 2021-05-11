@@ -27,15 +27,12 @@ jQuery(document).ready(function() {
 
   //----Start: Get the lists of text files and concatenate them ----
   $.when
-    .apply(
-      $,
-      responseList.map(function(url) {
+    .apply($,responseList.map(function(url) {
         return $.ajax({
           url: "assets/" + url,
           dataType: "text"
         });
-      })
-    )
+      }))
     .done(function() {
       var results = [];
       for (var i = 0; i < arguments.length; i++) {
@@ -85,7 +82,9 @@ jQuery(document).ready(function() {
   
   //----Start: Pick Response----
   function pickResponse(inputPrompt) {
-    let options = {};
+    let options = {
+      language: "en",
+    };
 
     //Load the data to be sent to the API
     // let data = {
@@ -105,7 +104,7 @@ jQuery(document).ready(function() {
 
     //Post data to the API - hash the response and send it, if the hash doesnt work send the entire response list
     //var posting = $.post(url, JSON.stringify(data));
-      var posting = $.ajax({
+    var posting = $.ajax({
                       url: url,
                       type: 'post',
                       dataType: 'json',
