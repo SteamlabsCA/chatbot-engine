@@ -98,7 +98,7 @@ function responseList(textArray) {
       responseList: ["I like pie","Roasted goat is nice but takes a long time to <cook>","a fresh fruit bowl sounds <nice>"]
     }
     
-    let url = 'http://afe9ab697188148d68acfa2742dc34c7-9b1712a1530f0621.elb.us-east-1.amazonaws.com/convert';
+    let url = 'https://t5no5i1rni.execute-api.us-west-2.amazonaws.com/dev/convert';
     
     console.log(data);
 
