@@ -109,7 +109,7 @@ function responseList(textArray) {
                       //type: 'post',
                       type: "POST",
                       //dataType: 'json',
-                      
+                      contentType: "application/json",
                       data: JSON.stringify(data),
                   });
     
