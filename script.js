@@ -1,4 +1,4 @@
-export function responseList(textArray) {
+function responseList(textArray) {
   let responseList = textArray;
   let responseListConcat = "";
   let responseListHash = "";
