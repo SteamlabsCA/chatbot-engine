@@ -2,8 +2,8 @@ function responseList(textArray) {
   let responseList = textArray;
   let responseListConcat = "";
   let responseListHash = "";
-  var time = new Date().getTime(); // get your number
-  var date = new Date(time); // create Date object
+  var time = new Date().getTime();
+  var date = new Date(time);
 
   //----Start: Test Response Output----
 //   let responsesTest = [
