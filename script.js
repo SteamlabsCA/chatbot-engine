@@ -1,5 +1,5 @@
-jQuery(document).ready(function() {
-  let responseList = ["testText.txt", "testText2.txt"];
+function responseList(textArray) {
+  let responseList = textArray;
   let responseListConcat = "";
   let responseListHash = "";
   var time = new Date().getTime(); // get your number
@@ -177,8 +177,8 @@ jQuery(document).ready(function() {
       $(".api_return").text("failed");
     });
   }
-});
-//----End: Generate Text----
+  //----End: Generate Text----
+}
 
 // Hash
 var sha256 = function a(b) {
