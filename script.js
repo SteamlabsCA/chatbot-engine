@@ -106,8 +106,10 @@ function responseList(textArray) {
     //var posting = $.post(url, JSON.stringify(data));
     var posting = $.ajax({
                       url: url,
-                      type: 'post',
-                      dataType: 'json',
+                      //type: 'post',
+                      type: "POST",
+                      //dataType: 'json',
+                      
                       data: JSON.stringify(data),
                   });
     
