@@ -1,9 +1,9 @@
-jQuery(document).ready(function() {
-  let responseList = ["testText.txt", "testText2.txt"];
+function responseList(textArray) {
+  let responseList = textArray;
   let responseListConcat = "";
   let responseListHash = "";
-  var time = new Date().getTime(); // get your number
-  var date = new Date(time); // create Date object
+  var time = new Date().getTime();
+  var date = new Date(time);
 
   //----Start: Test Response Output----
 //   let responsesTest = [
@@ -27,15 +27,12 @@ jQuery(document).ready(function() {
 
   //----Start: Get the lists of text files and concatenate them ----
   $.when
-    .apply(
-      $,
-      responseList.map(function(url) {
+    .apply($,responseList.map(function(url) {
         return $.ajax({
           url: "assets/" + url,
           dataType: "text"
         });
-      })
-    )
+      }))
     .done(function() {
       var results = [];
       for (var i = 0; i < arguments.length; i++) {
@@ -76,8 +73,10 @@ jQuery(document).ready(function() {
     let $user_response = "<li class='input_message'><img src='https://cdn.glitch.com/a1898aab-94e6-4c8f-8dd2-5de4e5ff6a2b%2Fuser_profile.jpg?v=1619623699243' class='user_profile'></img><span class='content_container'><span class='name_date'><h3>You</h3><p>"+date.toLocaleTimeString() + "</p></span><p>" + inputPrompt + "</p></span></li>";
     $(".chat_response").append($user_response);
     
-    let $bot_response = "<li class='bot_response'><img src='https://cdn.glitch.com/a1898aab-94e6-4c8f-8dd2-5de4e5ff6a2b%2FSteamLabs_Monogram_RGB_Black.png?v=1619620318564' class='bot_profile'></img><span class='content_container'><span class='name_date'><h3>Bot</h3><p>"+date.toLocaleTimeString() + "</p></span><p>Hello, the current date is: "+date+ " </p></span></li>";
+    // Automated Bot Response
+    let $bot_response = "<li class='bot_response'><img src='https://cdn.glitch.com/a1898aab-94e6-4c8f-8dd2-5de4e5ff6a2b%2FSteamLabs_Monogram_RGB_Black.png?v=1619620318564' class='bot_profile'></img><span class='content_container'><span class='name_date'><h3>Bot</h3><p>"+date.toLocaleTimeString() + "</p></span><p>Hello, the current date is: "+date+"</p></span></li>";
     $(".chat_response").append($bot_response);
+    
     (document.getElementById("response")).scrollTop = (document.getElementById("response")).scrollHeight;
     pickResponse(inputPrompt);
   });
@@ -85,23 +84,35 @@ jQuery(document).ready(function() {
   
   //----Start: Pick Response----
   function pickResponse(inputPrompt) {
-    let options = {};
-
-    //Load the data to be sent to the API
-    let data = {
-      inputPrompt: inputPrompt,
-      responseList: responseListHash,
-      options: options
+    let options = {
+      language: "EN",
     };
 
+    //Load the data to be sent to the API
+    // let data = {
+    //   inputPrompt: inputPrompt,
+    //   responseList: responseListHash,
+    //   options: options
+    // };
+    
+    //Test Data
+    let data = {
+      inputPrompt: "What's for dinner?",
+      responseList: responseList
+    }
+    
+    let url = 'https://t5no5i1rni.execute-api.us-west-2.amazonaws.com/dev/convert';
+    
     console.log(data);
 
-    //Response list API url
-    let url = "https://kx9ltbnh08.execute-api.us-east-1.amazonaws.com/convert";
-
     //Post data to the API - hash the response and send it, if the hash doesnt work send the entire response list
-    var posting = $.post(url, data);
-
+    var posting = $.ajax({
+                      url: url,
+                      type: "POST",
+                      contentType: "application/json",
+                      data: JSON.stringify(data),
+                  });
+    
     posting.done(function(responseData) {
       if (responseData === -1) {
         //If server doesn’t have that list cached
@@ -127,18 +138,15 @@ jQuery(document).ready(function() {
         posting.fail(function(data) {
           $(".api_return").text("Posting Full Response List Failed");
         });
-      } else {
-        
-        for (let i of responseData) {
-          let $bot_response = "<li class='bot_response'><img src='https://cdn.glitch.com/a1898aab-94e6-4c8f-8dd2-5de4e5ff6a2b%2FSteamLabs_Monogram_RGB_Black.png?v=1619620318564' class='bot_profile'></img><span class='content_container'><span class='name_date'><h3>Bot</h3><p>"+date.toLocaleTimeString() + "</p></span><p>"+ i.response + ": " + i.topscore + "</p></span></li>";
-          $(".chat_response").append($bot_response);
-        }
+      }else {
+        let $bot_response = "<li class='bot_response'><img src='https://cdn.glitch.com/a1898aab-94e6-4c8f-8dd2-5de4e5ff6a2b%2FSteamLabs_Monogram_RGB_Black.png?v=1619620318564' class='bot_profile'></img><span class='content_container'><span class='name_date'><h3>Bot</h3><p>"+date.toLocaleTimeString() + "</p></span><p>"+ responseData+ "</p></span></li>";
+        $(".chat_response").append($bot_response);
+        (document.getElementById("response")).scrollTop = (document.getElementById("response")).scrollHeight;
       }
     });
 
     posting.fail(function(data) {
-      $(".api_return").text("Posting Hashed Response List E");
-      // $("#response").text("Posting Hashed Response List Failed");
+      $(".api_return").text("Posting Hashed Response List Failed:" +data);
     });
   }
   //----End: Pick Response----
@@ -166,8 +174,8 @@ jQuery(document).ready(function() {
       $(".api_return").text("failed");
     });
   }
-});
-//----End: Generate Text----
+  //----End: Generate Text----
+}
 
 // Hash
 var sha256 = function a(b) {
