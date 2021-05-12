@@ -101,7 +101,7 @@ function responseList(textArray) {
       responseList: responseList
     }
     
-    let url = 'https://t5no5i1rni.execute-api.us-west-2.amazonaws.com/dev/convert';
+    let url = 'https://tqmsosmtlf.execute-api.us-west-2.amazonaws.com/dev/convert';
     
     console.log(data);
 
