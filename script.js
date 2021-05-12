@@ -74,8 +74,8 @@ function responseList(textArray) {
     $(".chat_response").append($user_response);
     
     // Automated Bot Response
-    let $bot_response = "<li class='bot_response'><img src='https://cdn.glitch.com/a1898aab-94e6-4c8f-8dd2-5de4e5ff6a2b%2FSteamLabs_Monogram_RGB_Black.png?v=1619620318564' class='bot_profile'></img><span class='content_container'><span class='name_date'><h3>Bot</h3><p>"+date.toLocaleTimeString() + "</p></span><p>Hello, the current date is: "+date+"</p></span></li>";
-    $(".chat_response").append($bot_response);
+    //let $bot_response = "<li class='bot_response'><img src='https://cdn.glitch.com/a1898aab-94e6-4c8f-8dd2-5de4e5ff6a2b%2FSteamLabs_Monogram_RGB_Black.png?v=1619620318564' class='bot_profile'></img><span class='content_container'><span class='name_date'><h3>Bot</h3><p>"+date.toLocaleTimeString() + "</p></span><p>Hello, the current date is: "+date+"</p></span></li>";
+    //$(".chat_response").append($bot_response);
     
     (document.getElementById("response")).scrollTop = (document.getElementById("response")).scrollHeight;
     pickResponse(inputPrompt);
@@ -95,6 +95,7 @@ function responseList(textArray) {
     //   options: options
     // };
     
+    //Test Data
     let data = {
       inputPrompt: "What's for dinner?",
       responseList: responseList
@@ -138,10 +139,6 @@ function responseList(textArray) {
           $(".api_return").text("Posting Full Response List Failed");
         });
       }else {
-        // for (let i of responseData) {
-        //   let $bot_response = "<li class='bot_response'><img src='https://cdn.glitch.com/a1898aab-94e6-4c8f-8dd2-5de4e5ff6a2b%2FSteamLabs_Monogram_RGB_Black.png?v=1619620318564' class='bot_profile'></img><span class='content_container'><span class='name_date'><h3>Bot</h3><p>"+date.toLocaleTimeString() + "</p></span><p>"+ i.response + ": " + i.topscore + "</p></span></li>";
-        //   $(".chat_response").append($bot_response);
-        // }
         let $bot_response = "<li class='bot_response'><img src='https://cdn.glitch.com/a1898aab-94e6-4c8f-8dd2-5de4e5ff6a2b%2FSteamLabs_Monogram_RGB_Black.png?v=1619620318564' class='bot_profile'></img><span class='content_container'><span class='name_date'><h3>Bot</h3><p>"+date.toLocaleTimeString() + "</p></span><p>"+ responseData+ "</p></span></li>";
         $(".chat_response").append($bot_response);
         (document.getElementById("response")).scrollTop = (document.getElementById("response")).scrollHeight;
@@ -150,7 +147,6 @@ function responseList(textArray) {
 
     posting.fail(function(data) {
       $(".api_return").text("Posting Hashed Response List Failed:" +data);
-      // $("#response").text("Posting Hashed Response List Failed");
     });
   }
   //----End: Pick Response----
