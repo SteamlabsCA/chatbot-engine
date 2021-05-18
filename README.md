@@ -1,14 +1,10 @@
 Welcome to the SteamLabs Chatbot Engine!
 =================
+This is a chatbot that allows you to speak with several unique characters!
 
-Click `Show` in the header to see your the chatbot live. Updates to your code will instantly deploy and update live.
-
-You can instantly remix and edit the code to get different response from the engine!
-
-
-Your Project
+Getting Started
 ------------
-
+To get 
 ### ← README.md
 
 That's this file, where you can tell people what your cool website does and how you built it.
@@ -29,3 +25,4 @@ If you're feeling fancy you can add interactivity to your site with JavaScript.
 
 Drag in `assets`, like images or music, to add them to your project
 
+Click `Show` in the header to see the chatbot live. Updates to your code will instantly deploy and update live.
