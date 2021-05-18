@@ -4,7 +4,6 @@ This is a chatbot that allows you to speak with several unique characters!
 
 Getting Started
 ------------
-To create your own version of the project
 ### ← README.md
 
 That's this file, where you can tell people what your cool website does and how you built it.
