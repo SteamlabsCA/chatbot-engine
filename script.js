@@ -1,24 +1,50 @@
 function responseList(textArray) {
-  let responseList = [];
+  let responseListArr = [];
   let responseListConcat = "";
   let responseListHash = "";
   var time = new Date().getTime();
   var date = new Date(time);
 
   //----Start: Get the lists of text files and concatenate them ----
-  $.when
-    .apply($,textArray.map(function(url) {
-        return $.ajax({
+  $.when(return $.ajax({
           url: "responseList/",
           dataType: "text"
-        });
-      }))
+        }))
     .done(function(result) {
-        responseList = result[0];
+        responseListArr = result[0].split("\n");
+        responseListArr.pop();
+    })
+    .done(function(result) {
+        $.when( $.ajax({
+                  url: "responseList/",
+                  dataType: "text"
+            }))
+            .done(function(result) {
+                
+            })
+            .fail(function(error) {
+              console.log("Text File Retrieval Error: " + error);
+            });
     })
     .fail(function(error) {
       console.log("Text File Retrieval Error: " + error);
     });
+  
+  // $.when( responseListArr )
+  //   .apply($,textArray.map(function(url) {
+  //         return $.ajax({
+  //           url: "responseList/",
+  //           dataType: "text"
+  //         });
+  //       }))
+  //     .done(function(result) {
+  //         responseListArr = result[0].split("\n");
+  //         responseListArr.pop();
+  //     })
+  //     .fail(function(error) {
+  //       console.log("Text File Retrieval Error: " + error);
+  //     });
+  
   //----End: Get the lists of text files and concatenate them ----
 
   //----Start: "Clear All" button----
@@ -75,8 +101,7 @@ function responseList(textArray) {
     }
     
     // let url = 'https://57sunxdj45.execute-api.us-west-2.amazonaws.com/dev/convert';
-    let arr = respo
-    console.log(responseList);
+    console.log(responseListArr);
 
     //Post data to the API - hash the response and send it, if the hash doesnt work send the entire response list
     var posting = $.ajax({
