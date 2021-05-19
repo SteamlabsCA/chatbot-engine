@@ -13,12 +13,8 @@ function responseList(textArray) {
           dataType: "text"
         });
       }))
-    .done(function() {
-      for (var i = 0; i < arguments.length; i++) {
-        responseList[i] = arguments[i][0];
-        responseListConcat += arguments[i][0];
-      }
-      responseListHash = sha256(responseListConcat);
+    .done(function(result) {
+        responseList = result[0];
     })
     .fail(function(error) {
       console.log("Text File Retrieval Error: " + error);
@@ -79,7 +75,7 @@ function responseList(textArray) {
     }
     
     // let url = 'https://57sunxdj45.execute-api.us-west-2.amazonaws.com/dev/convert';
-    
+    let arr = respo
     console.log(responseList);
 
     //Post data to the API - hash the response and send it, if the hash doesnt work send the entire response list
