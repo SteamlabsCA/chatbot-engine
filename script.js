@@ -18,7 +18,8 @@ function responseList(textArray) {
         responseListArr = result[0].split("\n");
         responseListArr.pop();
         responseListArr.map(function(file) {
-          
+          let $checkbox = "<span id='checkbox'><input type='checkbox' id="+file+" name="+file+" value="+file+" ><label for="+file+" >"+file+" </label></span>";
+          $("#script_choice").append($checkbox);
         });
     })
     .fail(function(error) {
@@ -65,7 +66,10 @@ function responseList(textArray) {
   
   //----Start: Pick Response----
   function pickResponse(inputPrompt) {
-  
+    var selected = [];
+    $('#checkboxes input:checked').each(function() {
+        selected.push($(this).attr('name'));
+    });
     console.log(responseListArr);
     
     //Load the data to be sent to the API
