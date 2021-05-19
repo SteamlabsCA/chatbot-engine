@@ -1,10 +1,9 @@
 function responseList(textArray) {
-  let responseList = textArray;
+  let responseList = [];
   let responseListConcat = "";
   let responseListHash = "";
   var time = new Date().getTime();
   var date = new Date(time);
-  var textResults = [];
   //----Start: Test Response Output----
 //   let responsesTest = [
 //     {
@@ -27,7 +26,7 @@ function responseList(textArray) {
 
   //----Start: Get the lists of text files and concatenate them ----
   $.when
-    .apply($,responseList.map(function(url) {
+    .apply($,textArray.map(function(url) {
         return $.ajax({
           url: "assets/" + url,
           dataType: "text"
@@ -35,7 +34,7 @@ function responseList(textArray) {
       }))
     .done(function() {
       for (var i = 0; i < arguments.length; i++) {
-        textResults[i] = arguments[i][0];
+        responseList[i] = arguments[i][0];
         responseListConcat += arguments[i][0];
       }
       responseListHash = sha256(responseListConcat);
@@ -94,7 +93,7 @@ function responseList(textArray) {
     //Test Data
     let data = {
       inputPrompt: inputPrompt,
-      responseList: textResults,
+      responseList: responseList,
       language: "EN"
     }
     
