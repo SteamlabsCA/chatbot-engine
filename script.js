@@ -123,12 +123,12 @@ function responseList(textArray) {
               $(".chat_response").append($bot_response);
             }
           } else {
-            $(".api_return").text("response failed");
+            console.log("response failed");
           }
         });
 
         posting.fail(function(data) {
-          $(".api_return").text("Posting Full Response List Failed");
+          console.log("Posting Full Response List Failed");
         });
       }else {
         let $bot_response = "<li class='bot_response'><img src='https://cdn.glitch.com/a1898aab-94e6-4c8f-8dd2-5de4e5ff6a2b%2FSteamLabs_Monogram_RGB_Black.png?v=1619620318564' class='bot_profile'></img><span class='content_container'><span class='name_date'><h3>Bot</h3><p>"+date.toLocaleTimeString() + "</p></span><p>"+ responseData+ "</p></span></li>";
@@ -138,7 +138,7 @@ function responseList(textArray) {
     });
 
     posting.fail(function(data) {
-      $(".api_return").text("Posting Hashed Response List Failed:" +data);
+      console.log("Posting Hashed Response List Failed:" + data);
     });
   }
   //----End: Pick Response----
@@ -163,7 +163,7 @@ function responseList(textArray) {
     });
 
     posting.fail(function(data) {
-      $(".api_return").text("failed");
+     console.log("failed");
     });
   }
   //----End: Generate Text----
