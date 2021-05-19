@@ -9,7 +9,7 @@ function responseList(textArray) {
   $.when
     .apply($,textArray.map(function(url) {
         return $.ajax({
-          url: "assets/" + url,
+          url: "responseList/" + url,
           dataType: "text"
         });
       }))
