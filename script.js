@@ -72,6 +72,9 @@ function responseList(textArray) {
         selected.push($(this).attr('name'));
     });
     
+//     working here - try checking only 1
+    console.log(selected);
+    
     $.when
     .apply($,selected.map(function(url) {
         return $.ajax({
