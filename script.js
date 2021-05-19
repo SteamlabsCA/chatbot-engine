@@ -4,7 +4,7 @@ function responseList(textArray) {
   let responseListHash = "";
   var time = new Date().getTime();
   var date = new Date(time);
-
+  var textResults = [];
   //----Start: Test Response Output----
 //   let responsesTest = [
 //     {
@@ -34,8 +34,8 @@ function responseList(textArray) {
         });
       }))
     .done(function() {
-      var results = [];
       for (var i = 0; i < arguments.length; i++) {
+        textResults[i] = arguments[i][0];
         responseListConcat += arguments[i][0];
       }
       responseListHash = sha256(responseListConcat);
@@ -94,7 +94,7 @@ function responseList(textArray) {
     //Test Data
     let data = {
       inputPrompt: inputPrompt,
-      responseList: responseList,
+      responseList: textResults,
       language: "EN"
     }
     
