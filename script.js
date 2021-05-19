@@ -84,20 +84,16 @@ function responseList(textArray) {
   
   //----Start: Pick Response----
   function pickResponse(inputPrompt) {
-    let options = {
-      language: "EN",
-    };
 
     //Load the data to be sent to the API
     // let data = {
     //   inputPrompt: inputPrompt,
     //   responseList: responseListHash,
-    //   options: options
     // };
     
     //Test Data
     let data = {
-      inputPrompt: "What's for dinner?",
+      inputPrompt: inputPrompt,
       responseList: responseList,
       language: "EN"
     }
@@ -116,11 +112,12 @@ function responseList(textArray) {
     
     posting.done(function(responseData) {
       if (responseData === -1) {
+        console.log("rejected")
         //If server doesn’t have that list cached
         let newData = {
           inputPrompt: inputPrompt,
           responseList: responseListConcat,
-          options: options
+          language: "EN"
         };
 
         var posting = $.post(url, newData);
