@@ -4,25 +4,6 @@ function responseList(textArray) {
   let responseListHash = "";
   var time = new Date().getTime();
   var date = new Date(time);
-  //----Start: Test Response Output----
-//   let responsesTest = [
-//     {
-//       response: "The best response",
-//       topscore: 0.2989
-//     },
-//     // { response: "The second best response", topscore: 0.2139 },
-//     // { response: "The third best response", topscore: 0.2017 },
-//     // { response: "The fourth best response", topscore: 0.2 },
-//     // { response: "The fifth best response", topscore: 0.1985 }
-//   ];
-
-//   $("#response")
-//     .append("<ul class='chat_response'></ul>")
-//   for (let i of responsesTest) {
-//     let $bot_response = "<li class='bot_response'><img src='https://cdn.glitch.com/a1898aab-94e6-4c8f-8dd2-5de4e5ff6a2b%2FSteamLabs_Monogram_RGB_Black.png?v=1619620318564' class='bot_profile'></img><span class='content_container'><span class='name_date'><h3>Bot</h3><p>"+date.toLocaleTimeString() + "</p></span><p>" + i.response + ": " + i.topscore + "</p></span></li>";
-//     $(".chat_response").append($bot_response);
-//   }
-  //----End: Test Response Output----
 
   //----Start: Get the lists of text files and concatenate them ----
   $.when
