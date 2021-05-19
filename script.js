@@ -17,23 +17,9 @@ function responseList(textArray) {
     .done(function(result) {
         responseListArr = result[0].split("\n");
         responseListArr.pop();
-        $.when
-          .apply($,responseListArr.map(function(url) {
-              return $.ajax({
-                url: "responseList/"+url,
-                dataType: "text"
-              });
-            }))
-          .done(function(result) {
-             for (var i = 0; i < arguments.length; i++) {
-                responseList[i] = arguments[i][0];
-                responseListConcat += arguments[i][0];
-              }
-              responseListHash = sha256(responseListConcat);
-          })
-          .fail(function(error) {
-            console.log("Text File Retrieval Error: " + error);
-          });
+        responseListArr.map(function(file) {
+          
+        });
     })
     .fail(function(error) {
       console.log("Text File Retrieval Error: " + error);
@@ -79,7 +65,9 @@ function responseList(textArray) {
   
   //----Start: Pick Response----
   function pickResponse(inputPrompt) {
-
+  
+    console.log(responseListArr);
+    
     //Load the data to be sent to the API
     // let data = {
     //   inputPrompt: inputPrompt,
@@ -93,8 +81,8 @@ function responseList(textArray) {
       language: "EN"
     }
     
-    let url = 'https://57sunxdj45.execute-api.us-west-2.amazonaws.com/dev/convert';
-    
+    // let url = 'https://57sunxdj45.execute-api.us-west-2.amazonaws.com/dev/convert';
+    let url ='';
 
     //Post data to the API - hash the response and send it, if the hash doesnt work send the entire response list
     var posting = $.ajax({
