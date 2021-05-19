@@ -9,7 +9,7 @@ function responseList(textArray) {
   $.when
     .apply($,textArray.map(function(url) {
         return $.ajax({
-          url: "responseList/" + url,
+          url: "responseList/",
           dataType: "text"
         });
       }))
@@ -78,9 +78,9 @@ function responseList(textArray) {
       language: "EN"
     }
     
-    let url = 'https://57sunxdj45.execute-api.us-west-2.amazonaws.com/dev/convert';
+    // let url = 'https://57sunxdj45.execute-api.us-west-2.amazonaws.com/dev/convert';
     
-    console.log(data);
+    console.log(responseList);
 
     //Post data to the API - hash the response and send it, if the hash doesnt work send the entire response list
     var posting = $.ajax({
