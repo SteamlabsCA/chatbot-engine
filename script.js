@@ -1,41 +1,21 @@
 function responseList(textArray) {
-  let responseList = textArray;
+  let responseList = [];
   let responseListConcat = "";
   let responseListHash = "";
   var time = new Date().getTime();
   var date = new Date(time);
 
-  //----Start: Test Response Output----
-//   let responsesTest = [
-//     {
-//       response: "The best response",
-//       topscore: 0.2989
-//     },
-//     // { response: "The second best response", topscore: 0.2139 },
-//     // { response: "The third best response", topscore: 0.2017 },
-//     // { response: "The fourth best response", topscore: 0.2 },
-//     // { response: "The fifth best response", topscore: 0.1985 }
-//   ];
-
-//   $("#response")
-//     .append("<ul class='chat_response'></ul>")
-//   for (let i of responsesTest) {
-//     let $bot_response = "<li class='bot_response'><img src='https://cdn.glitch.com/a1898aab-94e6-4c8f-8dd2-5de4e5ff6a2b%2FSteamLabs_Monogram_RGB_Black.png?v=1619620318564' class='bot_profile'></img><span class='content_container'><span class='name_date'><h3>Bot</h3><p>"+date.toLocaleTimeString() + "</p></span><p>" + i.response + ": " + i.topscore + "</p></span></li>";
-//     $(".chat_response").append($bot_response);
-//   }
-  //----End: Test Response Output----
-
   //----Start: Get the lists of text files and concatenate them ----
   $.when
-    .apply($,responseList.map(function(url) {
+    .apply($,textArray.map(function(url) {
         return $.ajax({
-          url: "assets/" + url,
+          url: "responseList/" + url,
           dataType: "text"
         });
       }))
     .done(function() {
-      var results = [];
       for (var i = 0; i < arguments.length; i++) {
+        responseList[i] = arguments[i][0];
         responseListConcat += arguments[i][0];
       }
       responseListHash = sha256(responseListConcat);
@@ -74,8 +54,8 @@ function responseList(textArray) {
     $(".chat_response").append($user_response);
     
     // Automated Bot Response
-    let $bot_response = "<li class='bot_response'><img src='https://cdn.glitch.com/a1898aab-94e6-4c8f-8dd2-5de4e5ff6a2b%2FSteamLabs_Monogram_RGB_Black.png?v=1619620318564' class='bot_profile'></img><span class='content_container'><span class='name_date'><h3>Bot</h3><p>"+date.toLocaleTimeString() + "</p></span><p>Hello, the current date is: "+date+"</p></span></li>";
-    $(".chat_response").append($bot_response);
+    //let $bot_response = "<li class='bot_response'><img src='https://cdn.glitch.com/a1898aab-94e6-4c8f-8dd2-5de4e5ff6a2b%2FSteamLabs_Monogram_RGB_Black.png?v=1619620318564' class='bot_profile'></img><span class='content_container'><span class='name_date'><h3>Bot</h3><p>"+date.toLocaleTimeString() + "</p></span><p>Hello, the current date is: "+date+"</p></span></li>";
+    //$(".chat_response").append($bot_response);
     
     (document.getElementById("response")).scrollTop = (document.getElementById("response")).scrollHeight;
     pickResponse(inputPrompt);
@@ -84,24 +64,21 @@ function responseList(textArray) {
   
   //----Start: Pick Response----
   function pickResponse(inputPrompt) {
-    let options = {
-      language: "EN",
-    };
 
     //Load the data to be sent to the API
     // let data = {
     //   inputPrompt: inputPrompt,
     //   responseList: responseListHash,
-    //   options: options
     // };
     
     //Test Data
     let data = {
-      inputPrompt: "What's for dinner?",
-      responseList: responseList
+      inputPrompt: inputPrompt,
+      responseList: responseList,
+      language: "EN"
     }
     
-    let url = 'https://t5no5i1rni.execute-api.us-west-2.amazonaws.com/dev/convert';
+    let url = 'https://57sunxdj45.execute-api.us-west-2.amazonaws.com/dev/convert';
     
     console.log(data);
 
@@ -115,11 +92,12 @@ function responseList(textArray) {
     
     posting.done(function(responseData) {
       if (responseData === -1) {
+        console.log("rejected")
         //If server doesn’t have that list cached
         let newData = {
           inputPrompt: inputPrompt,
           responseList: responseListConcat,
-          options: options
+          language: "EN"
         };
 
         var posting = $.post(url, newData);
