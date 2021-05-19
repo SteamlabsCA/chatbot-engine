@@ -137,3 +137,14 @@ body {
     color: #fff;
 }
 
+#script_choice{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 20px;
+}
+
+#script_choice span{
+  margin: 10px;
+}
+
