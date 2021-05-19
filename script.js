@@ -98,10 +98,11 @@ function responseList(textArray) {
     //Test Data
     let data = {
       inputPrompt: "What's for dinner?",
-      responseList: responseList
+      responseList: responseList,
+      language: "EN"
     }
     
-    let url = 'https://tqmsosmtlf.execute-api.us-west-2.amazonaws.com/dev/convert';
+    let url = 'https://57sunxdj45.execute-api.us-west-2.amazonaws.com/dev/convert';
     
     console.log(data);
 
