@@ -18,8 +18,8 @@ function responseList(textArray) {
         responseListArr = result[0].split("\n");
         responseListArr.pop();
         responseListArr.map(function(file) {
-          let $checkbox = "<span id='checkboxes'><input type='checkbox' id="+file+" name="+file+" value="+file+" ><label for="+file+" >"+file+" </label></span>";
-          $("#script_choice").append($checkbox);
+          // let $checkbox = "<span id='checkboxes'><input type='checkbox' id="+file+" name="+file+" value="+file+" ><label for="+file+" >"+file+" </label></span>";
+          // $("#script_choice").append($checkbox);
         });
     })
     .fail(function(error) {
@@ -42,6 +42,10 @@ function responseList(textArray) {
   });
   //----End: "Clear All" button----
 
+  $(".dropbtn").click(function(){
+    $(this+" #myDropdown").fadeToggle("fast");
+  });
+  
   //----Start: "Scripts" button----
   $("#change_scripts, #submit_scripts").click(function() {
     $(".script_container").fadeToggle("fast", function(){
