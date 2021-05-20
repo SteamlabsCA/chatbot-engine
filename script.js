@@ -91,13 +91,13 @@ function responseList(textArray) {
         });
       }))
     .done(function() {
-      if(arguments.length === 1){
-        responseList[0] = arguments[0][0];
-        responseListConcat += arguments[0][0];
+      if(selected.length === 1){
+        responseList[0] = arguments[0];
+        responseListConcat += arguments[0];
         console.log("here 1");
         console.log(arguments);
       }else{
-        console.log("here m");
+        console.log("here: " + arguments.length);
         console.log(arguments);
         for (var i = 0; i < arguments.length; i++) {
           responseList[i] = arguments[i][0];
