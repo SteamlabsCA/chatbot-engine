@@ -42,24 +42,17 @@ function responseList(textArray) {
   });
   //----End: "Clear All" button----
 
+  
+  
   //----Start: "Movie Scripts Dropdown" button----
   $(".dropbtn").click(function(){
-    $("#myDropdown",this).fadeToggle("fast");
+    $("#myDropdown_"+$(this).attr('id')).fadeToggle("fast");
+    console.log("#myDropdown_"+$(this).attr('id'))
   });
-  
-  window.onclick = function(event) {
-  if (!event.target.matches('.dropbtn')) {
-    var dropdowns = document.getElementsByClassName("dropdown-content");
-    var i;
-    for (i = 0; i < dropdowns.length; i++) {
-      var openDropdown = dropdowns[i];
-      if (openDropdown.classList.contains('show')) {
-        openDropdown.classList.remove('show');
-      }
-    }
-  }
-
   //----End: "Movie Scripts Dropdown" button----
+  
+  
+  
   
   //----Start: " Change Scripts" button----
   $("#change_scripts, #submit_scripts").click(function() {
@@ -284,3 +277,4 @@ var sha256 = function a(b) {
     }
   return i;
 }
+ 
