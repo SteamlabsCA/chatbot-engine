@@ -5,7 +5,15 @@ function responseList(textArray) {
   let responseListHash = "";
   var time = new Date().getTime();
   var date = new Date(time);
-  let assets = {};
+  let res = [];
+  
+  function attachTexts(id){
+    let checkList = "";
+    res.forEach((textArr)=>{
+      checkList += "<span><input type='checkbox' id="+id+" /><label for="+file+" >"+file+"</label></span>"
+    });
+    return 
+  }
   //----Start: Get the lists of text files and concatenate them ----
   $.when
     .apply($,textArray.map(function(url) {
@@ -27,14 +35,15 @@ function responseList(textArray) {
           });
         }))
       .done(function() {
-        let res = [];
         let textFiles = [];
         for (var i = 0; i < arguments.length; i++) {
           textFiles = arguments[i][0].split("\n");
           textFiles.pop();
           res.push(textFiles);
         }
+        console.log(responseListArr)
         console.log(res)
+
       })
       .fail(function(error) {
         console.log("Text File Retrieval Error: " + error);
@@ -43,9 +52,11 @@ function responseList(textArray) {
       responseListArr.map(function(file,index) {
         let name = file;
         // let $checkbox = "<span class='checkboxes'><input type='checkbox' id="+file+" name="+file+" value="+file+" ><label for="+file+" >"+file+" </label></span>";
-        let $checkbox = "<div class='dropdown'><button type='button' id='drpBtn_"+index+"' class='dropbtn'>"+file+"</button><div id='myDropdown_drpBtn_"+index+"' class='dropdown-content'><span class='checkboxes'><span><input type='checkbox' id="+index+" /><label for="+file+" >"+file+"</label></span></span></div></div>";
+        let $checkbox = "<div class='dropdown'><button type='button' id='drpBtn_"+index+"' class='dropbtn'>"+file+"</button><div id='myDropdown_drpBtn_"+index+"' class='dropdown-content'><span class='checkboxes'>"+attachTexts(index)+"</span></div></div>";
         $("#script_choice").append($checkbox);
       });
+    
+    
     })
     .fail(function(error) {
       console.log("Text File Retrieval Error: " + error);
