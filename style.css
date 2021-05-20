@@ -9,6 +9,11 @@ body {
   margin: 0;
 }
 
+.button_group{
+  display: flex;
+  justify-content: space-evenly;
+}
+
 .form_button{
   min-width: 25%;
   width: fit-content;

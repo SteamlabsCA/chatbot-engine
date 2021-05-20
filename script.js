@@ -32,7 +32,7 @@ function responseList(textArray) {
     $("#input_prompt").val("");
     $("#clear_all").fadeOut("fast");
   });
-
+  
   $("#input_prompt").on("input", function() {
     if (!$("#input_prompt").val()) {
       $("#clear_all").fadeOut("fast");
@@ -42,6 +42,14 @@ function responseList(textArray) {
   });
   //----End: "Clear All" button----
 
+  //----Start: "Change Scripts" button----
+  $("#change_scripts").click(function() {
+    $("#script_choice").fadeToggle("fast", function(){
+
+    });
+  });
+  //----End: "Change Scripts" button----
+  
   //----Start: Input prompt form is submit----
   $("#prompt_form").submit(function(event) {
     let inputPrompt = $("#input_prompt").val();

@@ -30,11 +30,16 @@
     </div>
     <form id="prompt_form" action="">
 <!--       <label for="fname"><h3>Input Prompt:</h3></label> -->
-      <div id="script_choice"></div>
+      <span>
+        <span id="script_choice"></span>
+      </span>
       
       <textarea placeholder="Input Prompt" type="text" id="input_prompt" name="input_prompt" required></textarea>
-      <input type="button" class="form_button" id="clear_all" value="Clear All" style="display: none">
-      <input type="submit" class="form_button submit" value="Submit Prompt">
+      <span class="button_group">
+        <input type="button" class="form_button" id="clear_all" value="Clear All" style="display: none">
+        <input type="button" class="form_button" id="change_scripts" value="Change Scripts">
+        <input type="submit" class="form_button submit" value="Submit Prompt">
+      </span>
     </form>
     
     <script src="https://button.glitch.me/button.js" defer></script>
