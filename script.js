@@ -18,7 +18,7 @@ function responseList(textArray) {
         responseListArr = result[0].split("\n");
         responseListArr.pop();
         responseListArr.map(function(file) {
-          let $checkbox = "<span class='checkboxes'><input type='checkbox' id="+file+" name="+file+" value="+file+" ><label for="+file+" >"+file+" </label></span>";
+          // let $checkbox = "<span class='checkboxes'><input type='checkbox' id="+file+" name="+file+" value="+file+" ><label for="+file+" >"+file+" </label></span>";
           $("#script_choice").append($checkbox);
         });
     })
