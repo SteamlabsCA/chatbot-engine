@@ -55,7 +55,6 @@ body {
   border: 2px solid #d1d0d0;
   border-radius: 10px;
   padding: 10px;
-  height: 190px;
   min-width: 97%;
   min-height: 250px;
   height: fit-content;
@@ -159,9 +158,10 @@ body {
 
 #script_choice{
   background-color: #fefefe;
+  border-radius: 10px;
   margin: auto;
   padding: 20px;
-  border: 1px solid #888;
+  border: 2px solid #d1d0d0;;
   width: 92.5%;
   display: flex;
   flex-wrap: wrap;
@@ -170,6 +170,10 @@ body {
 
 #script_choice span{
   margin: 10px;
+}
+
+#submit_scripts{
+  float: right;
 }
 
 
