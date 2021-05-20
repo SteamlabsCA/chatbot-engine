@@ -7,11 +7,11 @@ function responseList(textArray) {
   var date = new Date(time);
   let res = [];
   
-  function attachTexts(id){
+  function attachTexts(id,folder){
     
     let checkList = "";
     res[id].forEach((text, index)=>{
-        checkList += "<span><input type='checkbox' id='"+id+index+"' /><label >"+text+"</label></span>"
+        checkList += "<span><input type='checkbox' id='"+id+index+"' name='"+text+"' value='"+folder+"'/><label >"+text+"</label></span>"
     })
     return checkList;
   }
@@ -43,9 +43,9 @@ function responseList(textArray) {
           res.push(textFiles);
         }
         
-        responseListArr.map(function(file,index) {
+        responseListArr.map(function(folder,index) {
           // let $checkbox = "<span class='checkboxes'><input type='checkbox' id="+file+" name="+file+" value="+file+" ><label for="+file+" >"+file+" </label></span>";
-          let $checkbox = "<div class='dropdown'><button type='button' id='drpBtn_"+index+"' class='dropbtn'>"+file+"</button><div id='myDropdown_drpBtn_"+index+"' class='dropdown-content'><span class='checkboxes'>"+attachTexts(index)+"</span></div></div>";
+          let $checkbox = "<div class='dropdown'><button type='button' id='drpBtn_"+index+"' class='dropbtn'>"+folder+"</button><div id='myDropdown_drpBtn_"+index+"' class='dropdown-content'><span class='checkboxes'>"+attachTexts(index,folder)+"</span></div></div>";
           $("#script_choice").append($checkbox);
         });
         // console.log(responseListArr)
@@ -80,6 +80,7 @@ function responseList(textArray) {
   
   //----Start: "Movie Scripts Dropdown" button----
   $(document).on('click', '.dropbtn', function(){
+    $(".dropdown-content").hide();
     $("#myDropdown_"+$(this).attr('id')).fadeToggle("fast");
   });
   //----End: "Movie Scripts Dropdown" button----
