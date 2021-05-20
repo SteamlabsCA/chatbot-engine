@@ -1,4 +1,5 @@
 function responseList(textArray) {
+  let responseListArr = [];
   let responseList = [];
   let responseListConcat = "";
   let responseListHash = "";
@@ -9,16 +10,17 @@ function responseList(textArray) {
   $.when
     .apply($,textArray.map(function(url) {
         return $.ajax({
-          url: "responseList/" + url,
+          url: "assets/",
           dataType: "text"
         });
       }))
-    .done(function() {
-      for (var i = 0; i < arguments.length; i++) {
-        responseList[i] = arguments[i][0];
-        responseListConcat += arguments[i][0];
-      }
-      responseListHash = sha256(responseListConcat);
+    .done(function(result) {
+        responseListArr = result[0].split("\n");
+        responseListArr.pop();
+        responseListArr.map(function(file) {
+          let $checkbox = "<span id='checkboxes'><input type='checkbox' id="+file+" name="+file+" value="+file+" ><label for="+file+" >"+file+" </label></span>";
+          $("#script_choice").append($checkbox);
+        });
     })
     .fail(function(error) {
       console.log("Text File Retrieval Error: " + error);
@@ -30,7 +32,7 @@ function responseList(textArray) {
     $("#input_prompt").val("");
     $("#clear_all").fadeOut("fast");
   });
-
+  
   $("#input_prompt").on("input", function() {
     if (!$("#input_prompt").val()) {
       $("#clear_all").fadeOut("fast");
@@ -40,6 +42,14 @@ function responseList(textArray) {
   });
   //----End: "Clear All" button----
 
+  //----Start: "Scripts" button----
+  $("#change_scripts, #submit_scripts").click(function() {
+    $(".script_container").fadeToggle("fast", function(){
+
+    });
+  });
+  //----End: "Change Scripts" button----
+  
   //----Start: Input prompt form is submit----
   $("#prompt_form").submit(function(event) {
     let inputPrompt = $("#input_prompt").val();
@@ -64,67 +74,103 @@ function responseList(textArray) {
   
   //----Start: Pick Response----
   function pickResponse(inputPrompt) {
-
-    //Load the data to be sent to the API
-    // let data = {
-    //   inputPrompt: inputPrompt,
-    //   responseList: responseListHash,
-    // };
-    
-    //Test Data
-    let data = {
-      inputPrompt: inputPrompt,
-      responseList: responseList,
-      language: "EN"
-    }
-    
-    let url = 'https://57sunxdj45.execute-api.us-west-2.amazonaws.com/dev/convert';
-    
-    console.log(data);
-
-    //Post data to the API - hash the response and send it, if the hash doesnt work send the entire response list
-    var posting = $.ajax({
-                      url: url,
-                      type: "POST",
-                      contentType: "application/json",
-                      data: JSON.stringify(data),
-                  });
-    
-    posting.done(function(responseData) {
-      if (responseData === -1) {
-        console.log("rejected")
-        //If server doesn’t have that list cached
-        let newData = {
-          inputPrompt: inputPrompt,
-          responseList: responseListConcat,
-          language: "EN"
-        };
-
-        var posting = $.post(url, newData);
-
-        posting.done(function(data) {
-          if (data) {
-            for (let i of data) {
-              let $bot_response = "<li class='bot_response'><img src='https://cdn.glitch.com/a1898aab-94e6-4c8f-8dd2-5de4e5ff6a2b%2FSteamLabs_Monogram_RGB_Black.png?v=1619620318564' class='bot_profile'></img><span class='content_container'><span class='name_date'><h3>Bot</h3><p>"+date.toLocaleTimeString() + "</p></span><p>"+ i.response + ": " + i.topscore + "</p></span></li>";
-              $(".chat_response").append($bot_response);
-            }
-          } else {
-            $(".api_return").text("response failed");
-          }
-        });
-
-        posting.fail(function(data) {
-          $(".api_return").text("Posting Full Response List Failed");
-        });
-      }else {
-        let $bot_response = "<li class='bot_response'><img src='https://cdn.glitch.com/a1898aab-94e6-4c8f-8dd2-5de4e5ff6a2b%2FSteamLabs_Monogram_RGB_Black.png?v=1619620318564' class='bot_profile'></img><span class='content_container'><span class='name_date'><h3>Bot</h3><p>"+date.toLocaleTimeString() + "</p></span><p>"+ responseData+ "</p></span></li>";
-        $(".chat_response").append($bot_response);
-        (document.getElementById("response")).scrollTop = (document.getElementById("response")).scrollHeight;
-      }
+    var selected = [];
+    responseList = [];
+    $('#checkboxes input:checked').each(function() {
+        selected.push($(this).attr('name'));
     });
+    
+    // working here - try checking only 1
+    // console.log(selected);
+    
+    $.when
+    .apply($,selected.map(function(url) {
+        return $.ajax({
+          url: "assets/"+ url,
+          dataType: "text"
+        });
+      }))
+    .done(function() {
+      if(selected.length === 1){
+        responseList[0] = arguments[0];
+        responseListConcat += arguments[0];
+        console.log("here 1");
+        console.log(arguments);
+      }else{
+        console.log("here: " + arguments.length);
+        console.log(arguments);
+        for (var i = 0; i < arguments.length; i++) {
+          responseList[i] = arguments[i][0];
+          responseListConcat += arguments[i][0];
+        }
+      }
+      
+      responseListHash = sha256(responseListConcat);
+        
+      //Load the data to be sent to the API
+      // let data = {
+      //   inputPrompt: inputPrompt,
+      //   responseList: responseListHash,
+      // };
 
-    posting.fail(function(data) {
-      $(".api_return").text("Posting Hashed Response List Failed:" +data);
+      //Test Data
+      let data = {
+        inputPrompt: inputPrompt,
+        responseList: responseList,
+        language: "EN"
+      }
+
+      console.log(data)
+      
+      let url = 'https://57sunxdj45.execute-api.us-west-2.amazonaws.com/dev/convert';
+
+      //Post data to the API - hash the response and send it, if the hash doesnt work send the entire response list
+      var posting = $.ajax({
+                        url: url,
+                        type: "POST",
+                        contentType: "application/json",
+                        data: JSON.stringify(data),
+                    });
+
+      posting.done(function(responseData) {
+        if (responseData === -1) {
+          console.log("rejected")
+          //If server doesn’t have that list cached
+          let newData = {
+            inputPrompt: inputPrompt,
+            responseList: responseListConcat,
+            language: "EN"
+          };
+
+          var posting = $.post(url, newData);
+
+          posting.done(function(data) {
+            if (data) {
+              for (let i of data) {
+                let $bot_response = "<li class='bot_response'><img src='https://cdn.glitch.com/a1898aab-94e6-4c8f-8dd2-5de4e5ff6a2b%2FSteamLabs_Monogram_RGB_Black.png?v=1619620318564' class='bot_profile'></img><span class='content_container'><span class='name_date'><h3>Bot</h3><p>"+date.toLocaleTimeString() + "</p></span><p>"+ i.response + ": " + i.topscore + "</p></span></li>";
+                $(".chat_response").append($bot_response);
+              }
+            } else {
+              console.log("response failed");
+            }
+          });
+
+          posting.fail(function(data) {
+            console.log("Posting Full Response List Failed");
+          });
+        }else {
+          let $bot_response = "<li class='bot_response'><img src='https://cdn.glitch.com/a1898aab-94e6-4c8f-8dd2-5de4e5ff6a2b%2FSteamLabs_Monogram_RGB_Black.png?v=1619620318564' class='bot_profile'></img><span class='content_container'><span class='name_date'><h3>Bot</h3><p>"+date.toLocaleTimeString() + "</p></span><p>"+ responseData+ "</p></span></li>";
+          $(".chat_response").append($bot_response);
+          (document.getElementById("response")).scrollTop = (document.getElementById("response")).scrollHeight;
+        }
+      });
+
+      posting.fail(function(data) {
+        console.log("Posting Hashed Response List Failed:" + data);
+      });
+    })
+    .fail(function(error) {
+      console.log("Text File Retrieval Error: " + error);
     });
   }
   //----End: Pick Response----
@@ -149,7 +195,7 @@ function responseList(textArray) {
     });
 
     posting.fail(function(data) {
-      $(".api_return").text("failed");
+     console.log("failed");
     });
   }
   //----End: Generate Text----
