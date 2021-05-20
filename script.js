@@ -20,7 +20,7 @@ function responseList(textArray) {
         responseListArr.map(function(file,index) {
           let name = file;
           // let $checkbox = "<span class='checkboxes'><input type='checkbox' id="+file+" name="+file+" value="+file+" ><label for="+file+" >"+file+" </label></span>";
-          let $checkbox = "<div class='dropdown'><button type='button' id="+index+" class='dropbtn'>"+file+"</button><div id=myDropdown_"+index+" class='dropdown-content'><span class='checkboxes'><span><input type='checkbox' id="+file+" name="+file+" value="+file+" /><label for="+file+" >"+file+"</label></span></span></div></div>";
+          let $checkbox = "<div class='dropdown'><button type='button' id='drpBtn_"+index+"' class='dropbtn'>"+file+"</button><div id='myDropdown_drpBtn_"+index+"' class='dropdown-content'><span class='checkboxes'><span><input type='checkbox' id="+index+" /><label for="+file+" >"+file+"</label></span></span></div></div>";
           $("#script_choice").append($checkbox);
         });
     })
@@ -48,6 +48,7 @@ function responseList(textArray) {
   
   // //----Start: "Movie Scripts Dropdown" button----
   $(".dropbtn").click(function(){
+    console.log("#myDropdown_"+$(this).attr('id'))
     $("#myDropdown_"+$(this).attr('id')).fadeToggle("fast");
     console.log("#myDropdown_"+$(this).attr('id'))
   });
