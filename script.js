@@ -122,7 +122,7 @@ function responseList(textArray) {
     responseList = [];
     //Dropdown
     $('.checkboxes span input:checked').each(function() {
-        selected.push($(this).attr('name'));
+        selected.push({folder: $(this).val(),name:$(this).attr('name')});
     });
     
     // NON-Dropdown
@@ -134,9 +134,9 @@ function responseList(textArray) {
     console.log(selected);
     
     $.when
-    .apply($,selected.map(function(url) {
+    .apply($,selected.map(function(movieText) {
         return $.ajax({
-          url: "assets/"+ url,
+          url: "assets/"+ movieText["folder"]+"/"+movieText["name"],
           dataType: "text"
         });
       }))
