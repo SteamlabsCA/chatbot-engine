@@ -1,5 +1,0 @@
-1. go to a random url on the dev site (https://steamactivities.dimentians.com/asdsada) or local (http://localhost/looms8/public/asdsdasd)
-2. login
-3. go to kiosks then locations
-4. Go to the table that says web for the online activities 
-5. Go to Details
