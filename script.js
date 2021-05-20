@@ -10,15 +10,17 @@ function responseList(textArray) {
   $.when
     .apply($,textArray.map(function(url) {
         return $.ajax({
-          url: "assets/test/",
+          url: "assets/",
           dataType: "text"
         });
       }))
     .done(function(result) {
         responseListArr = result[0].split("\n");
         responseListArr.pop();
-        responseListArr.map(function(file) {
+        responseListArr.map(function(file,index) {
+          let name = file;
           // let $checkbox = "<span class='checkboxes'><input type='checkbox' id="+file+" name="+file+" value="+file+" ><label for="+file+" >"+file+" </label></span>";
+          let $checkbox = "<div class='dropdown'><button type='button' id="+index+" class='dropbtn'>"+file+"</button><div id=myDropdown_"+index+" class='dropdown-content'><span class='checkboxes'><span><input type='checkbox' id="+file+" name="+file+" value="+file+" /><label for="+file+" >"+file+"</label></span></span></div></div>";
           $("#script_choice").append($checkbox);
         });
     })
@@ -102,7 +104,7 @@ function responseList(textArray) {
     $.when
     .apply($,selected.map(function(url) {
         return $.ajax({
-          url: "assets/test/"+ url,
+          url: "assets/"+ url,
           dataType: "text"
         });
       }))
