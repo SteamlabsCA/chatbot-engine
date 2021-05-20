@@ -5,7 +5,7 @@ function responseList(textArray) {
   let responseListHash = "";
   var time = new Date().getTime();
   var date = new Date(time);
-
+  let assets = {};
   //----Start: Get the lists of text files and concatenate them ----
   $.when
     .apply($,textArray.map(function(url) {
@@ -18,7 +18,9 @@ function responseList(textArray) {
       responseListArr = result[0].split("\n");
       responseListArr.pop();
       let textFileList = [];
-      $.when
+      
+      responseListArr.forEach((movie)=>{
+        $.when
         .apply($,responseListArr.map(function(url) {
             return $.ajax({
               url: "assets/"+url,
@@ -26,12 +28,16 @@ function responseList(textArray) {
             });
           }))
         .done(function(textFile) {
+          
           textFileList = textFile[0].split("\n");
           textFileList.pop();
+          console.log(textFile)
         })
         .fail(function(error) {
           console.log("Text File Retrieval Error: " + error);
         });
+      })
+      
       responseListArr.map(function(file,index) {
         let name = file;
         // let $checkbox = "<span class='checkboxes'><input type='checkbox' id="+file+" name="+file+" value="+file+" ><label for="+file+" >"+file+" </label></span>";
