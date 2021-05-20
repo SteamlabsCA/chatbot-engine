@@ -48,8 +48,6 @@ function responseList(textArray) {
           let $checkbox = "<div class='dropdown'><button type='button' id='drpBtn_"+index+"' class='dropbtn'>"+folder+"</button><div id='myDropdown_drpBtn_"+index+"' class='dropdown-content'><span class='checkboxes'>"+attachTexts(index,folder)+"</span></div></div>";
           $("#script_choice").append($checkbox);
         });
-        // console.log(responseListArr)
-        // console.log(res)
 
       })
       .fail(function(error) {
@@ -125,14 +123,6 @@ function responseList(textArray) {
         selected.push({folder: $(this).val(),name:$(this).attr('name')});
     });
     
-    // NON-Dropdown
-    // $('.checkboxes input:checked').each(function() {
-    //     selected.push($(this).attr('name'));
-    // });
-    
-    // working here - try checking only 1
-    console.log(selected);
-    
     $.when
     .apply($,selected.map(function(movieText) {
         return $.ajax({
@@ -144,11 +134,7 @@ function responseList(textArray) {
       if(selected.length === 1){
         responseList[0] = arguments[0];
         responseListConcat += arguments[0];
-        console.log("here 1");
-        console.log(arguments);
       }else{
-        console.log("here: " + arguments.length);
-        console.log(arguments);
         for (var i = 0; i < arguments.length; i++) {
           responseList[i] = arguments[i][0];
           responseListConcat += arguments[i][0];
@@ -169,8 +155,6 @@ function responseList(textArray) {
         responseList: responseList,
         language: "EN"
       }
-
-      console.log(data)
       
       let url = "https://57sunxdj45.execute-api.us-west-2.amazonaws.com/dev/convert";
 
@@ -183,6 +167,7 @@ function responseList(textArray) {
                     });
 
       posting.done(function(responseData) {
+        console.log(responseData)
         if (responseData === -1) {
           console.log("rejected")
           //If server doesn’t have that list cached
