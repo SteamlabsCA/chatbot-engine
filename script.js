@@ -10,7 +10,7 @@ function responseList(textArray) {
   $.when
     .apply($,textArray.map(function(url) {
         return $.ajax({
-          url: "assets/",
+          url: "assets/test/",
           dataType: "text"
         });
       }))
@@ -18,7 +18,7 @@ function responseList(textArray) {
         responseListArr = result[0].split("\n");
         responseListArr.pop();
         responseListArr.map(function(file) {
-          // let $checkbox = "<span id='checkboxes'><input type='checkbox' id="+file+" name="+file+" value="+file+" ><label for="+file+" >"+file+" </label></span>";
+          // let $checkbox = "<span class='checkboxes'><input type='checkbox' id="+file+" name="+file+" value="+file+" ><label for="+file+" >"+file+" </label></span>";
           // $("#script_choice").append($checkbox);
         });
     })
@@ -44,7 +44,7 @@ function responseList(textArray) {
 
   
   
-  //----Start: "Movie Scripts Dropdown" button----
+  // //----Start: "Movie Scripts Dropdown" button----
   $(".dropbtn").click(function(){
     $("#myDropdown_"+$(this).attr('id')).fadeToggle("fast");
     console.log("#myDropdown_"+$(this).attr('id'))
@@ -86,17 +86,23 @@ function responseList(textArray) {
   function pickResponse(inputPrompt) {
     var selected = [];
     responseList = [];
-    $('#checkboxes input:checked').each(function() {
+    //Dropdown
+    $('.checkboxes span input:checked').each(function() {
         selected.push($(this).attr('name'));
     });
     
+    // NON-Dropdown
+    // $('.checkboxes input:checked').each(function() {
+    //     selected.push($(this).attr('name'));
+    // });
+    
     // working here - try checking only 1
-    // console.log(selected);
+    console.log(selected);
     
     $.when
     .apply($,selected.map(function(url) {
         return $.ajax({
-          url: "assets/"+ url,
+          url: "assets/test/"+ url,
           dataType: "text"
         });
       }))
@@ -132,7 +138,7 @@ function responseList(textArray) {
 
       console.log(data)
       
-      let url = process.env.AWS_GATEWAY_URL;
+      let url = "https://57sunxdj45.execute-api.us-west-2.amazonaws.com/dev/convert";
 
       //Post data to the API - hash the response and send it, if the hash doesnt work send the entire response list
       var posting = $.ajax({

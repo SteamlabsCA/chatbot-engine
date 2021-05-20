@@ -184,16 +184,15 @@ body {
 }
 
 .dropbtn {
-  background-color: #3498DB;
-  color: white;
-  padding: 16px;
-  font-size: 16px;
+  color: #000000;
+  background-color: #ffffff;
+  font-size: 20px;
   border: none;
   cursor: pointer;
 }
 
 .dropbtn:hover, .dropbtn:focus {
-  background-color: #2980B9;
+  color: #e19f26;
 }
 
 .dropdown {
@@ -211,4 +210,6 @@ body {
   z-index: 1;
 }
 
-
+.dropdown-content span{
+  display: block;
+}
