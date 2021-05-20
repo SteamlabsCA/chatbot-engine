@@ -42,15 +42,28 @@ function responseList(textArray) {
   });
   //----End: "Clear All" button----
 
+  //----Start: "Movie Scripts Dropdown" button----
   $(".dropbtn").click(function(){
-    $(this+" #myDropdown").fadeToggle("fast");
+    $("#myDropdown",this).fadeToggle("fast");
   });
   
-  //----Start: "Scripts" button----
-  $("#change_scripts, #submit_scripts").click(function() {
-    $(".script_container").fadeToggle("fast", function(){
+  window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
 
-    });
+  //----End: "Movie Scripts Dropdown" button----
+  
+  //----Start: " Change Scripts" button----
+  $("#change_scripts, #submit_scripts").click(function() {
+    $(".script_container").fadeToggle("fast");
   });
   //----End: "Change Scripts" button----
   
@@ -126,7 +139,7 @@ function responseList(textArray) {
 
       console.log(data)
       
-      let url = 'https://57sunxdj45.execute-api.us-west-2.amazonaws.com/dev/convert';
+      let url = process.env.AWS_GATEWAY_URL;
 
       //Post data to the API - hash the response and send it, if the hash doesnt work send the entire response list
       var posting = $.ajax({
@@ -270,4 +283,4 @@ var sha256 = function a(b) {
       i += (16 > y ? 0 : "") + y.toString(16);
     }
   return i;
-};
+}
