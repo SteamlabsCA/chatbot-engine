@@ -15,14 +15,29 @@ function responseList(textArray) {
         });
       }))
     .done(function(result) {
-        responseListArr = result[0].split("\n");
-        responseListArr.pop();
-        responseListArr.map(function(file,index) {
-          let name = file;
-          // let $checkbox = "<span class='checkboxes'><input type='checkbox' id="+file+" name="+file+" value="+file+" ><label for="+file+" >"+file+" </label></span>";
-          let $checkbox = "<div class='dropdown'><button type='button' id='drpBtn_"+index+"' class='dropbtn'>"+file+"</button><div id='myDropdown_drpBtn_"+index+"' class='dropdown-content'><span class='checkboxes'><span><input type='checkbox' id="+index+" /><label for="+file+" >"+file+"</label></span></span></div></div>";
-          $("#script_choice").append($checkbox);
+      responseListArr = result[0].split("\n");
+      responseListArr.pop();
+      let textFileList = [];
+      $.when
+        .apply($,responseListArr.map(function(url) {
+            return $.ajax({
+              url: "assets/"+url,
+              dataType: "text"
+            });
+          }))
+        .done(function(textFile) {
+          textFileList = textFile[0].split("\n");
+          textFileList.pop();
+        })
+        .fail(function(error) {
+          console.log("Text File Retrieval Error: " + error);
         });
+      responseListArr.map(function(file,index) {
+        let name = file;
+        // let $checkbox = "<span class='checkboxes'><input type='checkbox' id="+file+" name="+file+" value="+file+" ><label for="+file+" >"+file+" </label></span>";
+        let $checkbox = "<div class='dropdown'><button type='button' id='drpBtn_"+index+"' class='dropbtn'>"+file+"</button><div id='myDropdown_drpBtn_"+index+"' class='dropdown-content'><span class='checkboxes'><span><input type='checkbox' id="+index+" /><label for="+file+" >"+file+"</label></span></span></div></div>";
+        $("#script_choice").append($checkbox);
+      });
     })
     .fail(function(error) {
       console.log("Text File Retrieval Error: " + error);
@@ -46,11 +61,9 @@ function responseList(textArray) {
 
   
   
-  // //----Start: "Movie Scripts Dropdown" button----
-  $(".dropbtn").click(function(){
-    console.log("#myDropdown_"+$(this).attr('id'))
+  //----Start: "Movie Scripts Dropdown" button----
+  $(document).on('click', '.dropbtn', function(){
     $("#myDropdown_"+$(this).attr('id')).fadeToggle("fast");
-    console.log("#myDropdown_"+$(this).attr('id'))
   });
   //----End: "Movie Scripts Dropdown" button----
   
