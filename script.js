@@ -19,7 +19,7 @@ function responseList(textArray) {
       responseListArr.pop();
       let textFileList = [];
       
-      responseListArr.forEach((movie)=>{
+      // responseListArr.forEach((movie)=>{
         $.when
         .apply($,responseListArr.map(function(url) {
             return $.ajax({
@@ -28,15 +28,15 @@ function responseList(textArray) {
             });
           }))
         .done(function(textFile) {
-          
           textFileList = textFile[0].split("\n");
           textFileList.pop();
-          console.log(textFile)
+          assets[url] = [url,textFileList]
+          console.log(assets)
         })
         .fail(function(error) {
           console.log("Text File Retrieval Error: " + error);
         });
-      })
+      // })
       
       responseListArr.map(function(file,index) {
         let name = file;
