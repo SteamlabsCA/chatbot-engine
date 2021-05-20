@@ -5,7 +5,16 @@ function responseList(textArray) {
   let responseListHash = "";
   var time = new Date().getTime();
   var date = new Date(time);
-
+  let res = [];
+  
+  function attachTexts(id,folder){
+    
+    let checkList = "";
+    res[id].forEach((text, index)=>{
+        checkList += "<span><input type='checkbox' id='"+id+index+"' name='"+text+"' value='"+folder+"'/><label >"+text+"</label></span>"
+    })
+    return checkList;
+  }
   //----Start: Get the lists of text files and concatenate them ----
   $.when
     .apply($,textArray.map(function(url) {
@@ -15,12 +24,37 @@ function responseList(textArray) {
         });
       }))
     .done(function(result) {
-        responseListArr = result[0].split("\n");
-        responseListArr.pop();
-        responseListArr.map(function(file) {
-          let $checkbox = "<span id='checkboxes'><input type='checkbox' id="+file+" name="+file+" value="+file+" ><label for="+file+" >"+file+" </label></span>";
+      responseListArr = result[0].split("\n");
+      responseListArr.pop();
+      let textFileList = [];
+      
+      $.when
+      .apply($,responseListArr.map(function(url) {
+          return $.ajax({
+            url: "assets/"+url,
+            dataType: "text"
+          });
+        }))
+      .done(function() {
+        let textFiles = [];
+        for (var i = 0; i < arguments.length; i++) {
+          textFiles = arguments[i][0].split("\n");
+          textFiles.pop();
+          res.push(textFiles);
+        }
+        
+        responseListArr.map(function(folder,index) {
+          // let $checkbox = "<span class='checkboxes'><input type='checkbox' id="+file+" name="+file+" value="+file+" ><label for="+file+" >"+file+" </label></span>";
+          let $checkbox = "<div class='dropdown'><button type='button' id='drpBtn_"+index+"' class='dropbtn'>"+folder+"</button><div id='myDropdown_drpBtn_"+index+"' class='dropdown-content'><span class='checkboxes'>"+attachTexts(index,folder)+"</span></div></div>";
           $("#script_choice").append($checkbox);
         });
+        // console.log(responseListArr)
+        // console.log(res)
+
+      })
+      .fail(function(error) {
+        console.log("Text File Retrieval Error: " + error);
+      });
     })
     .fail(function(error) {
       console.log("Text File Retrieval Error: " + error);
@@ -42,11 +76,21 @@ function responseList(textArray) {
   });
   //----End: "Clear All" button----
 
-  //----Start: "Scripts" button----
+  
+  
+  //----Start: "Movie Scripts Dropdown" button----
+  $(document).on('click', '.dropbtn', function(){
+    $(".dropdown-content").hide();
+    $("#myDropdown_"+$(this).attr('id')).fadeToggle("fast");
+  });
+  //----End: "Movie Scripts Dropdown" button----
+  
+  
+  
+  
+  //----Start: " Change Scripts" button----
   $("#change_scripts, #submit_scripts").click(function() {
-    $(".script_container").fadeToggle("fast", function(){
-
-    });
+    $(".script_container").fadeToggle("fast");
   });
   //----End: "Change Scripts" button----
   
@@ -76,17 +120,23 @@ function responseList(textArray) {
   function pickResponse(inputPrompt) {
     var selected = [];
     responseList = [];
-    $('#checkboxes input:checked').each(function() {
-        selected.push($(this).attr('name'));
+    //Dropdown
+    $('.checkboxes span input:checked').each(function() {
+        selected.push({folder: $(this).val(),name:$(this).attr('name')});
     });
     
+    // NON-Dropdown
+    // $('.checkboxes input:checked').each(function() {
+    //     selected.push($(this).attr('name'));
+    // });
+    
     // working here - try checking only 1
-    // console.log(selected);
+    console.log(selected);
     
     $.when
-    .apply($,selected.map(function(url) {
+    .apply($,selected.map(function(movieText) {
         return $.ajax({
-          url: "assets/"+ url,
+          url: "assets/"+ movieText["folder"]+"/"+movieText["name"],
           dataType: "text"
         });
       }))
@@ -122,7 +172,7 @@ function responseList(textArray) {
 
       console.log(data)
       
-      let url = 'https://57sunxdj45.execute-api.us-west-2.amazonaws.com/dev/convert';
+      let url = "https://57sunxdj45.execute-api.us-west-2.amazonaws.com/dev/convert";
 
       //Post data to the API - hash the response and send it, if the hash doesnt work send the entire response list
       var posting = $.ajax({
@@ -266,4 +316,5 @@ var sha256 = function a(b) {
       i += (16 > y ? 0 : "") + y.toString(16);
     }
   return i;
-};
+}
+ 
