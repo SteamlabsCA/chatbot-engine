@@ -19,24 +19,26 @@ function responseList(textArray) {
       responseListArr.pop();
       let textFileList = [];
       
-      // responseListArr.forEach((movie)=>{
-        $.when
-        .apply($,responseListArr.map(function(url) {
-            return $.ajax({
-              url: "assets/"+url,
-              dataType: "text"
-            });
-          }))
-        .done(function(textFile) {
-          textFileList = textFile[0].split("\n");
-          textFileList.pop();
-          assets[url] = [url,textFileList]
-          console.log(assets)
-        })
-        .fail(function(error) {
-          console.log("Text File Retrieval Error: " + error);
-        });
-      // })
+      $.when
+      .apply($,responseListArr.map(function(url) {
+          return $.ajax({
+            url: "assets/"+url,
+            dataType: "text"
+          });
+        }))
+      .done(function() {
+        let res = [];
+        let textFiles = [];
+        for (var i = 0; i < arguments.length; i++) {
+          textFiles = arguments[i][0].split("\n");
+          textFiles.pop();
+          res.push(textFiles);
+        }
+        console.log(res)
+      })
+      .fail(function(error) {
+        console.log("Text File Retrieval Error: " + error);
+      });
       
       responseListArr.map(function(file,index) {
         let name = file;
