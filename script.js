@@ -8,11 +8,12 @@ function responseList(textArray) {
   let res = [];
   
   function attachTexts(id){
+    
     let checkList = "";
-    res.forEach((textArr)=>{
-      checkList += "<span><input type='checkbox' id="+id+" /><label for="+file+" >"+file+"</label></span>"
-    });
-    return 
+    res[id].forEach((text, index)=>{
+        checkList += "<span><input type='checkbox' id='"+id+index+"' /><label >"+text+"</label></span>"
+    })
+    return checkList;
   }
   //----Start: Get the lists of text files and concatenate them ----
   $.when
@@ -41,22 +42,19 @@ function responseList(textArray) {
           textFiles.pop();
           res.push(textFiles);
         }
-        console.log(responseListArr)
-        console.log(res)
+        
+        responseListArr.map(function(file,index) {
+          // let $checkbox = "<span class='checkboxes'><input type='checkbox' id="+file+" name="+file+" value="+file+" ><label for="+file+" >"+file+" </label></span>";
+          let $checkbox = "<div class='dropdown'><button type='button' id='drpBtn_"+index+"' class='dropbtn'>"+file+"</button><div id='myDropdown_drpBtn_"+index+"' class='dropdown-content'><span class='checkboxes'>"+attachTexts(index)+"</span></div></div>";
+          $("#script_choice").append($checkbox);
+        });
+        // console.log(responseListArr)
+        // console.log(res)
 
       })
       .fail(function(error) {
         console.log("Text File Retrieval Error: " + error);
       });
-      
-      responseListArr.map(function(file,index) {
-        let name = file;
-        // let $checkbox = "<span class='checkboxes'><input type='checkbox' id="+file+" name="+file+" value="+file+" ><label for="+file+" >"+file+" </label></span>";
-        let $checkbox = "<div class='dropdown'><button type='button' id='drpBtn_"+index+"' class='dropbtn'>"+file+"</button><div id='myDropdown_drpBtn_"+index+"' class='dropdown-content'><span class='checkboxes'>"+attachTexts(index)+"</span></div></div>";
-        $("#script_choice").append($checkbox);
-      });
-    
-    
     })
     .fail(function(error) {
       console.log("Text File Retrieval Error: " + error);
