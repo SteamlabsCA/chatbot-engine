@@ -80,8 +80,8 @@ function responseList(textArray) {
         selected.push($(this).attr('name'));
     });
     
-//     working here - try checking only 1
-    console.log(selected);
+    // working here - try checking only 1
+    // console.log(selected);
     
     $.when
     .apply($,selected.map(function(url) {
@@ -91,9 +91,18 @@ function responseList(textArray) {
         });
       }))
     .done(function() {
-      for (var i = 0; i < arguments.length; i++) {
-        responseList[i] = arguments[i][0];
-        responseListConcat += arguments[i][0];
+      if(arguments.length === 1){
+        responseList[0] = arguments[0][0];
+        responseListConcat += arguments[0][0];
+        console.log("here 1");
+        console.log(arguments);
+      }else{
+        console.log("here m");
+        console.log(arguments);
+        for (var i = 0; i < arguments.length; i++) {
+          responseList[i] = arguments[i][0];
+          responseListConcat += arguments[i][0];
+        }
       }
       
       responseListHash = sha256(responseListConcat);
