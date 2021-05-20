@@ -42,9 +42,9 @@ function responseList(textArray) {
   });
   //----End: "Clear All" button----
 
-  //----Start: "Change Scripts" button----
-  $("#change_scripts").click(function() {
-    $("#script_choice").fadeToggle("fast", function(){
+  //----Start: "Scripts" button----
+  $("#change_scripts, #submit_scripts").click(function() {
+    $(".script_container").fadeToggle("fast", function(){
 
     });
   });
