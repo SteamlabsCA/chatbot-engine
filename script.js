@@ -20,7 +20,6 @@ function responseList() {
   //Get All Movie Folders
   $.when
     .apply($,([1,2]).map(function(url) {
-        console.log("start");
         return $.ajax({
           url: "assets/",
           dataType: "text"
@@ -244,12 +243,13 @@ function charSearch() {
       checkbox[i].style.display = "none";
     }
   }
-  for (i = 0; i < allParents.length; i++) { 
+  for (i = 0; i <= allParents.length-1; i++) { 
     console.log($("#movie_"+i+" #search_box").css("display") ==="block")
-    if(!$("#movie_"+i+" #search_box").css("display") ==="block"){
-      $("#movie_"+i).hide();
+    if($("#movie_"+i+" #search_box").css("display") ==="block"){
+        console.log("here")
+        $("#movie_"+i).show()
     }else{
-      $("#movie_"+i).show();
+      // $("#movie_"+i).hide()
     }
     //  if(allParents[i].querySelectorAll('[id=search_box]')){
     //   allParents[i].style.display = "none"
