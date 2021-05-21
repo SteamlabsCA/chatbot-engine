@@ -244,7 +244,7 @@ function charSearch() {
     }
   }
   for (i = 0; i <= allParents.length-1; i++) { 
-    console.log($("#movie_"+i+" #search_box").css("display") ==="block")
+    console.log($("#movie_"+i+" #search_box:visible").length ===0)
     if($("#movie_"+i+" #search_box").css("display") ==="block"){
         console.log("here")
         $("#movie_"+i).show()
