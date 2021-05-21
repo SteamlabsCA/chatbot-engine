@@ -237,18 +237,18 @@ function charSearch() {
   for (i = 0; i < checkbox.length; i++) { 
     name = checkbox[i].getElementsByClassName("file_name");
     txtValue = name[0].textContent || name[0].innerText; 
-    parent = document.getElementById("");
+    parent = document.getElementById("movie_"+i);
     if (txtValue.toUpperCase().indexOf(filter) > -1) { 
-      if(document.getElementById("movie_"+i+" div span").children(':visible')){
-         document.getElementById("movie_"+i).style.display = "block";
-      }
       checkbox[i].style.display = "block";
-    } else {
-      if(!document.getElementById("movie_"+i+" div span").children(':visible')){
-         document.getElementById("movie_"+i).style.display = "none";
+      if($("#movie_"+i+" div span").children(':visible') && parent){
+        console.log(parent);
+        parent.style.display = "block";
       }
+    } else {
       checkbox[i].style.display = "none";
-      
+      if(!$("#movie_"+i+" div span").children(':visible')&& parent){
+         parent.style.display = "none";
+      }
     }
   }
 }
