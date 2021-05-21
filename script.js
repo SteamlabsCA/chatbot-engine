@@ -142,7 +142,8 @@ function responseList(textArray) {
       }
       
       responseListHash = sha256(responseListConcat);
-        
+      // responseList = responseList.split("\n");
+      console.log(responseList);
       //Load the data to be sent to the API
       // let data = {
       //   inputPrompt: inputPrompt,
@@ -156,8 +157,8 @@ function responseList(textArray) {
         language: "EN"
       }
       
-      let url = "https://57sunxdj45.execute-api.us-west-2.amazonaws.com/dev/convert";
-
+      // let url = "https://57sunxdj45.execute-api.us-west-2.amazonaws.com/dev/convert";
+      let url = '';
       //Post data to the API - hash the response and send it, if the hash doesnt work send the entire response list
       var posting = $.ajax({
                         url: url,
