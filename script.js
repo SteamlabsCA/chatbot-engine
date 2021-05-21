@@ -49,7 +49,7 @@ function responseList() {
         
         //Attach textfiles
         responseListArr.map(function(folder,index) {
-          let $checkbox = "<div class='dropdown' id='movie'><button type='button' id='drpBtn_"+index+"' class='dropbtn'>"+folder+"</button><div id='myDropdown_drpBtn_"+index+"' class='dropdown-content'><span class='checkboxes'>"+attachTexts(index,folder)+"</span></div></div>";
+          let $checkbox = "<div class='dropdown' id='rpBtn_"+index+"' ><button type='button' id='drpBtn_"+index+"' class='dropbtn'>"+folder+"</button><div id='myDropdown_drpBtn_"+index+"' class='dropdown-content'><span class='checkboxes'>"+attachTexts(index,folder)+"</span></div></div>";
           $("#script_choice").append($checkbox);
         });
 
@@ -230,19 +230,19 @@ function responseList() {
 }
 
 function charSearch() {
-  var input, filter, checkbox, name, i, txtValue;
+  var input, filter, checkbox, name, i, txtValue, parent;
   input = document.getElementById("script_input");
   filter = input.value.toUpperCase();
   checkbox = document.querySelectorAll('[id=search_box]');
   for (i = 0; i < checkbox.length; i++) { 
     name = checkbox[i].getElementsByClassName("file_name");
-    txtValue = name.textContent || name.innerText; 
-    console.log(name.textContent + " : "+ name.innerText);
-    // if (txtValue.toUpperCase().indexOf(filter) > -1) {  
-    //   checkbox[i].style.display = "block";
-    // } else {
-    //   checkbox[i].style.display = "none";
-    // }
+    txtValue = name[0].textContent || name[0].innerText; 
+    parent = document.getElementById("");
+    if (txtValue.toUpperCase().indexOf(filter) > -1) { 
+      checkbox[i].style.display = "block";
+    } else {
+      checkbox[i].style.display = "none";
+    }
   }
 }
 
