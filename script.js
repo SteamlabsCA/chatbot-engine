@@ -137,25 +137,28 @@ function responseList(textArray) {
         responseListConcat += arguments[0];
       }else{
         for (var i = 0; i < arguments.length; i++) {
-          responseList[i] = arguments[i][0].split("\n");
-          console.log()
+          responseList.extend(arguments[i][0].split("\n"));
+          //Concate responseList into one string
           responseListConcat += arguments[i][0];
         }
       }
       
-      responseListHash = sha256(responseListConcat);
+      //Remove all white space and hash
+      responseListHash = sha256(responseListConcat.replace(/\s+/g, ''));
       
-      responseList.forEach((arr)=>{
-        if(arr[0] || arr[0].length < 1){
-          console.log(arr)
-          finalResponseList.extend(arr);
-        }else{
-          console.log("not here");
-        }
-      }) 
+      console.log(responseList)
+      console.log(responseListConcat)
+      // responseList.forEach((arr)=>{
+      //   if(arr[0] || arr[0].length < 1){
+      //     // console.log(arr)
+      //     finalResponseList.extend(arr);
+      //   }else{
+      //     console.log("not here");
+      //   }
+      // }) 
       
       
-      console.log(finalResponseList);
+      // console.log(finalResponseList);
       //Load the data to be sent to the API
       // let data = {
       //   inputPrompt: inputPrompt,
