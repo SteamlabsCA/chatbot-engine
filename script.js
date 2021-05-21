@@ -117,7 +117,7 @@ function responseList(textArray) {
   //----Start: Pick Response----
   function pickResponse(inputPrompt) {
     let selected = [];
-    let finalResponseList = [] 
+    let finalResponseList = []; 
     responseList = [];
     //Dropdown
     $('.checkboxes span input:checked').each(function() {
@@ -138,15 +138,24 @@ function responseList(textArray) {
       }else{
         for (var i = 0; i < arguments.length; i++) {
           responseList[i] = arguments[i][0].split("\n");
+          console.log()
           responseListConcat += arguments[i][0];
         }
       }
       
       responseListHash = sha256(responseListConcat);
       
-      let finalResponseList = 
+      responseList.forEach((arr)=>{
+        if(arr[0] || arr[0].length < 1){
+          console.log(arr)
+          finalResponseList.extend(arr);
+        }else{
+          console.log("not here");
+        }
+      }) 
       
-      console.log(responseList);
+      
+      console.log(finalResponseList);
       //Load the data to be sent to the API
       // let data = {
       //   inputPrompt: inputPrompt,
@@ -160,8 +169,8 @@ function responseList(textArray) {
         language: "EN"
       }
       
-      let url = "https://57sunxdj45.execute-api.us-west-2.amazonaws.com/dev/convert";
-      // let url = '';
+      // let url = "https://57sunxdj45.execute-api.us-west-2.amazonaws.com/dev/convert";
+      let url = '';
       //Post data to the API - hash the response and send it, if the hash doesnt work send the entire response list
       var posting = $.ajax({
                         url: url,
