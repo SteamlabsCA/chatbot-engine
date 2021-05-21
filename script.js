@@ -243,10 +243,18 @@ function charSearch() {
       checkbox[i].style.display = "none";
     }
   }
-  console.log($("#movie_0 .checkboxes").children())
-  console.log($("#movie_0 .checkboxes").children().hide())
-  console.log($("#movie_0 .checkboxes").children())
   
+//   if(!($("#movie_0 .checkboxes").children(':visible').length > 0)){
+//     $("#movie_0").hide();
+//   }  
+  
+  let t = $("#movie_0 .checkboxes").children().filter(function(){ return $(this).css("display")=="block"});
+  if(t.length <= 0){
+    console.log(t);
+    $("#movie_0").hide();
+  }else{
+    $("#movie_0").show();
+  }
   // for (i = 0; i <= allParents.length-1; i++) { 
   //   console.log($("#movie_"+i+" #search_box:visible").length ===0)
   //   if($("#movie_"+i+" #search_box").css("display") ==="block"){
