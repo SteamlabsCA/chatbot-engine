@@ -238,22 +238,26 @@ function charSearch() {
   for (i = 0; i < checkbox.length; i++) { 
     name = checkbox[i].getElementsByClassName("file_name");
     txtValue = name[0].textContent || name[0].innerText; 
-    parent = document.getElementById("movie_"+i);
     if (txtValue.toUpperCase().indexOf(filter) > -1) { 
       checkbox[i].style.display = "block";
-      if($("#movie_"+i+" div span").children(':visible') && parent){
-        console.log(parent);
-        allParents.style.display = "none"
-        parent.style.display = "block";
-      }
     } else {
       checkbox[i].style.display = "none";
-      if(!$("#movie_"+i+" div span").children(':visible')&& parent){
-        allParents.style.display = "block";
-        parent.style.display = "none";
-      }
     }
   }
+  for (i = 0; i < allParents.length; i++) { 
+     if($("#movie_"+i+" div span").children(':visible').length === 1){
+      // console.log($("#movie_"+i+" div span"))
+      allParents[i].style.display = "none"
+    }else{
+      console.log($("#movie_"+i+" div span"))
+      allParents[i].style.display = "block"
+    }
+  }
+  // if(!$("#movie_"+i+" div span").children(':visible')){
+  //     console.log(parent);
+  //     allParents.style.display = "none"
+  //     parent.style.display = "block";
+  // }
 }
 
 //Extending Large Arrays Function
