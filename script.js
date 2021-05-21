@@ -7,14 +7,15 @@ function responseList(textArray) {
   var date = new Date(time);
   let res = [];
   
+  // Attach the checklist to each dropdown
   function attachTexts(id,folder){
-    
     let checkList = "";
     res[id].forEach((text, index)=>{
         checkList += "<span><input type='checkbox' id='"+id+index+"' name='"+text+"' value='"+folder+"'/><label >"+text+"</label></span>"
     })
     return checkList;
   }
+  
   //----Start: Get the lists of text files and concatenate them ----
   $.when
     .apply($,textArray.map(function(url) {
@@ -149,8 +150,6 @@ function responseList(textArray) {
       // Filter out all line breaks
       const finalResponseList = responseList.filter(sent => sent !== "");
       
-      
-      // console.log(finalResponseList);
       //Load the data to be sent to the API
       // let data = {
       //   inputPrompt: inputPrompt,
@@ -167,7 +166,6 @@ function responseList(textArray) {
       }
       
       let url = "https://57sunxdj45.execute-api.us-west-2.amazonaws.com/dev/convert";
-      // let url = '';
       
       //Post data to the API - hash the response and send it, if the hash doesnt work send the entire response list
       var posting = $.ajax({
