@@ -1,5 +1,4 @@
 function responseList() {
-  let assets = ["start","end"];
   let responseListArr = [];
   let responseList = [];
   let responseListConcat = "";
@@ -20,14 +19,14 @@ function responseList() {
   //----Start: Get the lists of text files and concatenate them ----
   //Get All Movie Folders
   $.when
-    .apply($,assets.map(function(url) {
+    .apply($,([1,2]).map(function(url) {
+        console.log("start");
         return $.ajax({
           url: "assets/",
           dataType: "text"
         });
       }))
     .done(function(result) {
-    
       //Store all movie folders split on the newline
       responseListArr = result[0].split("\n");
       responseListArr.pop();
