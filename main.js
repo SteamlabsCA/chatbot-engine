@@ -2,5 +2,10 @@
 
 jQuery(document).ready(function () {
 	// Change these files to change the response list text from the assets
-	responseList(['test4.txt', 'testText.txt', 'testText2.txt', 'testText.txt']);
+	$('#start').click(function () {
+		responseList();
+		$('#start_container').fadeOut('fast', function () {
+			$('#activity_container').fadeIn('fast');
+		});
+	});
 });

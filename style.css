@@ -6,6 +6,13 @@ body {
 	background-color: #ffffff;
 }
 
+#start_container {
+}
+
+#activity_container {
+	display: none;
+}
+
 .button_group {
 	display: flex;
 	justify-content: space-evenly;
