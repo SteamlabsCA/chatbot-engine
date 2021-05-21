@@ -204,6 +204,19 @@ body {
   margin: 0 10px;
 }
 
+#search_button{
+  padding: 10px;
+  border-radius: 10px;
+  border: 0;
+  color: #ffffff;
+  background-color: #a1c2ff;
+  cursor: pointer;
+}
+
+#search_button:hover{
+  background-color: #5f97ff;
+}
+
 #submit_scripts{
   float: right;
   margin: 2% 4%;

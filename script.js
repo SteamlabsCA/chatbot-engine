@@ -49,7 +49,7 @@ function responseList() {
         
         //Attach textfiles
         responseListArr.map(function(folder,index) {
-          let $checkbox = "<div class='dropdown'><button type='button' id='drpBtn_"+index+"' class='dropbtn'>"+folder+"</button><div id='myDropdown_drpBtn_"+index+"' class='dropdown-content'><span class='checkboxes'>"+attachTexts(index,folder)+"</span></div></div>";
+          let $checkbox = "<div class='dropdown' id='movie'><button type='button' id='drpBtn_"+index+"' class='dropbtn'>"+folder+"</button><div id='myDropdown_drpBtn_"+index+"' class='dropdown-content'><span class='checkboxes'>"+attachTexts(index,folder)+"</span></div></div>";
           $("#script_choice").append($checkbox);
         });
 
@@ -229,6 +229,29 @@ function responseList() {
   //----End: Pick Response----
 }
 
+function charSearch() {
+  var input, filter, movie, li, la, i, txtValue;
+  input = document.getElementById("script_input");
+  filter = input.value.toUpperCase(); 
+  movie = document.getElementsByClassName("example");;
+  li = ul.getElementsByTagName("li");
+
+  for (i = 0; i < li.length; i++) { 
+    la = li[i].getElementsByTagName("label")[0];
+    txtValue = la.textContent || la.innerText;  
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {  
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+  }
+}
+
+//Extending Large Arrays Function
+Array.prototype.extend = function (other_array) {
+    other_array.forEach(function(v) {this.push(v)}, this);
+}
+
 // Hashing Function
 var sha256 = function a(b) {
   function c(a, b) {
@@ -296,7 +319,3 @@ var sha256 = function a(b) {
   return i;
 }
 
-//Extending Large Arrays Function
-Array.prototype.extend = function (other_array) {
-    other_array.forEach(function(v) {this.push(v)}, this);
-}
