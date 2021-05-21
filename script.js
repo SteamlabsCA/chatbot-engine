@@ -133,7 +133,7 @@ function responseList(textArray) {
       }))
     .done(function() {
       if(selected.length === 1){
-        responseList[0] = arguments[0].split("\n");
+        responseList.extend(arguments[0].split("\n"));
         responseListConcat += arguments[0];
       }else{
         for (var i = 0; i < arguments.length; i++) {
