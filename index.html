@@ -15,8 +15,8 @@
       crossorigin="anonymous"
     ></script>
     <!-- import the webpage's javascript file -->
-    <script src="/main.js" defer></script>
-    <script src="/script.js" defer></script>
+    <script src="/script.js" ></script>
+    <script src="/main.js" ></script>
     
   </head>  
   <body>
@@ -30,7 +30,11 @@
     </div>
     <form id="prompt_form" action="">
 <!--       <label for="fname"><h3>Input Prompt:</h3></label> -->
-      <span class="script_container"><span id="script_choice"></span><input type="button" class="form_button" id="submit_scripts" value="Submit Scripts"></span>
+      <span class="script_container">
+        <span id="script_choice">
+        </span>
+        <input type="button" class="form_button" id="submit_scripts" value="Submit Scripts">
+      </span>
       
       <textarea placeholder="Input Prompt" type="text" id="input_prompt" name="input_prompt" required></textarea>
       <span class="button_group">
