@@ -49,7 +49,7 @@ function responseList() {
         
         //Attach textfiles
         responseListArr.map(function(folder,index) {
-          let $checkbox = "<div class='dropdown' id='rpBtn_"+index+"' ><button type='button' id='drpBtn_"+index+"' class='dropbtn'>"+folder+"</button><div id='myDropdown_drpBtn_"+index+"' class='dropdown-content'><span class='checkboxes'>"+attachTexts(index,folder)+"</span></div></div>";
+          let $checkbox = "<div class='dropdown' id='movie_"+index+"' ><button type='button' id='drpBtn_"+index+"' class='dropbtn'>"+folder+"</button><div id='myDropdown_drpBtn_"+index+"' class='dropdown-content'><span class='checkboxes'>"+attachTexts(index,folder)+"</span></div></div>";
           $("#script_choice").append($checkbox);
         });
 
@@ -239,9 +239,16 @@ function charSearch() {
     txtValue = name[0].textContent || name[0].innerText; 
     parent = document.getElementById("");
     if (txtValue.toUpperCase().indexOf(filter) > -1) { 
+      if(document.getElementById("movie_"+i+" div span").children(':visible')){
+         document.getElementById("movie_"+i).style.display = "block";
+      }
       checkbox[i].style.display = "block";
     } else {
+      if(!document.getElementById("movie_"+i+" div span").children(':visible')){
+         document.getElementById("movie_"+i).style.display = "none";
+      }
       checkbox[i].style.display = "none";
+      
     }
   }
 }
