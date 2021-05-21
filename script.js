@@ -230,10 +230,11 @@ function responseList() {
 }
 
 function charSearch() {
-  var input, filter, checkbox, name, i, txtValue, parent;
+  var input, filter, checkbox, name, i, txtValue, parent,allParents;
   input = document.getElementById("script_input");
   filter = input.value.toUpperCase();
   checkbox = document.querySelectorAll('[id=search_box]');
+  allParents = document.getElementsByClassName("dropdown");
   for (i = 0; i < checkbox.length; i++) { 
     name = checkbox[i].getElementsByClassName("file_name");
     txtValue = name[0].textContent || name[0].innerText; 
@@ -242,12 +243,14 @@ function charSearch() {
       checkbox[i].style.display = "block";
       if($("#movie_"+i+" div span").children(':visible') && parent){
         console.log(parent);
+        allParents.style.display = "none"
         parent.style.display = "block";
       }
     } else {
       checkbox[i].style.display = "none";
       if(!$("#movie_"+i+" div span").children(':visible')&& parent){
-         parent.style.display = "none";
+        allParents.style.display = "block";
+        parent.style.display = "none";
       }
     }
   }
