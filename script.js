@@ -234,7 +234,7 @@ function charSearch() {
   input = document.getElementById("script_input");
   filter = input.value.toUpperCase();
   checkbox = document.querySelectorAll('[id=search_box]');
-  allParents = document.getElementsByClassName("dropdown");
+  allParents = $(".dropdown");
   for (i = 0; i < checkbox.length; i++) { 
     name = checkbox[i].getElementsByClassName("file_name");
     txtValue = name[0].textContent || name[0].innerText; 
@@ -245,13 +245,13 @@ function charSearch() {
     }
   }
   for (i = 0; i < allParents.length; i++) { 
-     if($("#movie_"+i+" div span").children(':visible').length === 1){
-      // console.log($("#movie_"+i+" div span"))
-      allParents[i].style.display = "none"
-    }else{
-      console.log($("#movie_"+i+" div span"))
-      allParents[i].style.display = "block"
-    }
+      console.log($(".checkboxes #search_box:visible").length === 0)
+    //  if(allParents[i].querySelectorAll('[id=search_box]')){
+    //   allParents[i].style.display = "none"
+    // }else{
+    //   console.log($("#movie_"+i+" div span"))
+    //   allParents[i].style.display = "block"
+    // }
   }
   // if(!$("#movie_"+i+" div span").children(':visible')){
   //     console.log(parent);
