@@ -245,7 +245,12 @@ function charSearch() {
     }
   }
   for (i = 0; i < allParents.length; i++) { 
-      console.log($(".checkboxes #search_box:visible").length === 0)
+    console.log($("#movie_"+i+" #search_box").css("display") ==="block")
+    if(!$("#movie_"+i+" #search_box").css("display") ==="block"){
+      $("#movie_"+i).hide();
+    }else{
+      $("#movie_"+i).show();
+    }
     //  if(allParents[i].querySelectorAll('[id=search_box]')){
     //   allParents[i].style.display = "none"
     // }else{
