@@ -11,7 +11,7 @@ function responseList() {
   function attachTexts(id,folder){
     let checkList = "";
     for (var index = 0, len = res[id].length; index < len; ++index) {
-      checkList += "<span><input type='checkbox' id='"+id+index+"' name='"+res[id][index]+"' value='"+folder+"'/><label >"+res[id][index]+"</label></span>"
+      checkList += "<span id='search_box'><input type='checkbox' id='"+id+index+"' name='"+res[id][index]+"' value='"+folder+"'/><label >"+res[id][index]+"</label></span>"
     }
     return checkList;
   }
@@ -230,19 +230,18 @@ function responseList() {
 }
 
 function charSearch() {
-  var input, filter, movie, li, la, i, txtValue;
+  var input, filter, checkbox, la, i, txtValue;
   input = document.getElementById("script_input");
-  filter = input.value.toUpperCase(); 
-  movie = document.getElementsByClassName("example");;
-  li = ul.getElementsByTagName("li");
-
-  for (i = 0; i < li.length; i++) { 
-    la = li[i].getElementsByTagName("label")[0];
+  filter = input.value.toUpperCase();
+  checkbox = document.querySelectorAll('[id=search_box]');
+  console.log(checkbox);
+  for (i = 0; i < checkbox.length; i++) { 
+    la = checkbox[i].document.getElementsByTagName("label");
     txtValue = la.textContent || la.innerText;  
     if (txtValue.toUpperCase().indexOf(filter) > -1) {  
-      li[i].style.display = "";
+      checkbox[i].style.display = "block";
     } else {
-      li[i].style.display = "none";
+      checkbox[i].style.display = "none";
     }
   }
 }
