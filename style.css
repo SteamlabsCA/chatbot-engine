@@ -6,11 +6,11 @@ body {
   background-color: #ffffff;
 }
 
-.starting_container{
+#start_container{
 
 }
 
-.activity_container{
+#activity_container{
   display: none;
 }
 
