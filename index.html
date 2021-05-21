@@ -39,7 +39,11 @@
       <form id="prompt_form" action="">
         <!--       <label for="fname"><h3>Input Prompt:</h3></label> -->
         <span class="script_container">
-          <span id="script_choice"> </span>
+          <span id="script_choice">
+            <div class="search-container">
+              <input type="text" id="script_input" onkeyup="charSearch()" placeholder="Search for characters..." title="Type in a name">
+            </div>
+          </span>
           <input
             type="button"
             class="form_button"

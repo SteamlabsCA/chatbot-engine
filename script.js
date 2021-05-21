@@ -12,14 +12,14 @@ function responseList() {
 		let checkList = '';
 		for (var index = 0, len = res[id].length; index < len; ++index) {
 			checkList +=
-				"<span><input type='checkbox' id='" +
+				"<span id='search_box'><input type='checkbox' id='" +
 				id +
 				index +
 				"' name='" +
 				res[id][index] +
 				"' value='" +
 				folder +
-				"'/><label >" +
+				"'/><label class='file_name'>" +
 				res[id][index] +
 				'</label></span>';
 		}
@@ -32,7 +32,6 @@ function responseList() {
 		.apply(
 			$,
 			[1, 2].map(function (url) {
-				console.log('start');
 				return $.ajax({
 					url: 'assets/',
 					dataType: 'text',
@@ -66,7 +65,9 @@ function responseList() {
 					//Attach textfiles
 					responseListArr.map(function (folder, index) {
 						let $checkbox =
-							"<div class='dropdown'><button type='button' id='drpBtn_" +
+							"<div class='dropdown' id='movie_" +
+							index +
+							"' ><button type='button' id='drpBtn_" +
 							index +
 							"' class='dropbtn'>" +
 							folder +
@@ -272,6 +273,45 @@ function responseList() {
 	//----End: Pick Response----
 }
 
+// Search By characteer
+function charSearch() {
+	var input, filter, checkbox, name, i, txtValue, parent, allParents;
+	input = document.getElementById('script_input');
+	filter = input.value.toUpperCase();
+	checkbox = document.querySelectorAll('[id=search_box]');
+	allParents = $('.dropdown');
+	for (i = 0; i < checkbox.length; i++) {
+		name = checkbox[i].getElementsByClassName('file_name');
+		txtValue = name[0].textContent || name[0].innerText;
+		if (txtValue.toUpperCase().indexOf(filter) > -1) {
+			checkbox[i].style.display = 'block';
+		} else {
+			checkbox[i].style.display = 'none';
+		}
+	}
+
+	for (i = 0; i <= allParents.length - 1; i++) {
+		let t = $('#movie_' + i + ' .checkboxes')
+			.children()
+			.filter(function () {
+				return $(this).css('display') == 'block';
+			});
+		if (t.length <= 0) {
+			console.log($('#movie_' + i));
+			$('#movie_' + i).hide();
+		} else {
+			$('#movie_' + i).show();
+		}
+	}
+}
+
+//Extending Large Arrays Function
+Array.prototype.extend = function (other_array) {
+	other_array.forEach(function (v) {
+		this.push(v);
+	}, this);
+};
+
 // Hashing Function
 var sha256 = function a(b) {
 	function c(a, b) {
@@ -337,11 +377,4 @@ var sha256 = function a(b) {
 			i += (16 > y ? 0 : '') + y.toString(16);
 		}
 	return i;
-};
-
-//Extending Large Arrays Function
-Array.prototype.extend = function (other_array) {
-	other_array.forEach(function (v) {
-		this.push(v);
-	}, this);
 };
