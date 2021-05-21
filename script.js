@@ -146,16 +146,8 @@ function responseList(textArray) {
       //Remove all white space and hash
       responseListHash = sha256(responseListConcat.replace(/\s+/g, ''));
       
-      console.log(responseList)
-      console.log(responseListConcat)
-      // responseList.forEach((arr)=>{
-      //   if(arr[0] || arr[0].length < 1){
-      //     // console.log(arr)
-      //     finalResponseList.extend(arr);
-      //   }else{
-      //     console.log("not here");
-      //   }
-      // }) 
+      // Filter out all line breaks
+      const finalResponseList = responseList.filter(sent => sent !== "");
       
       
       // console.log(finalResponseList);
@@ -164,16 +156,19 @@ function responseList(textArray) {
       //   inputPrompt: inputPrompt,
       //   responseList: responseListHash,
       // };
-
+      
+      console.log(finalResponseList)
+      
       //Test Data
       let data = {
         inputPrompt: inputPrompt,
-        responseList: responseList,
+        responseList: finalResponseList,
         language: "EN"
       }
       
-      // let url = "https://57sunxdj45.execute-api.us-west-2.amazonaws.com/dev/convert";
-      let url = '';
+      let url = "https://57sunxdj45.execute-api.us-west-2.amazonaws.com/dev/convert";
+      // let url = '';
+      
       //Post data to the API - hash the response and send it, if the hash doesnt work send the entire response list
       var posting = $.ajax({
                         url: url,
