@@ -87,9 +87,6 @@ function responseList() {
   });
   //----End: "Movie Scripts Dropdown" button----
   
-  
-  
-  
   //----Start: " Change Scripts" button----
   $("#change_scripts, #submit_scripts").click(function() {
     $(".script_container").fadeToggle("fast");
@@ -98,38 +95,43 @@ function responseList() {
   
   //----Start: Input prompt form is submit----
   $("#prompt_form").submit(function(event) {
-    let inputPrompt = $("#input_prompt").val();
     event.preventDefault();
-    
-    // If there's no previouse chat response create the container
-    if(!$(".chat_response").length){
-      $("#response")
-      .append("<ul class='chat_response'></ul>")
-    }
-    
-    // Append User's reponse
-    let $user_response = "<li class='input_message'><img src='https://cdn.glitch.com/a1898aab-94e6-4c8f-8dd2-5de4e5ff6a2b%2Fuser_profile.jpg?v=1619623699243' class='user_profile'></img><span class='content_container'><span class='name_date'><h3>You</h3><p>"+date.toLocaleTimeString() + "</p></span><p>" + inputPrompt + "</p></span></li>";
-    $(".chat_response").append($user_response);
-    
-    // Append Automated Bot Response
-    //let $bot_response = "<li class='bot_response'><img src='https://cdn.glitch.com/a1898aab-94e6-4c8f-8dd2-5de4e5ff6a2b%2FSteamLabs_Monogram_RGB_Black.png?v=1619620318564' class='bot_profile'></img><span class='content_container'><span class='name_date'><h3>Bot</h3><p>"+date.toLocaleTimeString() + "</p></span><p>Hello, the current date is: "+date+"</p></span></li>";
-    //$(".chat_response").append($bot_response);
-    
-    (document.getElementById("response")).scrollTop = (document.getElementById("response")).scrollHeight;
-    pickResponse(inputPrompt);
-  });
-  //----End: Input prompt form is submit----
-  
-  //----Start: Pick Response----
-  function pickResponse(inputPrompt) {
-    let selected = [];
-    let finalResponseList = []; 
-    responseList = [];
+    let selected=[];
+    let inputPrompt = $("#input_prompt").val();
     
     //Check which checkboxes are selected
     $('.checkboxes span input:checked').each(function() {
         selected.push({folder: $(this).val(),name:$(this).attr('name')});
     });
+    
+    // If at least one script is chosen continue
+    if(selected.length > 0){ 
+      // If there's no previouse chat response create the container
+      if(!$(".chat_response").length){
+        $("#response")
+        .append("<ul class='chat_response'></ul>")
+      }
+
+      // Append User's reponse
+      let $user_response = "<li class='input_message'><img src='https://cdn.glitch.com/a1898aab-94e6-4c8f-8dd2-5de4e5ff6a2b%2Fuser_profile.jpg?v=1619623699243' class='user_profile'></img><span class='content_container'><span class='name_date'><h3>You</h3><p>"+date.toLocaleTimeString() + "</p></span><p>" + inputPrompt + "</p></span></li>";
+      $(".chat_response").append($user_response);
+
+      // Append Automated Bot Response
+      //let $bot_response = "<li class='bot_response'><img src='https://cdn.glitch.com/a1898aab-94e6-4c8f-8dd2-5de4e5ff6a2b%2FSteamLabs_Monogram_RGB_Black.png?v=1619620318564' class='bot_profile'></img><span class='content_container'><span class='name_date'><h3>Bot</h3><p>"+date.toLocaleTimeString() + "</p></span><p>Hello, the current date is: "+date+"</p></span></li>";
+      //$(".chat_response").append($bot_response);
+
+      (document.getElementById("response")).scrollTop = (document.getElementById("response")).scrollHeight;
+      pickResponse(inputPrompt,selected);
+    }else{
+      alert("Please Choose at least one script");
+    }
+  });
+  //----End: Input prompt form is submit----
+  
+  //----Start: Pick Response----
+  function pickResponse(inputPrompt,selected) {
+    let finalResponseList = []; 
+    responseList = [];
     
     //Get the lines from each selected movie folder text file
     $.when
