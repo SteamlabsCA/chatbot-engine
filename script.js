@@ -130,11 +130,12 @@ function responseList(textArray) {
     let finalResponseList = []; 
     responseList = [];
     
-    //Check which check
+    //Check which checkboxes are selected
     $('.checkboxes span input:checked').each(function() {
         selected.push({folder: $(this).val(),name:$(this).attr('name')});
     });
     
+    //Get the lines from each selected movie folder text file
     $.when
     .apply($,selected.map(function(movieText) {
         return $.ajax({
@@ -143,11 +144,12 @@ function responseList(textArray) {
         });
       }))
     .done(function() {
+      //Store all the text lines as a single array
       if(selected.length === 1){
         responseList.extend(arguments[0].split("\n"));
         responseListConcat += arguments[0];
       }else{
-        for (var i = 0; i < arguments.length; i++) {
+        for (var i = 0, len = arguments.length; i < len; ++i) {
           responseList.extend(arguments[i][0].split("\n"));
           //Concate responseList into one string
           responseListConcat += arguments[i][0];
@@ -160,13 +162,14 @@ function responseList(textArray) {
       // Filter out all line breaks
       const finalResponseList = responseList.filter(sent => sent !== "");
       
-      //Load the data to be sent to the API
+      //Load the data to be sent to the API - hash
       // let data = {
       //   inputPrompt: inputPrompt,
       //   responseList: responseListHash,
+      //   language: "EN"
       // };
             
-      //Test Data
+      //Load the data to be sent to the API - full script
       let data = {
         inputPrompt: inputPrompt,
         responseList: finalResponseList,
@@ -175,7 +178,7 @@ function responseList(textArray) {
       
       let url = "https://57sunxdj45.execute-api.us-west-2.amazonaws.com/dev/convert";
       
-      //Post data to the API - hash the response and send it, if the hash doesnt work send the entire response list
+      //Post data to the API (hash) and send it, if the hash doesnt work send the entire response list
       var posting = $.ajax({
                         url: url,
                         type: "POST",
@@ -185,8 +188,8 @@ function responseList(textArray) {
 
       posting.done(function(responseData) {
         if (responseData === -1) {
-          console.log("rejected")
-          //If server doesn’t have that list cached
+          //If server doesn’t have that list cached resend entire response list
+          console.log("No Hash on Server")
           let newData = {
             inputPrompt: inputPrompt,
             responseList: responseListConcat,
@@ -196,20 +199,21 @@ function responseList(textArray) {
           var posting = $.post(url, newData);
 
           posting.done(function(data) {
+            //If we got a response append it to the chat
             if (data) {
-              for (let i of data) {
-                let $bot_response = "<li class='bot_response'><img src='https://cdn.glitch.com/a1898aab-94e6-4c8f-8dd2-5de4e5ff6a2b%2FSteamLabs_Monogram_RGB_Black.png?v=1619620318564' class='bot_profile'></img><span class='content_container'><span class='name_date'><h3>Bot</h3><p>"+date.toLocaleTimeString() + "</p></span><p>"+ i.response + ": " + i.topscore + "</p></span></li>";
-                $(".chat_response").append($bot_response);
-              }
+              let $bot_response = "<li class='bot_response'><img src='https://cdn.glitch.com/a1898aab-94e6-4c8f-8dd2-5de4e5ff6a2b%2FSteamLabs_Monogram_RGB_Black.png?v=1619620318564' class='bot_profile'></img><span class='content_container'><span class='name_date'><h3>Bot</h3><p>"+date.toLocaleTimeString() + "</p></span><p>"+ data+ "</p></span></li>";
+              $(".chat_response").append($bot_response);
+              (document.getElementById("response")).scrollTop = (document.getElementById("response")).scrollHeight;
             } else {
-              console.log("response failed");
+              console.log("Full Response List failed Data missing");
             }
           });
 
           posting.fail(function(data) {
             console.log("Posting Full Response List Failed");
           });
-        }else {
+        } else {
+          //If we got a response append it to the chat
           let $bot_response = "<li class='bot_response'><img src='https://cdn.glitch.com/a1898aab-94e6-4c8f-8dd2-5de4e5ff6a2b%2FSteamLabs_Monogram_RGB_Black.png?v=1619620318564' class='bot_profile'></img><span class='content_container'><span class='name_date'><h3>Bot</h3><p>"+date.toLocaleTimeString() + "</p></span><p>"+ responseData+ "</p></span></li>";
           $(".chat_response").append($bot_response);
           (document.getElementById("response")).scrollTop = (document.getElementById("response")).scrollHeight;
@@ -225,34 +229,9 @@ function responseList(textArray) {
     });
   }
   //----End: Pick Response----
-
-  //----Start: Generate Text----
-  function generateText() {
-    let inputPrompt = $("#input_prompt").val();
-    let options = {};
-
-    let url = "";
-
-    let data = {
-      inputPrompt: inputPrompt,
-      options: options
-    };
-
-    var posting = $.post(url, data);
-
-    posting.done(function(data) {
-      let $bot_response = "<li class='bot_response'><img src='https://cdn.glitch.com/a1898aab-94e6-4c8f-8dd2-5de4e5ff6a2b%2FSteamLabs_Monogram_RGB_Black.png?v=1619620318564' class='bot_profile'></img><span class='content_container'><span class='name_date'><h3>Bot</h3><p>"+date.toLocaleTimeString() + "</p></span><p>"+data+"</p></span></li>";
-      $(".chat_response").append($bot_response);
-    });
-
-    posting.fail(function(data) {
-     console.log("failed");
-    });
-  }
-  //----End: Generate Text----
 }
 
-// Hash
+// Hashing Function
 var sha256 = function a(b) {
   function c(a, b) {
     return (a >>> b) | (a << (32 - b));
@@ -319,7 +298,7 @@ var sha256 = function a(b) {
   return i;
 }
 
-//Extending Large Arrays
+//Extending Large Arrays Function
 Array.prototype.extend = function (other_array) {
     other_array.forEach(function(v) {this.push(v)}, this);
 }
