@@ -1,8 +1,5 @@
-// for (var index = 0, len = res[id].length; index < len; ++index) {
-//       checkList += "<span><input type='checkbox' id='"+id+index+"' name='"+res[id][index]+"' value='"+folder+"'/><label >"+res[id][index]+"</label></span>"
-//     }
-
-function responseList(textArray) {
+function responseList() {
+  let assets = ["start","end"];
   let responseListArr = [];
   let responseList = [];
   let responseListConcat = "";
@@ -23,7 +20,7 @@ function responseList(textArray) {
   //----Start: Get the lists of text files and concatenate them ----
   //Get All Movie Folders
   $.when
-    .apply($,textArray.map(function(url) {
+    .apply($,assets.map(function(url) {
         return $.ajax({
           url: "assets/",
           dataType: "text"
