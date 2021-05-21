@@ -1,3 +1,7 @@
+// for (var index = 0, len = res[id].length; index < len; ++index) {
+//       checkList += "<span><input type='checkbox' id='"+id+index+"' name='"+res[id][index]+"' value='"+folder+"'/><label >"+res[id][index]+"</label></span>"
+//     }
+
 function responseList(textArray) {
   let responseListArr = [];
   let responseList = [];
@@ -10,13 +14,14 @@ function responseList(textArray) {
   // Attach the checklist to each dropdown
   function attachTexts(id,folder){
     let checkList = "";
-    res[id].forEach((text, index)=>{
-        checkList += "<span><input type='checkbox' id='"+id+index+"' name='"+text+"' value='"+folder+"'/><label >"+text+"</label></span>"
-    })
+    for (var index = 0, len = res[id].length; index < len; ++index) {
+      checkList += "<span><input type='checkbox' id='"+id+index+"' name='"+res[id][index]+"' value='"+folder+"'/><label >"+res[id][index]+"</label></span>"
+    }
     return checkList;
   }
   
   //----Start: Get the lists of text files and concatenate them ----
+  //Get All Movie Folders
   $.when
     .apply($,textArray.map(function(url) {
         return $.ajax({
@@ -25,10 +30,12 @@ function responseList(textArray) {
         });
       }))
     .done(function(result) {
+    
+      //Store all movie folders split on the newline
       responseListArr = result[0].split("\n");
       responseListArr.pop();
-      let textFileList = [];
       
+      //Get all text files in the movie folders
       $.when
       .apply($,responseListArr.map(function(url) {
           return $.ajax({
@@ -38,14 +45,13 @@ function responseList(textArray) {
         }))
       .done(function() {
         let textFiles = [];
-        for (var i = 0; i < arguments.length; i++) {
+        for (var i = 0, len = arguments.length; i < len; i++) {
           textFiles = arguments[i][0].split("\n");
           textFiles.pop();
           res.push(textFiles);
         }
         
         responseListArr.map(function(folder,index) {
-          // let $checkbox = "<span class='checkboxes'><input type='checkbox' id="+file+" name="+file+" value="+file+" ><label for="+file+" >"+file+" </label></span>";
           let $checkbox = "<div class='dropdown'><button type='button' id='drpBtn_"+index+"' class='dropbtn'>"+folder+"</button><div id='myDropdown_drpBtn_"+index+"' class='dropdown-content'><span class='checkboxes'>"+attachTexts(index,folder)+"</span></div></div>";
           $("#script_choice").append($checkbox);
         });
@@ -155,9 +161,7 @@ function responseList(textArray) {
       //   inputPrompt: inputPrompt,
       //   responseList: responseListHash,
       // };
-      
-      console.log(finalResponseList)
-      
+            
       //Test Data
       let data = {
         inputPrompt: inputPrompt,
@@ -176,7 +180,6 @@ function responseList(textArray) {
                     });
 
       posting.done(function(responseData) {
-        console.log(responseData)
         if (responseData === -1) {
           console.log("rejected")
           //If server doesn’t have that list cached
