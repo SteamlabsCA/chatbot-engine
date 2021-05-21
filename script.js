@@ -228,6 +228,7 @@ function responseList() {
   //----End: Pick Response----
 }
 
+// Search By characteer
 function charSearch() {
   var input, filter, checkbox, name, i, txtValue, parent,allParents;
   input = document.getElementById("script_input");
@@ -244,37 +245,15 @@ function charSearch() {
     }
   }
   
-//   if(!($("#movie_0 .checkboxes").children(':visible').length > 0)){
-//     $("#movie_0").hide();
-//   }  
-  
-  let t = $("#movie_0 .checkboxes").children().filter(function(){ return $(this).css("display")=="block"});
-  if(t.length <= 0){
-    console.log(t);
-    $("#movie_0").hide();
-  }else{
-    $("#movie_0").show();
+  for (i = 0; i <= allParents.length-1; i++) { 
+    let t = $("#movie_"+i+" .checkboxes").children().filter(function(){ return $(this).css("display")=="block"});
+    if(t.length <= 0){
+      console.log($("#movie_"+i));
+      $("#movie_"+i).hide();
+    }else{
+      $("#movie_"+i).show();
+    }
   }
-  // for (i = 0; i <= allParents.length-1; i++) { 
-  //   console.log($("#movie_"+i+" #search_box:visible").length ===0)
-  //   if($("#movie_"+i+" #search_box").css("display") ==="block"){
-  //       console.log("here")
-  //       $("#movie_"+i).show()
-  //   }else{
-      // $("#movie_"+i).hide()
-    // }
-    //  if(allParents[i].querySelectorAll('[id=search_box]')){
-    //   allParents[i].style.display = "none"
-    // }else{
-    //   console.log($("#movie_"+i+" div span"))
-    //   allParents[i].style.display = "block"
-    // }
-  // }
-  // if(!$("#movie_"+i+" div span").children(':visible')){
-  //     console.log(parent);
-  //     allParents.style.display = "none"
-  //     parent.style.display = "block";
-  // }
 }
 
 //Extending Large Arrays Function
