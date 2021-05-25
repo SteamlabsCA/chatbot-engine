@@ -178,7 +178,7 @@ function responseList() {
         $(".chat_response").append($user_response);
 
         // Bot is typing Response
-        let $bot_response = "<li class='bot_response'><img src='https://cdn.glitch.com/a1898aab-94e6-4c8f-8dd2-5de4e5ff6a2b%2FSteamLabs_Monogram_RGB_Black.png?v=1619620318564' class='bot_profile'></img><span class='content_container'><span class='name_date'><h3>Bot</h3><p>"+date.toLocaleTimeString() + "</p></span><p>The Bot is typing...</p></span></li>";
+        let $bot_response = "<li class='bot_response'><img src='https://cdn.glitch.com/a1898aab-94e6-4c8f-8dd2-5de4e5ff6a2b%2FSteamLabs_Monogram_RGB_Black.png?v=1619620318564' class='bot_profile'></img><span class='content_container'><span class='name_date'><h3>Bot</h3><p>"+date.toLocaleTimeString() + "</p></span><p>Thinking...</p></span></li>";
         $(".chat_response").append($bot_response);
 
         // Append Automated Bot Response
@@ -240,10 +240,11 @@ function responseList() {
             });
           } else {
             //If we got a response append it to the chat
-            let $bot_response = "<li class='bot_response'><img src='https://cdn.glitch.com/a1898aab-94e6-4c8f-8dd2-5de4e5ff6a2b%2FSteamLabs_Monogram_RGB_Black.png?v=1619620318564' class='bot_profile'></img><span class='content_container'><span class='name_date'><h3>Bot</h3><p>"+date.toLocaleTimeString() + "</p></span><p>"+ responseData+ "</p></span></li>";
-            $(".chat_response").append($bot_response);
-            //working here
-            console.log($(".chat_response").children('.bot_response').last().children());
+            // let $bot_response = "<li class='bot_response'><img src='https://cdn.glitch.com/a1898aab-94e6-4c8f-8dd2-5de4e5ff6a2b%2FSteamLabs_Monogram_RGB_Black.png?v=1619620318564' class='bot_profile'></img><span class='content_container'><span class='name_date'><h3>Bot</h3><p>"+date.toLocaleTimeString() + "</p></span><p>"+ responseData+ "</p></span></li>";
+            // $(".chat_response").append($bot_response);
+            
+            //Replace bot waiting with response
+            ($(".chat_response").children('.bot_response').last().children('.content_container').children('p')).text(responseData);
             (document.getElementById("response")).scrollTop = (document.getElementById("response")).scrollHeight;
           }
         });
