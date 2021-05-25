@@ -4,25 +4,14 @@ function responseList() {
   let finalResponseList = []; 
   let responseListConcat = "";
   let responseListHash = "";
-  // let selected=[];
   var time = new Date().getTime();
   var date = new Date(time);
   let res = [];
   let empty = false;
-
-  
-  // Attach the checklist to each dropdown
-  function attachTexts(id,folder){
-    let checkList = "";
-    for (var index = 0, len = res[id].length; index < len; ++index) {
-      checkList += "<span id='search_box'><input type='checkbox' id='"+id+index+"' name='"+res[id][index]+"' value='"+folder+"'/><label class='file_name'>"+res[id][index]+"</label></span>"
-    }
-    return checkList;
-  }
   
   //----Start: Get the lists of text files and concatenate them ----
-  //Get All Movie Folders
   $.when
+    //Get All Movie Folders
     .apply($,([1,2]).map(function(url) {
         return $.ajax({
           url: "assets/",
@@ -83,7 +72,6 @@ function responseList() {
   
   //----Start: "Clear All Checkboxes" button----
   $("#clear_checkboxes").click(function() {
-    //Check which checkboxes are selected
     $('.checkboxes span input:checked').each(function() {
         this.checked = false
     });
@@ -96,6 +84,15 @@ function responseList() {
     $("#myDropdown_"+$(this).attr('id')).fadeToggle("fast");
   });
   //----End: "Movie Scripts Dropdown" button----
+  
+  // Attach the checklist to each dropdown
+  function attachTexts(id,folder){
+    let checkList = "";
+    for (var index = 0, len = res[id].length; index < len; ++index) {
+      checkList += "<span id='search_box'><input type='checkbox' id='"+id+index+"' name='"+res[id][index]+"' value='"+folder+"'/><label class='file_name'>"+res[id][index]+"</label></span>"
+    }
+    return checkList;
+  }
   
   //----Start: " Change Scripts" button----
   $("#change_scripts, #submit_scripts").click(function() {
