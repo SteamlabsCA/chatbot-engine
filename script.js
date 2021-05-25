@@ -1,6 +1,7 @@
 function responseList() {
   let responseListArr = [];
   let responseList = [];
+  let finalResponseList = []; 
   let responseListConcat = "";
   let responseListHash = "";
   var time = new Date().getTime();
@@ -130,7 +131,7 @@ function responseList() {
   
   //----Start: Pick Response----
   function pickResponse(inputPrompt,selected) {
-    let finalResponseList = []; 
+    finalResponseList = []; 
     responseList = [];
     
     //Get the lines from each selected movie folder text file
@@ -149,10 +150,6 @@ function responseList() {
       }else{
         for (var i = 0, len = arguments.length; i < len; ++i) {
           responseList.extend(arguments[i][0].split("\n"));
-          if(!finalResponseList[i] || finalResponseList[i] !== ""){
-            empty = true;
-            console.log(finalResponseList[i])
-          }
           //Concate responseList into one string
           responseListConcat += arguments[i][0];
         }
@@ -162,7 +159,14 @@ function responseList() {
       responseListHash = sha256(responseListConcat.replace(/\s+/g, ''));
       
       // Filter out all line breaks
-      const finalResponseList = responseList.filter(sent => sent !== "");
+      const finalResponseList = responseList.filter((sent,index) => {
+        if(!finalResponseList[index] || finalResponseList[index] === ""){
+            empty = true;
+            console.log(finalResponseList[index])
+        }
+        return sent !== ""
+      });
+      console.log(finalResponseList)
       if(!empty){
         //Load the data to be sent to the API - hash
         // let data = {
