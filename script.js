@@ -9,6 +9,7 @@ function responseList() {
   var date = new Date(time);
   let res = [];
   let empty = false;
+
   
   // Attach the checklist to each dropdown
   function attachTexts(id,folder){
@@ -81,13 +82,12 @@ function responseList() {
   //----End: "Clear All Text" button----
   
   //----Start: "Clear All Checkboxes" button----
-  // $("#clear_checkboxes").click(function() {
-  //    if( isAllCheck == false ){
-  //   cbarray[i].checked = true;
-  //   }else{ 
-  //       cbarray[i].checked = false;
-  //   } 
-  // });
+  $("#clear_checkboxes").click(function() {
+    //Check which checkboxes are selected
+    $('.checkboxes span input:checked').each(function() {
+        this.checked = false
+    });
+  });
   //----End: "Clear All Checkboxes" button----
 
   //----Start: "Movie Scripts Dropdown" button----
@@ -175,7 +175,6 @@ function responseList() {
         }else{
           empty = false;
         }
-        console.log(empty)
         return sent !== "";
       });
 
