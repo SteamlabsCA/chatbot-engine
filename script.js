@@ -158,16 +158,16 @@ function responseList() {
       //Remove all white space and hash
       responseListHash = sha256(responseListConcat.replace(/\s+/g, ''));
       
-      // Filter out all line breaks
+      // Filter out all line breaks and check to make sure scripts weren't empty
       const finalResponseList = responseList.filter((sent,index) => {
-        if(!finalResponseList[index] || finalResponseList[index] === ""){
+        if(!responseList[index] || responseList[index] === ""){
             empty = true;
-            console.log(finalResponseList[index])
         }
-        return sent !== ""
+        return sent !== "";
       });
-      console.log(finalResponseList)
+
       if(!empty){
+        
         //Load the data to be sent to the API - hash
         // let data = {
         //   inputPrompt: inputPrompt,
