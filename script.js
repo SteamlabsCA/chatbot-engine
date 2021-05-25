@@ -168,10 +168,14 @@ function responseList() {
       responseListHash = sha256(responseListConcat.replace(/\s+/g, ''));
       
       // Filter out all line breaks and check to make sure scripts weren't empty
+      empty = true;
       const finalResponseList = responseList.filter((sent,index) => {
-        if(!responseList[index] || responseList[index] === ""){
+        if((!responseList[index] || responseList[index] === "") && empty){
             empty = true;
+        }else{
+          empty = false;
         }
+        console.log(empty)
         return sent !== "";
       });
 
@@ -241,7 +245,6 @@ function responseList() {
       }else{
         alert("The script/s you chose were empty! Please add lines to that script");
         empty = false;
-        
       }
       })
       .fail(function(error) {
