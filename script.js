@@ -158,72 +158,77 @@ function responseList() {
       
       // Filter out all line breaks
       const finalResponseList = responseList.filter(sent => sent !== "");
-      
-      //Load the data to be sent to the API - hash
-      // let data = {
-      //   inputPrompt: inputPrompt,
-      //   responseList: responseListHash,
-      //   language: "EN"
-      // };
-            
-      //Load the data to be sent to the API - full script
-      let data = {
-        inputPrompt: inputPrompt,
-        responseList: finalResponseList,
-        language: "EN"
-      }
-      
-      let url = "https://57sunxdj45.execute-api.us-west-2.amazonaws.com/dev/convert";
-      
-      //Post data to the API (hash) and send it, if the hash doesnt work send the entire response list
-      var posting = $.ajax({
-                        url: url,
-                        type: "POST",
-                        contentType: "application/json",
-                        data: JSON.stringify(data),
-                    });
+      if(finalResponseList && finalResponseList !== "d"){
+        console.log(finalResponseList)
+        //Load the data to be sent to the API - hash
+        // let data = {
+        //   inputPrompt: inputPrompt,
+        //   responseList: responseListHash,
+        //   language: "EN"
+        // };
 
-      posting.done(function(responseData) {
-        if (responseData === -1) {
-          //If server doesn’t have that list cached resend entire response list
-          console.log("No Hash on Server")
-          let newData = {
-            inputPrompt: inputPrompt,
-            responseList: responseListConcat,
-            language: "EN"
-          };
-
-          var posting = $.post(url, newData);
-
-          posting.done(function(data) {
-            //If we got a response append it to the chat
-            if (data) {
-              let $bot_response = "<li class='bot_response'><img src='https://cdn.glitch.com/a1898aab-94e6-4c8f-8dd2-5de4e5ff6a2b%2FSteamLabs_Monogram_RGB_Black.png?v=1619620318564' class='bot_profile'></img><span class='content_container'><span class='name_date'><h3>Bot</h3><p>"+date.toLocaleTimeString() + "</p></span><p>"+ data+ "</p></span></li>";
-              $(".chat_response").append($bot_response);
-              (document.getElementById("response")).scrollTop = (document.getElementById("response")).scrollHeight;
-            } else {
-              console.log("Full Response List failed Data missing");
-            }
-          });
-
-          posting.fail(function(data) {
-            console.log("Posting Full Response List Failed");
-          });
-        } else {
-          //If we got a response append it to the chat
-          let $bot_response = "<li class='bot_response'><img src='https://cdn.glitch.com/a1898aab-94e6-4c8f-8dd2-5de4e5ff6a2b%2FSteamLabs_Monogram_RGB_Black.png?v=1619620318564' class='bot_profile'></img><span class='content_container'><span class='name_date'><h3>Bot</h3><p>"+date.toLocaleTimeString() + "</p></span><p>"+ responseData+ "</p></span></li>";
-          $(".chat_response").append($bot_response);
-          (document.getElementById("response")).scrollTop = (document.getElementById("response")).scrollHeight;
+        //Load the data to be sent to the API - full script
+        let data = {
+          inputPrompt: inputPrompt,
+          responseList: finalResponseList,
+          language: "EN"
         }
-      });
 
-      posting.fail(function(data) {
-        console.log("Posting Hashed Response List Failed:" + data);
+        let url = "https://57sunxdj45.execute-api.us-west-2.amazonaws.com/dev/convert";
+
+        //Post data to the API (hash) and send it, if the hash doesnt work send the entire response list
+        var posting = $.ajax({
+                          url: url,
+                          type: "POST",
+                          contentType: "application/json",
+                          data: JSON.stringify(data),
+                      });
+
+        posting.done(function(responseData) {
+          if (responseData === -1) {
+            //If server doesn’t have that list cached resend entire response list
+            console.log("No Hash on Server")
+            let newData = {
+              inputPrompt: inputPrompt,
+              responseList: responseListConcat,
+              language: "EN"
+            };
+
+            var posting = $.post(url, newData);
+
+            posting.done(function(data) {
+              //If we got a response append it to the chat
+              if (data) {
+                let $bot_response = "<li class='bot_response'><img src='https://cdn.glitch.com/a1898aab-94e6-4c8f-8dd2-5de4e5ff6a2b%2FSteamLabs_Monogram_RGB_Black.png?v=1619620318564' class='bot_profile'></img><span class='content_container'><span class='name_date'><h3>Bot</h3><p>"+date.toLocaleTimeString() + "</p></span><p>"+ data+ "</p></span></li>";
+                $(".chat_response").append($bot_response);
+                (document.getElementById("response")).scrollTop = (document.getElementById("response")).scrollHeight;
+              } else {
+                console.log("Full Response List failed Data missing");
+              }
+            });
+
+            posting.fail(function(data) {
+              console.log("Posting Full Response List Failed");
+            });
+          } else {
+            //If we got a response append it to the chat
+            let $bot_response = "<li class='bot_response'><img src='https://cdn.glitch.com/a1898aab-94e6-4c8f-8dd2-5de4e5ff6a2b%2FSteamLabs_Monogram_RGB_Black.png?v=1619620318564' class='bot_profile'></img><span class='content_container'><span class='name_date'><h3>Bot</h3><p>"+date.toLocaleTimeString() + "</p></span><p>"+ responseData+ "</p></span></li>";
+            $(".chat_response").append($bot_response);
+            (document.getElementById("response")).scrollTop = (document.getElementById("response")).scrollHeight;
+          }
+        });
+
+        posting.fail(function(data) {
+          console.log("Posting Hashed Response List Failed:" + data);
+        });
+        }else{
+          alert("The script/s you chose were empty! Please add lines to that script");
+        }
+      })
+      .fail(function(error) {
+        console.log("Text File Retrieval Error: " + error);
       });
-    })
-    .fail(function(error) {
-      console.log("Text File Retrieval Error: " + error);
-    });
+    
   }
   //----End: Pick Response----
 }
