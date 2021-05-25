@@ -242,7 +242,8 @@ function responseList() {
             //If we got a response append it to the chat
             let $bot_response = "<li class='bot_response'><img src='https://cdn.glitch.com/a1898aab-94e6-4c8f-8dd2-5de4e5ff6a2b%2FSteamLabs_Monogram_RGB_Black.png?v=1619620318564' class='bot_profile'></img><span class='content_container'><span class='name_date'><h3>Bot</h3><p>"+date.toLocaleTimeString() + "</p></span><p>"+ responseData+ "</p></span></li>";
             $(".chat_response").append($bot_response);
-            console.log((".chat_response").children('.bot_response').last());
+            //working here
+            console.log($(".chat_response").children[('.bot_response').last()]);
             (document.getElementById("response")).scrollTop = (document.getElementById("response")).scrollHeight;
           }
         });
