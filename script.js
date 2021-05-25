@@ -80,8 +80,8 @@ function responseList() {
 
   //----Start: "Movie Scripts Dropdown" button----
   $(document).on('click', '.dropbtn', function(){
-    $(".dropdown-content").hide();
-    $("#myDropdown_"+$(this).attr('id')).fadeToggle("fast");
+    // $(".dropdown-content").hide();
+    $("#myDropdown_"+$(this).attr('id')).fadeIn("fast");
   });
   //----End: "Movie Scripts Dropdown" button----
   
