@@ -111,7 +111,7 @@ function responseList() {
 		let checkList = '';
 		for (var index = 0, len = res[id].length; index < len; ++index) {
 			checkList +=
-				"<span id='search_box'><input type='checkbox' id='" +
+				"<span id='search_box'><input class='checkbox' type='checkbox' id='" +
 				id +
 				index +
 				"' name='" +
