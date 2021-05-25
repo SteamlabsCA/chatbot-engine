@@ -219,10 +219,14 @@ body {
   font-size: 20px;
   border: none;
   cursor: pointer;
+  padding: 10px;
+  border-radius: 10px;
 }
 
 .dropbtn:hover, .dropbtn:focus {
-  color: #e19f26;
+  color: #ffffff;
+  background-color: #e19f26;
+  padding: 
 }
 
 .dropdown {
