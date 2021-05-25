@@ -4,6 +4,7 @@ function responseList() {
   let finalResponseList = []; 
   let responseListConcat = "";
   let responseListHash = "";
+  // let selected=[];
   var time = new Date().getTime();
   var date = new Date(time);
   let res = [];
@@ -64,7 +65,7 @@ function responseList() {
     });
   //----End: Get the lists of text files and concatenate them ----
 
-  //----Start: "Clear All" button----
+  //----Start: "Clear All Text" button----
   $("#clear_all").click(function() {
     $("#input_prompt").val("");
     $("#clear_all").fadeOut("fast");
@@ -77,10 +78,18 @@ function responseList() {
       $("#clear_all").fadeIn("fast");
     }
   });
-  //----End: "Clear All" button----
+  //----End: "Clear All Text" button----
+  
+  //----Start: "Clear All Checkboxes" button----
+  // $("#clear_checkboxes").click(function() {
+  //    if( isAllCheck == false ){
+  //   cbarray[i].checked = true;
+  //   }else{ 
+  //       cbarray[i].checked = false;
+  //   } 
+  // });
+  //----End: "Clear All Checkboxes" button----
 
-  
-  
   //----Start: "Movie Scripts Dropdown" button----
   $(document).on('click', '.dropbtn', function(){
     $(".dropdown-content").hide();
@@ -231,7 +240,8 @@ function responseList() {
         });
       }else{
         alert("The script/s you chose were empty! Please add lines to that script");
-        empty=false;
+        empty = false;
+        
       }
       })
       .fail(function(error) {
