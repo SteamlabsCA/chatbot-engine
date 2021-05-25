@@ -167,25 +167,17 @@ body {
   height: 100%; 
   overflow: auto;
   background-color: rgb(181,181,181,0); 
-  background-color: rgba(181,181,181,0.8);
+  background-color: rgba(181,181,181,0.9);
 }
 
 #script_choice{
-  background-color: #fefefe;
   border-radius: 10px;
   margin: auto;
-  padding: 20px;
-  border: 2px solid #d1d0d0;;
-  width: 92.5%;
   height: fit-content;
   max-height: 300px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-}
-
-#script_choice span{
-  margin: 10px;
 }
 
 .search-container{
@@ -221,6 +213,7 @@ body {
   cursor: pointer;
   padding: 10px;
   border-radius: 10px;
+  margin: 10px;
 }
 
 .dropbtn:hover, .dropbtn:focus {
