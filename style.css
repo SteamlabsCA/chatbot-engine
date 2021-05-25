@@ -166,8 +166,8 @@ body {
   width: 100%; 
   height: 100%; 
   overflow: auto;
-  background-color: rgb(181,181,181,0); 
-  background-color: rgba(181,181,181,0.9);
+  background-color: rgb(0,0,0,0); 
+  background-color: rgba(0,0,0,0.8);
 }
 
 #script_choice{
@@ -177,7 +177,9 @@ body {
   max-height: 300px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: center;
+  align-items: baseline;
+  align-content: space-around;
 }
 
 .search-container{
