@@ -94,7 +94,7 @@ function responseList() {
   function attachTexts(id,folder){
     let checkList = "";
     for (var index = 0, len = res[id].length; index < len; ++index) {
-      checkList += "<span id='search_box'><input type='checkbox' id='"+id+index+"' name='"+res[id][index]+"' value='"+folder+"'/><label class='file_name'>"+res[id][index]+"</label></span>"
+      checkList += "<span id='search_box'><input class='checkbox' type='checkbox' id='"+id+index+"' name='"+res[id][index]+"' value='"+folder+"'/><label class='file_name'>"+res[id][index]+"</label></span>"
     }
     return checkList;
   }

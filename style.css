@@ -234,8 +234,9 @@ body {
   position: absolute;
   border-radius: 20px;
   background-color: #bcb8b8;
-  min-width: 80%;
+  min-width: 200px;
   max-height: 300px;
+  left: 10px;
   padding: 0 10px;
   overflow: auto;
   box-shadow: 0px 8px 16px 0px rgb(0 0 0 / 20%);
@@ -246,11 +247,13 @@ body {
   display: block;
   font-size: 20px;
   margin: 20px 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
 #search_box{
   display: block;
+}
+
+.checkbox{
+  cursor: pointer;
+  padding: 8px;
 }
