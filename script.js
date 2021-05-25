@@ -6,6 +6,7 @@ function responseList() {
   var time = new Date().getTime();
   var date = new Date(time);
   let res = [];
+  let empty = false;
   
   // Attach the checklist to each dropdown
   function attachTexts(id,folder){
@@ -148,6 +149,10 @@ function responseList() {
       }else{
         for (var i = 0, len = arguments.length; i < len; ++i) {
           responseList.extend(arguments[i][0].split("\n"));
+          if(!finalResponseList[i] || finalResponseList[i] !== ""){
+            empty = true;
+            console.log(finalResponseList[i])
+          }
           //Concate responseList into one string
           responseListConcat += arguments[i][0];
         }
@@ -158,8 +163,7 @@ function responseList() {
       
       // Filter out all line breaks
       const finalResponseList = responseList.filter(sent => sent !== "");
-      if(finalResponseList && finalResponseList !== "d"){
-        console.log(finalResponseList)
+      if(!empty){
         //Load the data to be sent to the API - hash
         // let data = {
         //   inputPrompt: inputPrompt,
@@ -221,9 +225,10 @@ function responseList() {
         posting.fail(function(data) {
           console.log("Posting Hashed Response List Failed:" + data);
         });
-        }else{
-          alert("The script/s you chose were empty! Please add lines to that script");
-        }
+      }else{
+        alert("The script/s you chose were empty! Please add lines to that script");
+        empty=false;
+      }
       })
       .fail(function(error) {
         console.log("Text File Retrieval Error: " + error);
