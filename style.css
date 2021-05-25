@@ -6,10 +6,6 @@ body {
   background-color: #ffffff;
 }
 
-#start_container{
-
-}
-
 #activity_container{
   display: none;
 }
@@ -221,7 +217,6 @@ body {
 .dropbtn:hover, .dropbtn:focus {
   color: #ffffff;
   background-color: #e19f26;
-  padding: 
 }
 
 .dropdown {
