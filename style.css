@@ -257,28 +257,32 @@ button:active{
 #script_choice{
   max-width: 1129px;
   border-radius: 10px;
-  margin: auto;
+  margin: 20px;
   height: fit-content;
   max-height: 300px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   align-items: baseline;
   align-content: space-around;
 }
 
 .search-container{
   width: 100%;
-  margin: 20px;
   display: flex;
   align-items: center;
   justify-content: space-around;
 }
 
+.script_head{
+  padding: 10px;
+  color: #fff;
+  font-size: 2.5rem;
+}
+
 #script_input{
   border-radius: 20px;
   padding: 10px;
-  border: 2px solid #a1c2ff;
+  border: 0;
   flex-grow: 2;
   margin: 0 10px;
 }
