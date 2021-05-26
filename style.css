@@ -34,8 +34,9 @@ button:active{
   padding: 8px 25px;
   border-radius: 10px;
   background-color: #fff;
-  margin-top: 50px;
+  margin: 80px auto auto;
   box-shadow: 0px 3px 6px #00000029;
+  max-width: 1129px;
 }
 
 #activity_container h1{
@@ -53,7 +54,8 @@ button:active{
 .button_group{
   display: flex;
   justify-content: space-between;
-  margin: 20px;
+  margin: 20px auto;
+  max-width: 1129px;
 }
 
 #clear_all{
@@ -227,6 +229,7 @@ button:active{
 }
 
 #script_choice{
+  max-width: 1129px;
   border-radius: 10px;
   margin: auto;
   height: fit-content;
