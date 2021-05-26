@@ -19,7 +19,6 @@ button{
 
 button:active{
   box-shadow: 0 0 0 #fff;
-  margin: 6px 10px 2px 10px;
 }
 
 #activity_container{
@@ -56,8 +55,20 @@ button:active{
   color: #000;
 }
 
-#clear_all:hover{
+#clear_all:active{
   background-color: rgb(239, 239, 239);
+  margin: 13px 10px 2px 10px;
+}
+
+#change_scripts{
+  padding: 10px 15px;
+  background-color:  #967ADC;
+  color: #fff;
+}
+
+#change_scripts:active{
+  background-color: #7d64b9;
+  margin: 13px 10px 2px 10px;
 }
 
 #prompt_form{
@@ -94,8 +105,9 @@ button:active{
   color: #fff;
 }
 
-.input_prompt button:hover{
+.input_prompt button:active{
   background-color: #558e17;
+  margin: 6px 10px 2px 10px;
 }
 
 .response_container{
