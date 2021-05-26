@@ -6,6 +6,9 @@ body {
   background-color: #ffffff;
 }
 
+.page_container{
+}
+
 #activity_container{
   display: none;
 }
