@@ -88,10 +88,18 @@ body,html {
   cursor: pointer;
   margin: 10px;
   color: #fff;
+  font-size: 18px;
+  box-shadow: 3px 3px 1px #000;
 }
 
 .input_prompt button:hover{
   background-color: #558e17;
+}
+
+.input_prompt button:active{
+  background-color: #558e17;
+  box-shadow: 0 0 0 #fff;
+  margin: 6px 10px 2px 10px;
 }
 
 .response_container{
