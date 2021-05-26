@@ -6,6 +6,10 @@ body,html {
   padding: 10px;
 }
 
+button{
+  
+}
+
 #activity_container{
 /*   display: none; */
   border: 3px solid #000;
@@ -24,13 +28,18 @@ body,html {
   border-width:0;
   border-radius: 20px;
   height:3px;
-  color: #707070;
-  background-color:#707070;
+  color: #b1b1b1;
+  background-color:#b1b1b1;
 }
 
 .button_group{
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
+  margin: 20px;
+}
+
+#clear_all{
+  
 }
 
 .form_button{
