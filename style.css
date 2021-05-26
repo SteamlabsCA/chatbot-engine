@@ -165,6 +165,31 @@ button:active{
   border-radius: 50%;
 }
 
+
+.user_profile{
+  height: 30px;
+  width: 30px;
+  min-height: 30px;
+  min-width: 30px;
+  background-color: #04d458;
+  border-radius: 50%;
+}
+
+.input_message{
+  padding: 10px;
+  margin: 20px 0;
+  width: 98%;
+  word-break: break-all;
+  border-radius: 20px;
+  display:flex;
+  align-items: flex-start;
+}
+
+.user_p{
+  color: #fff;
+  background-color: #1982C4;
+}
+
 .content_container{
   display: flex;
   flex-direction: column;
@@ -189,30 +214,7 @@ button:active{
   margin: 0;
 }
 
-.user_profile{
-  height: 30px;
-  width: 30px;
-  min-height: 30px;
-  min-width: 30px;
-  background-color: #04d458;
-  border-radius: 50%;
-}
 
-.input_message{
-  color: #000;
-  padding: 10px;
-  margin: 20px 0;
-  width: 98%;
-  word-break: break-all;
-  border-radius: 20px;
-  display:flex;
-  align-items: flex-start;
-}
-
-.input_message:hover{
-    background-color: #008fb3;
-    color: #fff;
-}
 
 .script_container{
   display: none; 
