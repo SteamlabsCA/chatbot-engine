@@ -24,14 +24,14 @@
       <!-- include the Glitch button to show what the webpage is about and
             to make it easier for folks to view source and remix -->
       <div class="glitchButton" style="position:fixed;top:20px;right:20px;"></div>
-<!--       
+      
       <span id="start_container">
         <h1>Chatbot Engine</h1>
         <div>
           <h6>Description</h6>
         </div>
         <button id="start">start</button>
-      </span> -->
+      </span>
 
       <div id="activity_container">
         <h1>Chatbot Engine</h1>
@@ -55,13 +55,20 @@
               </div>
             </span>
           </span>
-          <textarea
-            placeholder="Input Prompt"
-            type="text"
-            id="input_prompt"
-            name="input_prompt"
-            required
-          ></textarea>
+          <span class="input_prompt">
+            <textarea
+              placeholder="Input Prompt"
+              type="text"
+              id="input_prompt"
+              name="input_prompt"
+              required
+            ></textarea>
+            <input
+                type="submit"
+                class="form_button submit"
+                value="Submit Prompt"
+              />
+          </span>
           <span class="button_group">
             <input
               type="button"
@@ -76,11 +83,7 @@
               id="change_scripts"
               value="Change Scripts"
             />
-            <input
-              type="submit"
-              class="form_button submit"
-              value="Submit Prompt"
-            />
+
           </span>
         </form>
       </div>
