@@ -21,6 +21,10 @@ button:active{
   box-shadow: 0 0 0 #fff;
 }
 
+.font_icon{
+  margin: 0 5px;
+}
+
 #activity_container{
 /*   display: none; */
   border: 3px solid #000;
