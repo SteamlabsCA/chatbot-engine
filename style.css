@@ -11,10 +11,20 @@ body,html {
   border: 3px solid #000;
   padding: 8px 25px;
   border-radius: 10px;
+  background-color: #fff;
+  margin-top: 50px;
 }
 
 #activity_container h1{
   margin: 20px 0 10px;
+}
+
+#activity_container hr{
+  border-width:0;
+  border-radius: 20px;
+  height:3px;
+  color: #707070;
+  background-color:#707070;
 }
 
 .button_group{
@@ -56,12 +66,13 @@ body,html {
 }
 
 .input_prompt textarea{
-  border-radius: 17px;
+  border: 2px solid black;
+  border-radius: 5px;
   flex-grow: 2;
   padding: 10px;
   margin: 20px 0;
   min-height: 20px;
-  height: fit-content;
+  height: 20px;
   background-color: #f5f5f5;
 }
 
@@ -88,8 +99,6 @@ body,html {
 }
 
 #response{
-  border: 2px solid #d1d0d0;
-  border-radius: 10px;
   padding: 10px;
   min-width: 97%;
   min-height: 250px;
