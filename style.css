@@ -1,16 +1,15 @@
 /* CSS files add styling rules to your content */
 
-body {
+body,html {
   font-family: helvetica, arial, sans-serif;
-  margin: 1em; 
-  background-color: #ffffff;
-}
-
-.page_container{
+  background-color: #FFCE54;
+  padding: 10px;
 }
 
 #activity_container{
-  display: none;
+/*   display: none; */
+  border: 2px solid #000;
+  padding: 20px;
 }
 
 .button_group{
