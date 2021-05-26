@@ -7,7 +7,19 @@ body,html {
 }
 
 button{
-  
+  border: 3px solid #000000;
+  border-radius: 24px;
+  height: fit-content;
+  padding: 10px;
+  cursor: pointer;
+  margin: 10px;
+  font-size: 18px;
+  box-shadow: 3px 3px 1px #000;
+}
+
+button:active{
+  box-shadow: 0 0 0 #fff;
+  margin: 6px 10px 2px 10px;
 }
 
 #activity_container{
@@ -39,24 +51,13 @@ button{
 }
 
 #clear_all{
-  
+  padding: 10px 15px;
+  background-color:  #fff;
+  color: #000;
 }
 
-.form_button{
-  min-width: 25%;
-  width: fit-content;
-  padding: 10px;
-  border: 2px solid #afafaf;
-  border-radius: 20px;
-  cursor: pointer;
-}
-
-.form_button:hover{
-  background-color: #c5c4c4;
-}
-
-.form_button:focus{
-  border: 2px solid #000;
+#clear_all:hover{
+  background-color: rgb(239, 239, 239);
 }
 
 #prompt_form{
@@ -90,25 +91,11 @@ button{
 .input_prompt button{
   width: 209px;
   background-color:  #67AB1C;
-  border: 3px solid #000000;
-  border-radius: 24px;
-  height: fit-content;
-  padding: 10px;
-  cursor: pointer;
-  margin: 10px;
   color: #fff;
-  font-size: 18px;
-  box-shadow: 3px 3px 1px #000;
 }
 
 .input_prompt button:hover{
   background-color: #558e17;
-}
-
-.input_prompt button:active{
-  background-color: #558e17;
-  box-shadow: 0 0 0 #fff;
-  margin: 6px 10px 2px 10px;
 }
 
 .response_container{
