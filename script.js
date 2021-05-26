@@ -174,7 +174,7 @@ function responseList() {
         }
 
         // Append User's reponse
-        let $user_response = "<li class='input_message'><img src='https://cdn.glitch.com/a1898aab-94e6-4c8f-8dd2-5de4e5ff6a2b%2Fuser_profile.jpg?v=1619623699243' class='user_profile'></img><span class='content_container'><p class='user_p'>" + inputPrompt + "</p><span class='name_date'><p class='bold_p'>You </p><p class='p_time'>"+date.toLocaleTimeString() + "</p></span></span></li>";
+        let $user_response = "<li class='input_message'><span class='content_container'><p class='user_p'>" + inputPrompt + "</p><span class='name_date'><p class='bold_p'>You </p><p class='p_time'>"+date.toLocaleTimeString() + "</p></span></span><img src='https://cdn.glitch.com/a1898aab-94e6-4c8f-8dd2-5de4e5ff6a2b%2Fuser_profile.jpg?v=1619623699243' class='user_profile'></img></li>";
         $(".chat_response").append($user_response);
 
         // Bot is typing Response
