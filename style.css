@@ -13,6 +13,7 @@ body,html {
   border-radius: 10px;
   background-color: #fff;
   margin-top: 50px;
+  box-shadow: 0px 3px 6px #00000029;
 }
 
 #activity_container h1{
@@ -66,32 +67,31 @@ body,html {
 }
 
 .input_prompt textarea{
-  border: 2px solid black;
-  border-radius: 5px;
+  border: 3px solid #000000;
+  border-radius: 10px;
   flex-grow: 2;
   padding: 10px;
   margin: 20px 0;
   min-height: 20px;
   height: 20px;
   background-color: #F6F6F6;
+  box-shadow: 0px 3px 6px #00000029;
 }
 
-.input_prompt input[type=submit]{
-  width: fit-content;
+.input_prompt button{
+  width: 209px;
+  background-color:  #67AB1C;
+  border: 3px solid #000000;
+  border-radius: 24px;
   height: fit-content;
   padding: 10px;
-  border: 2px solid #afafaf;
-  border-radius: 20px;
   cursor: pointer;
   margin: 10px;
+  color: #fff;
 }
 
-.input_prompt input[type=submit]:hover{
-  background-color: #c5c4c4;
-}
-
-.input_prompt input[type=submit]:focus{
-  border: 2px solid #000;
+.input_prompt button:hover{
+  background-color: #558e17;
 }
 
 .response_container{
