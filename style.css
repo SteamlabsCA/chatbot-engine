@@ -199,14 +199,26 @@ button:active{
   margin-left: 20px;
   word-break: break-all;
 }
+
+.input_message .content_container{
+  
+}
+
 .name_date{
   display: flex;
   align-items: baseline;
 }
 
-.name_date p{
+.bold_p{
   font-size: 0.8rem;
-  color: #b7aeae;
+  color: #575757;
+  padding-right: 5px;
+}
+
+.p_time{
+  font-size: 0.8rem;
+  color: #A8A8A8;
+  font-weight: bold
 }
 
 .content_container h3{
