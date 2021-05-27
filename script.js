@@ -227,8 +227,8 @@ function responseList() {
             posting.done(function(data) {
               //If we got a response append it to the chat
               if (data) {
-                let $bot_response = "<li class='bot_response'><img src='https://cdn.glitch.com/a1898aab-94e6-4c8f-8dd2-5de4e5ff6a2b%2FSteamLabs_Monogram_RGB_Black.png?v=1619620318564' class='bot_profile'></img><span class='content_container'><span class='name_date'><h3>Bot</h3><p>"+date.toLocaleTimeString() + "</p></span><p>"+ data+ "</p></span></li>";
-                $(".chat_response").append($bot_response);
+                //Replace bot waiting with response
+                ($(".chat_response").children('.bot_response').last().children('.content_container').children('p')).text(responseData);
                 (document.getElementById("response")).scrollTop = (document.getElementById("response")).scrollHeight;
               } else {
                 console.log("Full Response List failed Data missing");
@@ -285,7 +285,6 @@ function charSearch() {
   for (i = 0; i <= allParents.length-1; i++) { 
     let t = $("#movie_"+i+" .checkboxes").children().filter(function(){ return $(this).css("display")=="block"});
     if(t.length <= 0){
-      console.log($("#movie_"+i));
       $("#movie_"+i).hide();
     }else{
       $("#movie_"+i).show();
