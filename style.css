@@ -133,12 +133,16 @@ button:active{
   .input_prompt button{
     width: min-content;
   }
-}
-
-@media only screen and (max-width: 425px) {
   .hidden_mobile{
     display: none;
   }
+  .input_prompt textarea{
+    margin: auto 5px !important;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  
   #activity_container{
     padding: 8px 5px;
   }
@@ -146,6 +150,18 @@ button:active{
   #activity_container h1{
     margin: 20px auto 10px;
     width: fit-content;
+  }
+  
+  #response{
+    padding:0 !important;
+  }
+  
+  .input_message{
+    padding: 0 !important; 
+  }
+  
+  .bot_response{
+    padding: 0 !important; 
   }
 }
 

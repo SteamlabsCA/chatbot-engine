@@ -120,7 +120,7 @@ function responseList() {
     if(selected.length > 0){ 
       pickResponse(inputPrompt,selected);
     }else{
-      alert("Please Choose at least one script");
+      alert("Please choose at least one script");
     }
   });
   //----End: Input prompt form is submit----
@@ -253,7 +253,7 @@ function responseList() {
           console.log("Posting Hashed Response List Failed:" + data);
         });
       }else{
-        alert("The script/s you chose were empty! Please add lines to that script");
+        alert("The script/s you chose were empty! Please add lines.");
         empty = false;
       }
       })
