@@ -155,8 +155,8 @@ function responseList() {
       responseListHash = sha256(responseListConcat.replace(/\s+/g, ''));
       
       //Testing backend Hash
-      let test hash = 
-      console.log(sha256("I like pie Roasted goat is nice but takes a long time to {cook} a fresh fruit bowl sounds {nice}"))
+      let testHash = "I like pie Roasted goat is nice but takes a long time to {cook} a fresh fruit bowl sounds {nice}";
+      console.log(sha256(testHash))
       
       // Filter out all line breaks and check to make sure scripts weren't empty
       empty = true;
