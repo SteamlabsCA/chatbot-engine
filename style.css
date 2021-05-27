@@ -141,8 +141,14 @@ button:active{
   }
 }
 
-@media only screen and (max-width: 425px) {
+@media only screen and (max-width: 500px) {
+  .script_container{
+    padding-top: 0 !important;
+  }
   
+  #script_choice{
+    max-height: none !important; 
+  }
 }
 
 @media only screen and (max-width: 425px) {
@@ -152,7 +158,7 @@ button:active{
     margin: 50px auto auto !important;
   }
   
-  #activity_container h1{
+  activity_title{
     margin: 20px auto 10px;
     width: fit-content;
   }
