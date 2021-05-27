@@ -182,11 +182,11 @@ function responseList() {
         }
 
         // Append User's reponse
-        let $user_response = "<li class='input_message'><span class='content_container'><p class='user_p'>" + inputPrompt + "</p><span class='name_date'><p class='bold_p'>You </p><p class='p_time'>"+date.toLocaleTimeString() + "</p></span></span><img src='https://cdn.glitch.com/a1898aab-94e6-4c8f-8dd2-5de4e5ff6a2b%2Fuser_profile.jpg?v=1619623699243' class='user_profile'></img></li>";
+        let $user_response = "<li class='input_message'><span class='content_container'><p class='user_p'>" + inputPrompt + "</p><span class='name_date'><p class='bold_p'>You </p><p class='p_time'>"+date.toLocaleTimeString() + "</p></span></span><img src='https://cdn.glitch.com/a1898aab-94e6-4c8f-8dd2-5de4e5ff6a2b%2Fperson.png?v=1622144125311' class='user_profile'></img></li>";
         $(".chat_response").append($user_response);
 
         // Bot is typing Response
-        let $bot_response = "<li class='bot_response'><img src='https://cdn.glitch.com/a1898aab-94e6-4c8f-8dd2-5de4e5ff6a2b%2FSteamLabs_Monogram_RGB_Black.png?v=1619620318564' class='bot_profile'></img><span class='content_container'><p class='bot_p'>Thinking...</p><span class='name_date'><p class='bold_p'>Bot </p><p class='p_time'>"+date.toLocaleTimeString() + "</p></span></span></li>";
+        let $bot_response = "<li class='bot_response'><img src='https://cdn.glitch.com/a1898aab-94e6-4c8f-8dd2-5de4e5ff6a2b%2Fbot.png?v=1622144125211' class='bot_profile'></img><span class='content_container'><p class='bot_p'>Thinking...</p><span class='name_date'><p class='bold_p'>Bot </p><p class='p_time'>"+date.toLocaleTimeString() + "</p></span></span></li>";
         $(".chat_response").append($bot_response);
 
         // Append Automated Bot Response

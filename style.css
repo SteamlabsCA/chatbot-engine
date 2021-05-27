@@ -168,8 +168,9 @@ button:active{
   width: 30px;
   min-height: 30px;
   min-width: 30px;
-  background-color: #eae8e8;
+  background-color: #fff;
   border-radius: 50%;
+  border: 2px solid #000;
 }
 
 .bot_p{
@@ -184,8 +185,9 @@ button:active{
   width: 30px;
   min-height: 30px;
   min-width: 30px;
-  background-color: #04d458;
+  background-color: #fff;
   border-radius: 50%;
+  border: 2px solid #000;
 }
 
 .input_message{
