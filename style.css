@@ -129,6 +129,26 @@ button:active{
   color: #fff;
 }
 
+@media only screen and (max-width: 600px) {
+  .input_prompt button{
+    width: min-content;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  .hidden_mobile{
+    display: none;
+  }
+  #activity_container{
+    padding: 8px 5px;
+  }
+  
+  #activity_container h1{
+    margin: 20px auto 10px;
+    width: fit-content;
+  }
+}
+
 .input_prompt button:active{
   background-color: #558e17;
   margin: 6px 10px 2px 10px;
