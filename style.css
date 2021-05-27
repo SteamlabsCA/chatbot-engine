@@ -129,54 +129,6 @@ button:active{
   color: #fff;
 }
 
-@media only screen and (max-width: 600px) {
-  .input_prompt button{
-    width: min-content;
-  }
-  .hidden_mobile{
-    display: none;
-  }
-  .input_prompt textarea{
-    margin: auto 5px !important;
-  }
-}
-
-@media only screen and (max-width: 500px) {
-  .script_container{
-    padding-top: 0 !important;
-  }
-  
-  #script_choice{
-    max-height: none !important; 
-  }
-}
-
-@media only screen and (max-width: 425px) {
-  
-  #activity_container{
-    padding: 8px 5px;
-    margin: 50px auto auto !important;
-  }
-  
-  activity_title{
-    margin: 20px auto 10px;
-    width: fit-content;
-  }
-  
-  #response{
-    padding:0 !important;
-    min-height: 230px !important;
-  }
-  
-  .input_message{
-    padding: 0 !important; 
-  }
-  
-  .bot_response{
-    padding: 0 !important; 
-  }
-}
-
 .input_prompt button:active{
   background-color: #558e17;
   margin: 6px 10px 2px 10px;
@@ -355,8 +307,8 @@ button:active{
 }
 
 #clear_checkboxes{
-  background-color: #fff;
-  color: #000;
+  background-color: #e23636;
+  color: #fff;
   font-weight: bold;
 }
 
@@ -414,4 +366,61 @@ button:active{
 .checkbox{
   cursor: pointer;
   padding: 8px;
+}
+
+@media only screen and (max-width: 600px) {
+  .input_prompt button{
+    width: min-content;
+  }
+  .hidden_mobile{
+    display: none;
+  }
+  .input_prompt textarea{
+    margin: auto 5px !important;
+  }
+  
+  .search-container{
+    flex-wrap: wrap;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .script_container{
+    padding-top: 0 !important;
+  }
+  
+  #script_choice{
+    max-height: none !important; 
+    justify-content: center;
+  }
+  
+  .script_head{
+    text-align: center;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  
+  #activity_container{
+    padding: 8px 5px;
+    margin: 50px auto auto !important;
+  }
+  
+  activity_title{
+    margin: 20px auto 10px;
+    width: fit-content;
+  }
+  
+  #response{
+    padding:0 !important;
+    min-height: 230px !important;
+  }
+  
+  .input_message{
+    padding: 0 !important; 
+  }
+  
+  .bot_response{
+    padding: 0 !important; 
+  }
 }
