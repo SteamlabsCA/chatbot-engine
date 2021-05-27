@@ -423,4 +423,8 @@ button:active{
   .bot_response{
     padding: 0 !important; 
   }
+  
+  .dropdown-content{
+    position: static;
+  }
 }
