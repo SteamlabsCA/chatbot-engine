@@ -10,6 +10,9 @@
 
   <!-- import the webpage's stylesheet -->
   <link rel="stylesheet" href="/style.css" />
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" crossorigin="anonymous">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
   <!-- import the webpage's javascript file -->
@@ -18,42 +21,55 @@
 </head>
 
 <body>
-  <!-- include the Glitch button to show what the webpage is about and
-          to make it easier for folks to view source and remix -->
-  <div class="glitchButton" style="position:fixed;top:20px;right:20px;"></div>
-  <h1>Chatbot Engine</h1>
-  <span id="start_container">
-    <div>
-      <h6>Description</h6>
-    </div>
-    <button id="start">start</button>
-  </span>
+  <div class="page_container">
+    <!-- include the Glitch button to show what the webpage is about and
+            to make it easier for folks to view source and remix -->
+    <div class="glitchButton" style="position:fixed;top:20px;right:20px;"></div>
 
-  <span id="activity_container">
-    <div class="response_container" id="response_container">
-      <h3>Response:</h3>
-      <div id="response"></div>
+    <div id="start_container">
+      <h1>Chatbot Engine</h1>
+      <div>
+        <h6>Description</h6>
+      </div>
+      <button id="start">start</button>
     </div>
-    <form id="prompt_form" action="">
-      <!--       <label for="fname"><h3>Input Prompt:</h3></label> -->
-      <span class="script_container">
-        <span id="script_choice">
-          <div class="search-container">
-            <input type="text" id="script_input" onkeyup="charSearch()" placeholder="Search for characters..."
-              title="Search for a character">
-            <button id="clear_checkboxes" type="button" class="form_button">Clear All Options</button>
-            <input type="button" class="form_button" id="submit_scripts" value="Submit" />
-          </div>
-        </span>
-      </span>
-      <textarea placeholder="Input Prompt" type="text" id="input_prompt" name="input_prompt" required></textarea>
-      <span class="button_group">
-        <input type="button" class="form_button" id="clear_all" value="Clear" style="display: none" />
-        <input type="button" class="form_button" id="change_scripts" value="Change Scripts" />
-        <input type="submit" class="form_button submit" value="Submit Prompt" />
-      </span>
-    </form>
-  </span>
+
+    <span class="activity">
+      <div id="activity_container">
+        <h1 clas="activity_title">Chatbot Engine</h1>
+        <hr>
+        <div class="response_container" id="response_container">
+          <div id="response"></div>
+        </div>
+        <form id="prompt_form" action="">
+          <span class="script_container">
+            <span id="script_choice">
+              <h1 class="script_head">Who would you like to talk to?</h1>
+              <div class="search-container">
+                <input type="text" id="script_input" onkeyup="charSearch()" placeholder="Search for a character..."
+                  title="Search for a character">
+                <button type="button" id="submit_scripts" value="Submit">Submit</button>
+                <button id="clear_checkboxes" type="button" class="form_button">Clear All Options</button>
+              </div>
+            </span>
+          </span>
+          <span class="input_prompt">
+            <textarea placeholder="Input Prompt" type="text" id="input_prompt" name="input_prompt" required></textarea>
+            <button type="submit" value="Submit Prompt"><span class="hidden_mobile">Submit Prompt</span> <i
+                class="fa fa-paper-plane font_icon"></i></button>
+          </span>
+
+        </form>
+      </div>
+      <div class="button_group">
+        <button type="button" id="clear_all">Clear <i class="fas fa-eraser font_icon"></i></button>
+        <button type="button" id="change_scripts">Change Scripts <span class="hidden_mobile"><img
+              src="https://cdn.glitch.com/a1898aab-94e6-4c8f-8dd2-5de4e5ff6a2b%2Fswitch.png?v=1622060575227"
+              class="switch_img" /></span></button>
+      </div>
+    </span>
+  </div>
+
   <script src="https://button.glitch.me/button.js" defer></script>
 </body>
 

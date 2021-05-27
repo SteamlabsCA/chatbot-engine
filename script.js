@@ -146,7 +146,7 @@ function responseList() {
 		if (selected.length > 0) {
 			pickResponse(inputPrompt, selected);
 		} else {
-			alert('Please Choose at least one script');
+			alert('Please choose at least one script');
 		}
 	});
 	//----End: Input prompt form is submit----
@@ -202,18 +202,18 @@ function responseList() {
 
 					// Append User's reponse
 					let $user_response =
-						"<li class='input_message'><img src='https://cdn.glitch.com/a1898aab-94e6-4c8f-8dd2-5de4e5ff6a2b%2Fuser_profile.jpg?v=1619623699243' class='user_profile'></img><span class='content_container'><span class='name_date'><h3>You</h3><p>" +
-						date.toLocaleTimeString() +
-						'</p></span><p>' +
+						"<li class='input_message'><span class='content_container'><p class='user_p'>" +
 						inputPrompt +
-						'</p></span></li>';
+						"</p><span class='name_date'><p class='bold_p'>You </p><p class='p_time'>" +
+						date.toLocaleTimeString() +
+						"</p></span></span><img src='https://cdn.glitch.com/a1898aab-94e6-4c8f-8dd2-5de4e5ff6a2b%2Fuser_profile.jpg?v=1619623699243' class='user_profile'></img></li>";
 					$('.chat_response').append($user_response);
 
 					// Bot is typing Response
 					let $bot_response =
-						"<li class='bot_response'><img src='https://cdn.glitch.com/a1898aab-94e6-4c8f-8dd2-5de4e5ff6a2b%2FSteamLabs_Monogram_RGB_Black.png?v=1619620318564' class='bot_profile'></img><span class='content_container'><span class='name_date'><h3>Bot</h3><p>" +
+						"<li class='bot_response'><img src='https://cdn.glitch.com/a1898aab-94e6-4c8f-8dd2-5de4e5ff6a2b%2FSteamLabs_Monogram_RGB_Black.png?v=1619620318564' class='bot_profile'></img><span class='content_container'><p class='bot_p'>Thinking...</p><span class='name_date'><p class='bold_p'>Bot </p><p class='p_time'>" +
 						date.toLocaleTimeString() +
-						'</p></span><p>Thinking...</p></span></li>';
+						'</p></span></span></li>';
 					$('.chat_response').append($bot_response);
 
 					// Append Automated Bot Response
@@ -263,13 +263,13 @@ function responseList() {
 							posting.done(function (data) {
 								//If we got a response append it to the chat
 								if (data) {
-									let $bot_response =
-										"<li class='bot_response'><img src='https://cdn.glitch.com/a1898aab-94e6-4c8f-8dd2-5de4e5ff6a2b%2FSteamLabs_Monogram_RGB_Black.png?v=1619620318564' class='bot_profile'></img><span class='content_container'><span class='name_date'><h3>Bot</h3><p>" +
-										date.toLocaleTimeString() +
-										'</p></span><p>' +
-										data +
-										'</p></span></li>';
-									$('.chat_response').append($bot_response);
+									//Replace bot waiting with response
+									$('.chat_response')
+										.children('.bot_response')
+										.last()
+										.children('.content_container')
+										.children('p')
+										.text(responseData);
 									document.getElementById('response').scrollTop =
 										document.getElementById('response').scrollHeight;
 								} else {
@@ -301,9 +301,7 @@ function responseList() {
 						console.log('Posting Hashed Response List Failed:' + data);
 					});
 				} else {
-					alert(
-						'The script/s you chose were empty! Please add lines to that script'
-					);
+					alert('The script/s you chose were empty! Please add lines.');
 					empty = false;
 				}
 			})
@@ -338,7 +336,6 @@ function charSearch() {
 				return $(this).css('display') == 'block';
 			});
 		if (t.length <= 0) {
-			console.log($('#movie_' + i));
 			$('#movie_' + i).hide();
 		} else {
 			$('#movie_' + i).show();

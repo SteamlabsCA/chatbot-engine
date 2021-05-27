@@ -4,7 +4,7 @@ jQuery(document).ready(function () {
 	$('#start').click(function () {
 		responseList();
 		$('#start_container').fadeOut('fast', function () {
-			$('#activity_container').fadeIn('fast');
+			$('.activity').fadeIn('fast');
 		});
 	});
 });
