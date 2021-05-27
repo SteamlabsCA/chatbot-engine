@@ -158,10 +158,10 @@ function responseList() {
       responseListHash = sha256(responseListConcat);
       
       //Testing backend Hash
-      let testHash = "I like pie Roasted goat is nice but takes a long time to {cook} a fresh fruit bowl sounds {nice}";
-      testHash = sha256(testHash);
+      let testHashWht = "I like pie Roasted goat is nice but takes a long time to {cook} a fresh fruit bowl sounds {nice}";
+      let testHash = sha256(testHashWht.replace(/\s+/g, ''));
+      console.log(sha256(testHashWht))
       console.log(testHash)
-      
       // Filter out all line breaks and check to make sure scripts weren't empty
       empty = true;
       const finalResponseList = responseList.filter((sent,index) => {
