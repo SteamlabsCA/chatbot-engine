@@ -158,9 +158,9 @@ function responseList() {
       responseListHash = sha256(responseListConcat);
       
       //Testing backend Hash
-      let testHash = "I like pie Roasted goat is nice but takes a long time to {cook} a fresh fruit bowl sounds {nice}";
-      testHash = sha256(testHash);
-      console.log(testHash)
+      // let testHash = "I like pie Roasted goat is nice but takes a long time to {cook} a fresh fruit bowl sounds {nice}";
+      // testHash = sha256(testHash);
+      // console.log(testHash)
       
       // Filter out all line breaks and check to make sure scripts weren't empty
       empty = true;
@@ -197,11 +197,11 @@ function responseList() {
     
         
         //Load the data to be sent to the API - hash
-        // let data = {
-        //   inputPrompt: inputPrompt,
-        //   responseList: responseListHash,
-        //   language: "EN"
-        // };
+        let hashData = {
+          inputPrompt: inputPrompt,
+          responseList: [responseListHash],
+          language: "EN"
+        };
 
         //Load the data to be sent to the API - full script
         let data = {
@@ -217,34 +217,35 @@ function responseList() {
                           url: url,
                           type: "POST",
                           contentType: "application/json",
-                          data: JSON.stringify(data),
+                          data: JSON.stringify(hashData),
                       });
 
         posting.done(function(responseData) {
           if (responseData === -1) {
             //If server doesn’t have that list cached resend entire response list
             console.log("No Hash on Server")
-            let newData = {
-              inputPrompt: inputPrompt,
-              responseList: responseListConcat,
-              language: "EN"
-            };
+            //Just Data
+            // let newData = {
+            //   inputPrompt: inputPrompt,
+            //   responseList: responseListConcat,
+            //   language: "EN"
+            // };
 
-            var posting = $.post(url, newData);
+            var posting = $.post(url, data);
 
-            posting.done(function(data) {
+            posting.done(function(newResData) {
               //If we got a response append it to the chat
-              if (data) {
+              if (newResData) {
                 //Replace bot waiting with response
-                ($(".chat_response").children('.bot_response').last().children('.content_container').children('p')).text(responseData);
+                ($(".chat_response").children('.bot_response').last().children('.content_container').children('p')).text(newResData);
                 (document.getElementById("response")).scrollTop = (document.getElementById("response")).scrollHeight;
               } else {
                 console.log("Full Response List failed Data missing");
               }
             });
 
-            posting.fail(function(data) {
-              console.log("Posting Full Response List Failed");
+            posting.fail(function(err) {
+              console.log("Posting Full Response List Failed" + err);
             });
           } else {
             //If we got a response append it to the chat
@@ -257,8 +258,8 @@ function responseList() {
           }
         });
 
-        posting.fail(function(data) {
-          console.log("Posting Hashed Response List Failed:" + data);
+        posting.fail(function(err) {
+          console.log("Posting Hashed Response List Failed:" + err);
         });
       }else{
         alert("The script/s you chose were empty! Please add lines.");
