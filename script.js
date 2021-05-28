@@ -220,6 +220,9 @@ function responseList() {
                           type: "POST",
                           contentType: "application/json",
                           data: JSON.stringify(hashData),
+                          beforeSend: function(xhr) {
+                            xhr.setRequestHeader("x-api-key", process.env.AWS_API_KEY); 
+                          }
                       });
 
         posting.done(function(responseData) {
@@ -232,6 +235,9 @@ function responseList() {
                           type: "POST",
                           contentType: "application/json",
                           data: JSON.stringify(data),
+                          beforeSend: function(xhr) {
+                            xhr.setRequestHeader("x-api-key", process.env.AWS_API_KEY); 
+                          }
                       });
 
             posting.done(function(newResData) {
