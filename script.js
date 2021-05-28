@@ -195,21 +195,16 @@ function responseList() {
 
         (document.getElementById("response")).scrollTop = (document.getElementById("response")).scrollHeight;
     
+        //Load the data to be sent to the API - Hash Test - ["I like pie","Roasted goat is nice but takes a long time to {cook}","a fresh fruit bowl sounds {nice}"]
+        // responseListHash = "3dd871162843a3f634f06c25b99367f3df1f0b153d9d2a7b532b654286507e94";
         
         //Load the data to be sent to the API - hash
-        // let hashData = {
-        //   inputPrompt: inputPrompt,
-        //   responseList: responseListHash,
-        //   language: "EN"
-        // };
-        
-        //Load the data to be sent to the API - hash Test
         let hashData = {
           inputPrompt: inputPrompt,
-          responseList: '3dd871162843a3f634f06c25b99367f3df1f0b153d9d2a7b532b654286507e93',
+          responseList: responseListHash,
           language: "EN"
         };
-
+        
         //Load the data to be sent to the API - full script
         let data = {
           inputPrompt: inputPrompt,
