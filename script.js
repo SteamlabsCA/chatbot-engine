@@ -197,9 +197,16 @@ function responseList() {
     
         
         //Load the data to be sent to the API - hash
+        // let hashData = {
+        //   inputPrompt: inputPrompt,
+        //   responseList: responseListHash,
+        //   language: "EN"
+        // };
+        
+        //Load the data to be sent to the API - hash Test
         let hashData = {
           inputPrompt: inputPrompt,
-          responseList: [responseListHash],
+          responseList: '3dd871162843a3f634f06c25b99367f3df1f0b153d9d2a7b532b654286507e93',
           language: "EN"
         };
 
@@ -223,15 +230,14 @@ function responseList() {
         posting.done(function(responseData) {
           if (responseData === -1) {
             //If server doesn’t have that list cached resend entire response list
-            console.log("No Hash on Server")
-            //Just Data
-            // let newData = {
-            //   inputPrompt: inputPrompt,
-            //   responseList: responseListConcat,
-            //   language: "EN"
-            // };
+            console.log("No Hash on Server");
 
-            var posting = $.post(url, data);
+            var posting = $.ajax({
+                          url: url,
+                          type: "POST",
+                          contentType: "application/json",
+                          data: JSON.stringify(data),
+                      });
 
             posting.done(function(newResData) {
               //If we got a response append it to the chat
