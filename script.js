@@ -211,7 +211,7 @@ function responseList() {
         }
 
         let url = "https://57sunxdj45.execute-api.us-west-2.amazonaws.com/dev/convert";
-
+        
         //Post data to the API (hash) and send it, if the hash doesnt work send the entire response list
         var posting = $.ajax({
                           url: url,
