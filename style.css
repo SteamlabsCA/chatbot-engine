@@ -1,5 +1,6 @@
 /* CSS files add styling rules to your content */
 
+/* Activity wide styles */
 body,html {
   font-family: 'Roboto', sans-serif;
   background-color: #FFCE54;
@@ -25,15 +26,17 @@ button:active{
   margin: 0 5px;
 }
 
-.activity{
-  display: none;
-}
-
+/* lANDING PAGE */
 #start_container{
   margin-top: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+/* ACTIVITY PAGE */
+.activity{
+  display: none;
 }
 
 #activity_container{
@@ -82,6 +85,7 @@ button:active{
   background-color:  #967ADC;
   color: #fff;
   display: flex;
+  align-items: center;
 }
 
 #change_scripts:active{
@@ -134,6 +138,7 @@ button:active{
   margin: 6px 10px 2px 10px;
 }
 
+/* RESPONSE BOX */
 .response_container{
   margin: 0 0 10px;
 }
@@ -247,6 +252,7 @@ button:active{
   width: fit-content;
 }
 
+/* SCRIPT PAGE */
 .script_container{
   display: none; 
   position: fixed; 
