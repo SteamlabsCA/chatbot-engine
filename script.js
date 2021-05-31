@@ -155,12 +155,7 @@ function responseList(teacher) {
       // responseListHash = sha256(responseListConcat.replace(/\s+/g, ''));
       
       //Hash
-      var d =new Date()
-      var m1 = d.getTime()
       responseListHash = sha256(responseListConcat);
-       var d =new Date()
-      var m2 = d.getTime()
-      console.log(m2-m1)
 
       //Testing backend Hash
       // let testHash = "I like pie Roasted goat is nice but takes a long time to {cook} a fresh fruit bowl sounds {nice}";
@@ -218,7 +213,11 @@ function responseList(teacher) {
         }
         
         let url = "https://57sunxdj45.execute-api.us-west-2.amazonaws.com/dev/convert";
-
+        
+        //test
+        var d =new Date()
+        var m1 = d.getTime()
+       
         //Post data to the API (hash) and send it, if the hash doesnt work send the entire response list
         var posting = $.ajax({
                           url: url,
@@ -231,6 +230,11 @@ function responseList(teacher) {
                       });
 
         posting.done(function(responseData) {
+          //test
+          var d =new Date()
+          var m2 = d.getTime()
+          console.log(m2-m1)
+          
           if (responseData === -1) {
             //If server doesn’t have that list cached resend entire response list
             //test
