@@ -1,4 +1,4 @@
-function responseList() {
+function responseList(teacher) {
   let responseListArr = [];
   let responseList = [];
   let finalResponseList = []; 
@@ -221,7 +221,7 @@ function responseList() {
                           contentType: "application/json",
                           data: JSON.stringify(hashData),
                           beforeSend: function(xhr) {
-                            xhr.setRequestHeader("x-api-key", "wR5uUCYIL21JQxPAAJAL14VVFh62YbHD4Kjdn7om"); 
+                            xhr.setRequestHeader("x-api-key", teacher); 
                           }
                       });
 
@@ -236,7 +236,7 @@ function responseList() {
                           contentType: "application/json",
                           data: JSON.stringify(data),
                           beforeSend: function(xhr) {
-                            xhr.setRequestHeader("x-api-key", "wR5uUCYIL21JQxPAAJAL14VVFh62YbHD4Kjdn7om"); 
+                            xhr.setRequestHeader("x-api-key", teacher); 
                           }
                       });
 
