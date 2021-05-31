@@ -1,10 +1,16 @@
 /* globals responseList */
-jQuery(document).ready(function(){
+// Insert to API key here
+let teacherKey = "";
+
+jQuery(document).ready(function() {
   $("#start").click(function() {
-    // Insert to API key here
-    responseList("wR5uUCYIL21JQxPAAJAL14VVFh62YbHD4Kjdn7om");
-    $("#start_container").fadeOut("fast",function(){
-      $(".activity").fadeIn("fast");
-    });
+    if (teacherKey.length > 0) {
+      responseList(teacherKey);
+      $("#start_container").fadeOut("fast", function() {
+        $(".activity").fadeIn("fast");
+      });
+    } else {
+      alert("Missing Teacher API key");
+    }
   });
 });
