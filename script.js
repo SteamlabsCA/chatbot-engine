@@ -222,7 +222,7 @@ function responseList(teacher) {
                           data: JSON.stringify(hashData),
                           beforeSend: function(xhr) {
                             xhr.setRequestHeader("x-api-key", teacher); 
-                          }
+                          },
                       });
 
         posting.done(function(responseData) {
@@ -266,7 +266,7 @@ function responseList(teacher) {
         });
 
         posting.fail(function(err) {
-          console.log("Posting Hashed Response List Failed:" + err);
+          console.log("Posting hashed response list failed");
         });
       }else{
         alert("The script/s you chose were empty! Please add lines.");
