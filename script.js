@@ -267,6 +267,7 @@ function responseList(teacher) {
 
         posting.fail(function(err) {
           console.log("Posting hashed response list failed");
+          alert("Error: Incorrect key - Please Re-enter your key.")
         });
       }else{
         alert("The script/s you chose were empty! Please add lines.");
