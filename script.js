@@ -155,8 +155,13 @@ function responseList(teacher) {
       // responseListHash = sha256(responseListConcat.replace(/\s+/g, ''));
       
       //Hash
+      var d =new Date()
+      var m1 = d.getTime()
       responseListHash = sha256(responseListConcat);
-      
+       var d =new Date()
+      var m2 = d.getTime()
+      console.log(m2-m1)
+
       //Testing backend Hash
       // let testHash = "I like pie Roasted goat is nice but takes a long time to {cook} a fresh fruit bowl sounds {nice}";
       // testHash = sha256(testHash);
@@ -228,7 +233,7 @@ function responseList(teacher) {
         posting.done(function(responseData) {
           if (responseData === -1) {
             //If server doesn’t have that list cached resend entire response list
-            console.log("No Hash on Server");
+            // console.log("No Hash on Server");
 
             var posting = $.ajax({
                           url: url,
