@@ -1,5 +1,6 @@
 /* globals responseList */
-// Insert to API key here
+
+// Insert teacher API key here
 let teacherKey = "";
 
 jQuery(document).ready(function() {
