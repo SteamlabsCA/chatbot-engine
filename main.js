@@ -15,3 +15,6 @@ jQuery(document).ready(function() {
     }
   });
 });
+
+let test = true;
+
