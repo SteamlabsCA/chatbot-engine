@@ -1,10 +1,17 @@
 /* globals responseList */
-jQuery(document).ready(function(){
-	// Change these files to change the response list text from the assets
-	$("#start").click(function() {
-	  responseList();
-	  $("#start_container").fadeOut("fast",function(){
-		$(".activity").fadeIn("fast");
-	  });
+
+// Insert teacher API key here
+let teacherKey = '';
+
+jQuery(document).ready(function () {
+	$('#start').click(function () {
+		if (teacherKey.length > 0) {
+			responseList(teacherKey);
+			$('#start_container').fadeOut('fast', function () {
+				$('.activity').fadeIn('fast');
+			});
+		} else {
+			alert('Missing Teacher API key');
+		}
 	});
-  });
+});
