@@ -242,18 +242,11 @@ function responseList(teacher) {
                       });
 
             posting.done(function(newResData) {
-              //test
-              var d =new Date()
-              var m1 = d.getTime()
               //If we got a response append it to the chat
               if (newResData) {
                 //Replace bot waiting with response
                 ($(".chat_response").children('.bot_response').last().children('.content_container').children('p')).text(newResData);
                 (document.getElementById("response")).scrollTop = (document.getElementById("response")).scrollHeight;
-              //test
-              var d =new Date()
-              var m2 = d.getTime()
-              console.log(m2-m1)
               } else {
                 console.log("Full Response List failed Data missing");
               }
