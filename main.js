@@ -5,7 +5,7 @@ let teacherKey = "wR5uUCYIL21JQxPAAJAL14VVFh62YbHD4Kjdn7om";
 
 jQuery(document).ready(function() {
   $("#start").click(function() {
-    if (teacherKey.length > 0 && !testing) {
+    if (teacherKey.length > 0) {
       responseList(teacherKey);
       $("#start_container").fadeOut("fast", function() {
         $(".activity").fadeIn("fast");
@@ -16,5 +16,4 @@ jQuery(document).ready(function() {
   });
 });
 
-let testing = true;
 

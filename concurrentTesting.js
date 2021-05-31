@@ -1,4 +1,6 @@
 let test = true;
+let testNumber = 5;
+
 let ajaxCalls = [];
 let url = "https://57sunxdj45.execute-api.us-west-2.amazonaws.com/dev/convert";
 let data = {
@@ -14,7 +16,7 @@ jQuery(document).ready(function() {
   $("#start").click(function() {
     alert("test starting");
     if (test) {
-      for (let i = 0; i < 3; ++i) {
+      for (let i = 0; i < testNumber; ++i) {
         ajaxCalls.push(
           $.ajax({
             url: url,
