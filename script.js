@@ -216,9 +216,9 @@ function responseList(teacher) {
           responseList: finalResponseList,
           language: "EN"
         }
-
-        let url = "https://57sunxdj45.execute-api.us-west-2.amazonaws.com/dev/convert";
         
+        let url = "https://57sunxdj45.execute-api.us-west-2.amazonaws.com/dev/convert";
+
         //Post data to the API (hash) and send it, if the hash doesnt work send the entire response list
         var posting = $.ajax({
                           url: url,
@@ -233,6 +233,7 @@ function responseList(teacher) {
         posting.done(function(responseData) {
           if (responseData === -1) {
             //If server doesn’t have that list cached resend entire response list
+            //test
             // console.log("No Hash on Server");
 
             var posting = $.ajax({
