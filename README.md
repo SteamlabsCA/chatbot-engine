@@ -5,7 +5,7 @@ Click `Show` in the header to see your chatbot live. Updates to your code will i
 
 Remix and edit the code to get a different response from the engine!
 
-Once remixed, enter your session key provided by ***Need Session key Provider***	
+Once remixed, enter your API key provided by Steamlabs. If you need an API key, visit us at [https://steamlabs.ca/contact/](https://steamlabs.ca/contact/).
 
 Now, you can have a dialogue with any of the built in characters. You can also customize your engine to talk to more characters by adding additional movie scripts.
 
