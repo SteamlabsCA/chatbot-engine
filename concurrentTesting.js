@@ -2,7 +2,7 @@ let test = true;
 let testNumber = 5;
 
 let ajaxCalls = [];
-let url = "https://57sunxdj45.execute-api.us-west-2.amazonaws.com/dev/convert";
+let url = "https://2ehix0nexk.execute-api.us-west-2.amazonaws.com/dev/convert";
 let data = {
   inputPrompt: "Hello",
   responseList: [
