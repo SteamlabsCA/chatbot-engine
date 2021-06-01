@@ -25,6 +25,10 @@ button:active{
 }
 
 /* lANDING PAGE */
+#start:active{
+  margin: 12px 8px 2px 10px;
+}
+
 #start_container{
   margin-top: 50px;
   display: flex;
