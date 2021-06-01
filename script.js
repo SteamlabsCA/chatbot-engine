@@ -14,7 +14,7 @@ function responseList(teacher) {
     //Get All Movie Folders
     .apply($,([1,2]).map(function(url) {
         return $.ajax({
-          url: "assets/",
+          url: "lines/",
           dataType: "text"
         });
       }))
@@ -27,7 +27,7 @@ function responseList(teacher) {
       $.when
       .apply($,responseListArr.map(function(url) {
           return $.ajax({
-            url: "assets/"+url,
+            url: "lines/"+url,
             dataType: "text"
           });
         }))
@@ -134,7 +134,7 @@ function responseList(teacher) {
     $.when
     .apply($,selected.map(function(movieText) {
         return $.ajax({
-          url: "assets/"+ movieText["folder"]+"/"+movieText["name"],
+          url: "lines/"+ movieText["folder"]+"/"+movieText["name"],
           dataType: "text"
         });
       }))
