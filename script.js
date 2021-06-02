@@ -188,12 +188,18 @@ function bestResponse(teacher, responseList) {
         if (selected.length > 0) {
           pickResponse(inputPrompt, selected);
         } else {
-          alert("There are N");
+          alert("Error: There are no scripts available.");
         }
       }
       else{
-          alert("Pick a script");
+        let specScript =  $(".checkboxes span input[name='"+responseList+"']");
+        if(specScript){
+          alert("Im here");
+          console.log(specScript)
+        }else{
+          alert("not here");
         }
+      }
     }
   });
   //----End: Input prompt form is submit----
