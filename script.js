@@ -58,16 +58,12 @@ function responseList(teacher) {
         )
         .done(function() {
           let textFiles = [];
-
-          console.log(arguments);
-
           if (arguments.length === 3) {
             console.log("here")
             textFiles = arguments[0].split("\n");
             textFiles.pop();
             res.push(textFiles);
           } else {
-            console.log("here2")
             for (var i = 0, len = arguments.length; i < len; ++i) {
               textFiles = arguments[i][0].split("\n");
               textFiles.pop();
@@ -164,19 +160,26 @@ function responseList(teacher) {
   //----Start: Input prompt form is submit----
   $("#prompt_form").submit(function(event) {
     event.preventDefault();
-    let selected = [];
-    let inputPrompt = $("#input_prompt").val();
+    if(!($(".chat_response")
+                    .children(".bot_response")
+                    .last()
+                    .children(".content_container")
+                    .children("p")
+                    .text() === 'Thinking...')){
+      let selected = [];
+      let inputPrompt = $("#input_prompt").val();
 
-    //Check which checkboxes are selected
-    $(".checkboxes span input:checked").each(function() {
-      selected.push({ folder: $(this).val(), name: $(this).attr("name") });
-    });
+      //Check which checkboxes are selected
+      $(".checkboxes span input:checked").each(function() {
+        selected.push({ folder: $(this).val(), name: $(this).attr("name") });
+      });
 
-    // If at least one script is chosen continue
-    if (selected.length > 0) {
-      pickResponse(inputPrompt, selected);
-    } else {
-      alert("Please choose at least one script");
+      // If at least one script is chosen continue
+      if (selected.length > 0) {
+        pickResponse(inputPrompt, selected);
+      } else {
+        alert("Please choose at least one script");
+      }
     }
   });
   //----End: Input prompt form is submit----
