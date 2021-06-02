@@ -193,11 +193,15 @@ function bestResponse(teacher, responseList) {
       }
       else{
         let specScript =  $(".checkboxes span input[name='"+responseList+"']");
-        if(specScript){
-          alert("Im here");
-          console.log(specScript)
+        if(specScript.length > 0){
+          selected.push({ folder: $(specScript).val(), name: $(specScript).attr("name") });
+          if (selected.length > 0) {
+            pickResponse(inputPrompt, selected);
+          } else {
+            alert("Error: Your selected script is unavailable.");
+          }
         }else{
-          alert("not here");
+          alert("The input you chose is unavailable.");
         }
       }
     }
