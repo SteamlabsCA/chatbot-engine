@@ -13,9 +13,9 @@ jQuery(document).ready(function() {
   });
 });
 
-function responseList(teacher) {
+function bestResponse(teacher, responseList) {
   let responseListArr = [];
-  let responseList = [];
+  let scriptPick = [];
   let finalResponseList = [];
   let responseListConcat = "";
   let responseListHash = "";
@@ -168,7 +168,8 @@ function responseList(teacher) {
                     .text() === 'Thinking...')){
       let selected = [];
       let inputPrompt = $("#input_prompt").val();
-
+      
+      
       //Check which checkboxes are selected
       $(".checkboxes span input:checked").each(function() {
         selected.push({ folder: $(this).val(), name: $(this).attr("name") });
@@ -176,6 +177,7 @@ function responseList(teacher) {
 
       // If at least one script is chosen continue
       if (selected.length > 0) {
+        console.log(selected)
         pickResponse(inputPrompt, selected);
       } else {
         alert("Please choose at least one script");
@@ -187,7 +189,7 @@ function responseList(teacher) {
   //----Start: Pick Response----
   function pickResponse(inputPrompt, selected) {
     finalResponseList = [];
-    responseList = [];
+    scriptPick = [];
 
     //Get the lines from each selected movie folder text file
     $.when
@@ -203,11 +205,11 @@ function responseList(teacher) {
       .done(function() {
         //Store all the text lines as a single array
         if (selected.length === 1) {
-          responseList.extend(arguments[0].split("\n"));
+          scriptPick.extend(arguments[0].split("\n"));
           responseListConcat += arguments[0];
         } else {
           for (var i = 0, len = arguments.length; i < len; ++i) {
-            responseList.extend(arguments[i][0].split("\n"));
+            scriptPick.extend(arguments[i][0].split("\n"));
             //Concate responseList into one string
             responseListConcat += arguments[i][0];
           }
@@ -226,8 +228,8 @@ function responseList(teacher) {
 
         // Filter out all line breaks and check to make sure scripts weren't empty
         empty = true;
-        const finalResponseList = responseList.filter((sent, index) => {
-          if ((!responseList[index] || responseList[index] === "") && empty) {
+        const finalResponseList = scriptPick.filter((sent, index) => {
+          if ((!scriptPick[index] || scriptPick[index] === "") && empty) {
             empty = true;
           } else {
             empty = false;
