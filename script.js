@@ -59,7 +59,6 @@ function bestResponse(teacher, responseList) {
         .done(function() {
           let textFiles = [];
           if (arguments.length === 3) {
-            console.log("here")
             textFiles = arguments[0].split("\n");
             textFiles.pop();
             res.push(textFiles);
@@ -169,19 +168,21 @@ function bestResponse(teacher, responseList) {
       let selected = [];
       let inputPrompt = $("#input_prompt").val();
       
-      
-      //Check which checkboxes are selected
-      $(".checkboxes span input:checked").each(function() {
-        selected.push({ folder: $(this).val(), name: $(this).attr("name") });
-      });
+      if(responseList === '*'){
+        //Check which checkboxes are selected
+        $(".checkboxes span input:checked").each(function() {
+          selected.push({ folder: $(this).val(), name: $(this).attr("name") });
+        });
 
-      // If at least one script is chosen continue
-      if (selected.length > 0) {
-        console.log(selected)
-        pickResponse(inputPrompt, selected);
-      } else {
-        alert("Please choose at least one script");
-      }
+        // If at least one script is chosen continue
+        if (selected.length > 0) {
+          pickResponse(inputPrompt, selected);
+        } else {
+          alert("Please choose at least one script");
+        }
+      }else{
+          alert("Pick a script");
+        }
     }
   });
   //----End: Input prompt form is submit----
