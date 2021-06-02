@@ -1,9 +1,9 @@
-/* globals teacherKey */
+/* globals botResponse  teacherKey*/
 
 jQuery(document).ready(function() {
   $("#start").click(function() {
     if (teacherKey.length > 0) {
-      responseList(teacherKey);
+      botResponse();
       $("#start_container").fadeOut("fast", function() {
         $(".activity").fadeIn("fast");
       });
