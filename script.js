@@ -168,7 +168,7 @@ function bestResponse(teacher, responseList) {
       let selected = [];
       let inputPrompt = $("#input_prompt").val();
       
-      if(responseList === '*'){
+      if(responseList === ''){
         //Check which checkboxes are selected
         $(".checkboxes span input:checked").each(function() {
           selected.push({ folder: $(this).val(), name: $(this).attr("name") });
@@ -180,7 +180,18 @@ function bestResponse(teacher, responseList) {
         } else {
           alert("Please choose at least one script");
         }
-      }else{
+      }else if(responseList === '*'){
+         $(".checkboxes span input").each(function() {
+          selected.push({ folder: $(this).val(), name: $(this).attr("name") });
+        });
+        
+        if (selected.length > 0) {
+          pickResponse(inputPrompt, selected);
+        } else {
+          alert("There are N");
+        }
+      }
+      else{
           alert("Pick a script");
         }
     }
