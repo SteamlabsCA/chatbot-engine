@@ -1,114 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Chatbot Engine</title>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <!-- import the webpage's stylesheet -->
-    <link rel="stylesheet" href="/style.css" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700;900&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
-      crossorigin="anonymous"
-    />
-    <script
-      src="https://code.jquery.com/jquery-3.6.0.min.js"
-      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-      crossorigin="anonymous"
-    ></script>
-    <!-- import the webpage's javascript file -->
-    <script src="/script.js"></script>
-    <!-- Main Script   -->
-    <script src="/main.js"></script>
-  </head>
+  <title>Chatbot Engine</title>
 
-  <body>
-    <div class="page_container">
-      <!-- include the Glitch button to show what the webpage is about and
+  <!-- import the webpage's stylesheet -->
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" crossorigin="anonymous" />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <!-- import the webpage's javascript file -->
+  <script src="/script.js"></script>
+  <!-- Main Script   -->
+  <script src="/main.js"></script>
+</head>
+
+<body>
+  <div class="page_container">
+    <!-- include the Glitch button to show what the webpage is about and
             to make it easier for folks to view source and remix -->
-      <div
-        class="glitchButton"
-        style="position:fixed;top:20px;right:20px;"
-      ></div>
+    <div class="glitchButton" style="position:fixed;top:20px;right:20px;"></div>
 
-      <div id="start_container">
-        <h1>Chatbot Engine</h1>
-        <div>
-          <h2>Are you ready to start chatting?</h2>
-        </div>
-        <button type="submit" id="start"><h2>START</h2></button>
+    <div id="start_container">
+      <h1>Chatbot Engine</h1>
+      <div>
+        <h2>Are you ready to start chatting?</h2>
       </div>
-
-      <span class="activity">
-        <div id="activity_container">
-          <h1 clas="activity_title">Chatbot Engine</h1>
-          <hr />
-          <div class="response_container" id="response_container">
-            <div id="response"></div>
-          </div>
-          <form id="prompt_form" action="">
-            <span class="script_container">
-              <span id="script_choice">
-                <h1 class="script_head">Who would you like to talk to?</h1>
-                <div class="search-container">
-                  <input
-                    type="text"
-                    id="script_input"
-                    onkeyup="charSearch()"
-                    placeholder="Search for a character..."
-                    title="Search for a character"
-                  />
-                  <button
-                    id="clear_checkboxes"
-                    type="button"
-                    class="form_button"
-                  >
-                    Clear All Options
-                  </button>
-                  <button type="button" id="submit_scripts" value="Submit">
-                    Submit
-                  </button>
-                </div>
-              </span>
-            </span>
-            <span class="input_prompt">
-              <textarea
-                placeholder="Input Prompt"
-                type="text"
-                id="input_prompt"
-                name="input_prompt"
-                required
-              ></textarea>
-              <button type="submit" value="Submit Prompt">
-                <span class="hidden_mobile">Submit Prompt</span>
-                <i class="fa fa-paper-plane font_icon"></i>
-              </button>
-            </span>
-          </form>
-        </div>
-        <div class="button_group">
-          <button type="button" id="clear_all">
-            Clear <i class="fas fa-eraser font_icon"></i>
-          </button>
-          <button type="button" id="change_scripts">
-            Change Scripts
-            <img
-              src="https://cdn.glitch.com/a1898aab-94e6-4c8f-8dd2-5de4e5ff6a2b%2Fswitch.png?v=1622060575227"
-              class="switch_img hidden_mobile"
-            />
-          </button>
-        </div>
-      </span>
+      <button type="submit" id="start">
+        <h2>START</h2>
+      </button>
     </div>
 
-    <script src="https://button.glitch.me/button.js" defer></script>
-  </body>
+    <span class="activity">
+      <div id="activity_container">
+        <h1 clas="activity_title">Chatbot Engine</h1>
+        <hr />
+        <div class="response_container" id="response_container">
+          <div id="response"></div>
+        </div>
+        <form id="prompt_form" action="">
+          <span class="script_container">
+            <span id="script_choice">
+              <h1 class="script_head">Who would you like to talk to?</h1>
+              <div class="search-container">
+                <input type="text" id="script_input" onkeyup="charSearch()" placeholder="Search for a character..."
+                  title="Search for a character" />
+                <button id="clear_checkboxes" type="button" class="form_button">
+                  Clear All Options
+                </button>
+                <button type="button" id="submit_scripts" value="Submit">
+                  Submit
+                </button>
+              </div>
+            </span>
+          </span>
+          <span class="input_prompt">
+            <textarea placeholder="Input Prompt" type="text" id="input_prompt" name="input_prompt" required></textarea>
+            <button type="submit" value="Submit Prompt">
+              <span class="hidden_mobile">Submit Prompt</span>
+              <i class="fa fa-paper-plane font_icon"></i>
+            </button>
+          </span>
+        </form>
+      </div>
+      <div class="button_group">
+        <button type="button" id="clear_all">
+          Clear <i class="fas fa-eraser font_icon"></i>
+        </button>
+        <button type="button" id="change_scripts">
+          Change Scripts
+          <img src="https://cdn.glitch.com/a1898aab-94e6-4c8f-8dd2-5de4e5ff6a2b%2Fswitch.png?v=1622060575227"
+            class="switch_img hidden_mobile" />
+        </button>
+      </div>
+    </span>
+  </div>
+
+  <script src="https://button.glitch.me/button.js" defer></script>
+</body>
+
 </html>

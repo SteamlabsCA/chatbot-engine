@@ -1,17 +1,11 @@
-/* globals responseList */
+/* globals bestResponse */
 
 // Insert teacher API key here
-let teacherKey = "";
+let teacherKey = 'wR5uUCYIL21JQxPAAJAL14VVFh62YbHD4Kjdn7om';
+let responseList = '*'; //Chooses all scripts
+// let responseList = ""; //lets GUI decide
+// let responseList = "Woody.txt"; //Choose based off text
 
-jQuery(document).ready(function() {
-  $("#start").click(function() {
-    if (teacherKey.length > 0) {
-      responseList(teacherKey);
-      $("#start_container").fadeOut("fast", function() {
-        $(".activity").fadeIn("fast");
-      });
-    } else {
-      alert("Missing Teacher API key");
-    }
-  });
-});
+function botResponse() {
+	bestResponse(teacherKey, responseList);
+}

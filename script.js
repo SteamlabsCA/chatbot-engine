@@ -1,6 +1,21 @@
-function responseList(teacher) {
+/* globals botResponse  teacherKey*/
+
+jQuery(document).ready(function () {
+	$('#start').click(function () {
+		if (teacherKey.length > 0) {
+			botResponse();
+			$('#start_container').fadeOut('fast', function () {
+				$('.activity').fadeIn('fast');
+			});
+		} else {
+			alert('Missing Teacher API key');
+		}
+	});
+});
+
+function bestResponse(teacher, responseList) {
 	let responseListArr = [];
-	let responseList = [];
+	let scriptPick = [];
 	let finalResponseList = [];
 	let responseListConcat = '';
 	let responseListHash = '';
@@ -43,16 +58,11 @@ function responseList(teacher) {
 				)
 				.done(function () {
 					let textFiles = [];
-
-					console.log(arguments);
-
 					if (arguments.length === 3) {
-						console.log('here');
 						textFiles = arguments[0].split('\n');
 						textFiles.pop();
 						res.push(textFiles);
 					} else {
-						console.log('here2');
 						for (var i = 0, len = arguments.length; i < len; ++i) {
 							textFiles = arguments[i][0].split('\n');
 							textFiles.pop();
@@ -84,7 +94,7 @@ function responseList(teacher) {
 		.fail(function (error) {
 			console.log('Movie Folder Retrieval Error: ' + error);
 		});
-	//----End: Get the lists of text files and concatenate them -----
+	//----End: Get the lists of text files and concatenate them ----
 
 	//----Start: "Clear All Text" button----
 	$('#clear_all').click(function () {
@@ -149,19 +159,59 @@ function responseList(teacher) {
 	//----Start: Input prompt form is submit----
 	$('#prompt_form').submit(function (event) {
 		event.preventDefault();
-		let selected = [];
-		let inputPrompt = $('#input_prompt').val();
+		if (
+			!(
+				$('.chat_response')
+					.children('.bot_response')
+					.last()
+					.children('.content_container')
+					.children('p')
+					.text() === 'Thinking...'
+			)
+		) {
+			let selected = [];
+			let inputPrompt = $('#input_prompt').val();
 
-		//Check which checkboxes are selected
-		$('.checkboxes span input:checked').each(function () {
-			selected.push({ folder: $(this).val(), name: $(this).attr('name') });
-		});
+			if (responseList === '') {
+				//Check which checkboxes are selected
+				$('.checkboxes span input:checked').each(function () {
+					selected.push({ folder: $(this).val(), name: $(this).attr('name') });
+				});
 
-		// If at least one script is chosen continue
-		if (selected.length > 0) {
-			pickResponse(inputPrompt, selected);
-		} else {
-			alert('Please choose at least one script');
+				// If at least one script is chosen continue
+				if (selected.length > 0) {
+					pickResponse(inputPrompt, selected);
+				} else {
+					alert('Please choose at least one script');
+				}
+			} else if (responseList === '*') {
+				$('.checkboxes span input').each(function () {
+					selected.push({ folder: $(this).val(), name: $(this).attr('name') });
+				});
+
+				if (selected.length > 0) {
+					pickResponse(inputPrompt, selected);
+				} else {
+					alert('Error: There are no scripts available.');
+				}
+			} else {
+				let specScript = $(
+					".checkboxes span input[name='" + responseList + "']"
+				);
+				if (specScript.length > 0) {
+					selected.push({
+						folder: $(specScript).val(),
+						name: $(specScript).attr('name'),
+					});
+					if (selected.length > 0) {
+						pickResponse(inputPrompt, selected);
+					} else {
+						alert('Error: Your selected script is unavailable.');
+					}
+				} else {
+					alert('The input you chose is unavailable.');
+				}
+			}
 		}
 	});
 	//----End: Input prompt form is submit----
@@ -169,7 +219,7 @@ function responseList(teacher) {
 	//----Start: Pick Response----
 	function pickResponse(inputPrompt, selected) {
 		finalResponseList = [];
-		responseList = [];
+		scriptPick = [];
 
 		//Get the lines from each selected movie folder text file
 		$.when
@@ -185,11 +235,11 @@ function responseList(teacher) {
 			.done(function () {
 				//Store all the text lines as a single array
 				if (selected.length === 1) {
-					responseList.extend(arguments[0].split('\n'));
+					scriptPick.extend(arguments[0].split('\n'));
 					responseListConcat += arguments[0];
 				} else {
 					for (var i = 0, len = arguments.length; i < len; ++i) {
-						responseList.extend(arguments[i][0].split('\n'));
+						scriptPick.extend(arguments[i][0].split('\n'));
 						//Concate responseList into one string
 						responseListConcat += arguments[i][0];
 					}
@@ -208,8 +258,8 @@ function responseList(teacher) {
 
 				// Filter out all line breaks and check to make sure scripts weren't empty
 				empty = true;
-				const finalResponseList = responseList.filter((sent, index) => {
-					if ((!responseList[index] || responseList[index] === '') && empty) {
+				const finalResponseList = scriptPick.filter((sent, index) => {
+					if ((!scriptPick[index] || scriptPick[index] === '') && empty) {
 						empty = true;
 					} else {
 						empty = false;
