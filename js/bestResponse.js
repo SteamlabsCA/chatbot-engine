@@ -116,7 +116,8 @@ function sendPrompt(inputPrompt, teacher, selected, folder) {
             inputPrompt: inputPrompt,
             responseList: responseListHash,
             language: "EN",
-            consider: 3
+            consider: 3,
+            apiKey: teacher
           };
 
           //Load the data to be sent to the API - full script
@@ -124,7 +125,8 @@ function sendPrompt(inputPrompt, teacher, selected, folder) {
             inputPrompt: inputPrompt,
             responseList: finalResponseList,
             language: "EN",
-            consider: 3
+            consider: 3,
+            apiKey: teacher
           };
 
           let url =
