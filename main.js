@@ -1,16 +1,16 @@
 /* globals bestResponse detectMood detectIntent detectMode responseList fillInTheBlanks*/
 
 // Insert teacher API key here
-let teacherKey = "fCoRU16bE23TvHm79DKw3U4v4n0EzFI2j5NoA00g";
+let teacherKey = "wR5uUCYIL21JQxPAAJAL14VVFh62YbHD4Kjdn7om";
 // let responseListOrg = "*"; //Chooses all scripts
 // let responseListOrg = ""; //lets GUI decide
-let responseListOrg = "Woody.txt"; //Choose based off text
+let responseListOrg = "character2.txt"; //Choose based off text
 
 
 async function botResponse(inputPrompt){
-//   if (await detectMood(inputPrompt, "Happy")) {
-//     responseList = "character2.txt";
-//   }
+  if (await detectMood(inputPrompt, "Happy")) {
+    responseList = "character2.txt";
+  }
   
 //   if (await detectMood(inputPrompt, "Sad")) {
 //     responseList = "character3.txt";
