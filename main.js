@@ -1,11 +1,30 @@
-/* globals bestResponse */
+/* globals bestResponse detectMood detectIntent detectMode responseList fillInTheBlanks*/
 
 // Insert teacher API key here
-let teacherKey = '';
-let responseList = '*'; //Chooses all scripts
-// let responseList = ""; //lets GUI decide
-// let responseList = "Woody.txt"; //Choose based off text
+let teacherKey = "";
+// let responseListOrg = "*"; //Chooses all scripts
+// let responseListOrg = ""; //lets GUI decide
+let responseListOrg = "Woody.txt"; //Choose based off text
 
-function botResponse() {
-	bestResponse(teacherKey, responseList);
+
+async function botResponse(inputPrompt){
+//   if (await detectMood(inputPrompt, "Happy")) {
+//     responseList = "character2.txt";
+//   }
+  
+//   let response = await detectIntent(inputPrompt, ["rent a car","rent a bike","book a flight"]) 
+//   if (response === "rent a car") {
+//     responseList = "car.txt";
+//   }
+  
+//   if (response === "rent a bike") {
+//     responseList = "bike.txt";
+//   }
+  
+//   if (response === "book a flight") {
+//     responseList = "flight.txt";
+//   }
+  
+  fillInTheBlanks();
+  return await bestResponse(inputPrompt, teacherKey, responseList)
 }

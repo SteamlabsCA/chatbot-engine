@@ -1,0 +1,3 @@
+Would you like a SUV or sedan?
+Please enter your postal code to find the nearest rental agency:
+How far will you be driving?
