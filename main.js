@@ -12,18 +12,22 @@ async function botResponse(inputPrompt){
 //     responseList = "character2.txt";
 //   }
   
-//   let response = await detectIntent(inputPrompt, ["rent a car","rent a bike","book a flight"]) 
-//   if (response === "rent a car") {
-//     responseList = "car.txt";
+//   if (await detectMood(inputPrompt, "Sad")) {
+//     responseList = "character3.txt";
 //   }
   
-//   if (response === "rent a bike") {
-//     responseList = "bike.txt";
-//   }
+  let response = await detectIntent(inputPrompt, ["rent a car","rent a bike","book a flight"]) 
+  if (response === "rent a car") {
+    responseList = "car.txt";
+  }
   
-//   if (response === "book a flight") {
-//     responseList = "flight.txt";
-//   }
+  if (response === "rent a bike") {
+    responseList = "bike.txt";
+  }
+  
+  if (response === "book a flight") {
+    responseList = "flight.txt";
+  }
   
   fillInTheBlanks();
   return await bestResponse(inputPrompt, teacherKey, responseList)
