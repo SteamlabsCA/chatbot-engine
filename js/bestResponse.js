@@ -28,7 +28,7 @@ async function bestResponse(inputPrompt, teacher, responseList) {
       appendMessage(inputPrompt) 
       response = await sendPrompt(inputPrompt, teacher, selected, folder);
     } else {
-      alert("Error: There are no scripts available.");
+      alert("Error: There are no scripts chosen.");
     }
   } else {
     let specScript = $(".checkboxes span input[name='" + responseList + "']");
