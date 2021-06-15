@@ -8,9 +8,9 @@ let responseListOrg = "character2.txt"; //Choose based off text
 
 
 async function botResponse(inputPrompt){
-  if (await detectMood(inputPrompt, "Happy")) {
-    responseList = "character2.txt";
-  }
+  // if (await detectMood(inputPrompt, "Happy")) {
+  //   responseList = "character2.txt";
+  // }
   
 //   if (await detectMood(inputPrompt, "Sad")) {
 //     responseList = "character3.txt";
