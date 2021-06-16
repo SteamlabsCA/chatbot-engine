@@ -25,8 +25,7 @@ function detectMood(inputPrompt, mood) {
     inputPrompt: inputPrompt,
     responseList: moodList,
     language: "EN",
-    consider: 1,
-    apiKey: teacherKey
+    consider: 1
   };
 
   return new Promise((resolve, reject) => {

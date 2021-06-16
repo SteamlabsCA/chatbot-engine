@@ -28,7 +28,7 @@ async function bestResponse(inputPrompt, teacher, responseList) {
       appendMessage(inputPrompt) 
       response = await sendPrompt(inputPrompt, teacher, selected, folder);
     } else {
-      alert("Error: There are no scripts available.");
+      alert("Error: There are no scripts chosen.");
     }
   } else {
     let specScript = $(".checkboxes span input[name='" + responseList + "']");
@@ -41,10 +41,10 @@ async function bestResponse(inputPrompt, teacher, responseList) {
         appendMessage(inputPrompt) 
         response = await sendPrompt(inputPrompt, teacher, selected, folder);
       } else {
-        alert("Error: Your selected script is unavailable.");
+        alert("Your selected script is unavailable! Please Refresh the Page.");
       }
     } else {
-      alert("The input you chose is isn't here.");
+      alert("The input you chose isn't available! Please Refresh the Page.");
     }
   }
   return response;
@@ -168,7 +168,7 @@ function sendPrompt(inputPrompt, teacher, selected, folder) {
 
               posting.fail(function(err) {
                 console.log("Posting Full Response List Failed");
-                reject("data");
+                reject(new Error("Posting Full Response List Failed"));
               });
             } else {
                 resolve(responseData);

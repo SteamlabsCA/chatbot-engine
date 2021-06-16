@@ -7,8 +7,7 @@ function detectIntent(inputPrompt, intentList) {
     inputPrompt: inputPrompt,
     responseList: intentList,
     language: "EN",
-    consider: 1,
-    apiKey: teacherKey
+    consider: 1
   };
 
   return new Promise((resolve, reject) => {
