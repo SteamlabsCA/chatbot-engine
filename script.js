@@ -6,7 +6,6 @@ let responseList = '';
 jQuery(document).ready(function() {
   $("#start").click(function() {
     if (teacherKey.length > 0) {
-       
       $("#start_container").fadeOut("fast", function() {
         $(".activity").fadeIn("fast");
         chatbot(teacherKey);
