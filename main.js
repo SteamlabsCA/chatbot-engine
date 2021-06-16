@@ -4,7 +4,7 @@
 let teacherKey = "wR5uUCYIL21JQxPAAJAL14VVFh62YbHD4Kjdn7om";
 // let responseListOrg = "*"; //Chooses all scripts
 // let responseListOrg = ""; //lets GUI decide
-let responseListOrg = "character2.txt"; //Choose based off text
+let responseListOrg = "Woody.txt"; //Choose based off text
 
 
 async function botResponse(inputPrompt){

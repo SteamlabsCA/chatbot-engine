@@ -162,7 +162,7 @@ async function chatbot(teacher) {
                     .last()
                     .children(".content_container")
                     .children("p")
-                    .text() === 'Thinking...')){
+                    .text() ===  '...')){
       
       
       let response = await botResponse(inputPrompt);
