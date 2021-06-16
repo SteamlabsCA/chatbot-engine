@@ -197,8 +197,7 @@ button:active{
 }
 
 .loading{
-  font-size: 30px;
-  width: 10px;
+  min-width: 15px;
 }
 
 .loading:after {

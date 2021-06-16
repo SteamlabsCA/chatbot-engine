@@ -176,6 +176,12 @@ async function chatbot(teacher) {
           .last()
           .children(".content_container")
           .children("p")
+          .removeClass( "loading" )
+        $(".chat_response")
+          .children(".bot_response")
+          .last()
+          .children(".content_container")
+          .children("p")
           .text(response);
         document.getElementById(
           "response"

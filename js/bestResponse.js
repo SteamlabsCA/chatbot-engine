@@ -41,10 +41,10 @@ async function bestResponse(inputPrompt, teacher, responseList) {
         appendMessage(inputPrompt) 
         response = await sendPrompt(inputPrompt, teacher, selected, folder);
       } else {
-        alert("Error: Your selected script is unavailable.");
+        alert("Your selected script is unavailable! Please Refresh the Page.");
       }
     } else {
-      alert("The input you chose is isn't available.");
+      alert("The input you chose isn't available! Please Refresh the Page.");
     }
   }
   return response;
