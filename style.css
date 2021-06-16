@@ -125,7 +125,7 @@ button:active{
   width: 100%;
 }
 
-.input_prompt textarea{
+.input_prompt input{
   border: 3px solid #000000;
   border-radius: 10px;
   flex-grow: 2;
