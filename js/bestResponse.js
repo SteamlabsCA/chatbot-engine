@@ -1,7 +1,7 @@
-/* globals appendMessage sha256 */
+/* globals appendMessage sha256 language*/
 
 //----Start: Pick Response----
-async function bestResponse(inputPrompt, teacher, responseList, language) {
+async function bestResponse(inputPrompt, teacher, responseList) {
 	let selected = [];
 	let folder = 'lines';
 	let response;
@@ -39,7 +39,7 @@ async function bestResponse(inputPrompt, teacher, responseList, language) {
 			});
 			if (selected.length > 0) {
 				appendMessage(inputPrompt);
-				response = await sendPrompt(inputPrompt, teacher, selected, folder, language);
+				response = await sendPrompt(inputPrompt, teacher, selected, folder);
 			} else {
 				alert('Your selected script is unavailable! Please Refresh the Page.');
 			}
@@ -52,7 +52,7 @@ async function bestResponse(inputPrompt, teacher, responseList, language) {
 //----End: Pick Response----
 
 //Takes an array of objects
-function sendPrompt(inputPrompt, teacher, selected, folder, language) {
+function sendPrompt(inputPrompt, teacher, selected, folder) {
 	let empty = false;
 	let finalResponseList = [];
 	let scriptPick = [];
