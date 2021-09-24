@@ -155,6 +155,7 @@ async function chatbot(teacher) {
 	//----Start: Input prompt form is submit----
 	$('#prompt_form').submit(async function (event) {
 		event.preventDefault();
+		$('#prompt_btn').prop('disabled', true);
 		let inputPrompt = $('#input_prompt').val();
 		if (!($('.chat_response').children('.bot_response').last().children('.content_container').children('p').text() === '...')) {
 			let response = await botResponse(inputPrompt);
@@ -166,7 +167,9 @@ async function chatbot(teacher) {
 				$('.chat_response').children('.bot_response').last().children('.content_container').children('p').removeClass('loading');
 				$('.chat_response').children('.bot_response').last().children('.content_container').children('p').text(response);
 				document.getElementById('response').scrollTop = document.getElementById('response').scrollHeight;
+				$('#prompt_btn').prop('disabled', false);
 			} else {
+				$('.chat_response').children('.bot_response').last().children('.content_container').children('p').removeClass('loading');
 				$('.chat_response')
 					.children('.bot_response')
 					.last()
