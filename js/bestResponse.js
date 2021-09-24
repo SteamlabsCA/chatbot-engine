@@ -156,7 +156,7 @@ function sendPrompt(inputPrompt, teacher, selected, folder) {
 
 							posting.done(function (newResData) {
 								//If we got a response append it to the chat
-								if (newResData) {
+								if (newResData && newResData !== -1) {
 									resolve(newResData);
 								} else {
 									console.log('Full Response List failed Data missing');
