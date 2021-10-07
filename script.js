@@ -154,28 +154,33 @@ async function chatbot(teacher) {
 
 	//----Start: Input prompt form is submit----
 	$('#prompt_form').submit(async function (event) {
+		let score = '';
 		event.preventDefault();
 		$('#prompt_btn').prop('disabled', true);
 		let inputPrompt = $('#input_prompt').val();
-		if (!($('.chat_response').children('.bot_response').last().children('.content_container').children('p').text() === '...')) {
+		if (!($('.bot_response:last .content_container p.bot_p').text() === '...')) {
 			let response = await botResponse(inputPrompt);
+
+			if (0.1 <= response.score && response.score < 0.19) {
+				score = 'Score: Moderate';
+			} else if (response.score >= 0.19) {
+				score = 'Score: Good';
+			} else {
+				score = 'No good responses to choose from time to get creative!';
+			}
+
 			if (response) {
 				//If we got a response append it to the chat
 				// let $bot_response = "<li class='bot_response'><img src='https://cdn.glitch.com/a1898aab-94e6-4c8f-8dd2-5de4e5ff6a2b%2FSteamLabs_Monogram_RGB_Black.png?v=1619620318564' class='bot_profile'></img><span class='content_container'><span class='name_date'><h3>Bot</h3><p>"+date.toLocaleTimeString() + "</p></span><p>"+ responseData+ "</p></span></li>";
 				// $(".chat_response").append($bot_response);
 				//Replace bot waiting with response
-				$('.chat_response').children('.bot_response').last().children('.content_container').children('p').removeClass('loading');
-				$('.chat_response').children('.bot_response').last().children('.content_container').children('p').text(response);
+				$('.bot_response:last .content_container p.bot_p').removeClass('loading').text(response.response);
+				$('.bot_response:last .content_container span.tooltiptext').text(score).removeClass('init-hide');
+
 				document.getElementById('response').scrollTop = document.getElementById('response').scrollHeight;
 				$('#prompt_btn').prop('disabled', false);
 			} else {
-				$('.chat_response').children('.bot_response').last().children('.content_container').children('p').removeClass('loading');
-				$('.chat_response')
-					.children('.bot_response')
-					.last()
-					.children('.content_container')
-					.children('p')
-					.text('Uh-oh! An error occurred could you refresh the page?');
+				$('.bot_response:last .content_container p.bot_p').removeClass('loading').text('Uh-oh! An error occurred could you refresh the page?');
 				document.getElementById('response').scrollTop = document.getElementById('response').scrollHeight;
 			}
 		}

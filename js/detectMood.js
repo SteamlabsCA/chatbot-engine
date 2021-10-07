@@ -26,6 +26,7 @@ function detectMood(inputPrompt, mood) {
 		responseList: moodList,
 		language: language,
 		consider: 1,
+		apiKey: teacherKey,
 	};
 
 	return new Promise((resolve, reject) => {
@@ -42,8 +43,7 @@ function detectMood(inputPrompt, mood) {
 		});
 
 		posting.done(function (responseData) {
-			let resMood = responseData.substring(responseData.lastIndexOf(' ') + 1);
-			if (resMood === mood.toLowerCase()) {
+			if (responseData.split('*')[0].includes(mood.toLowerCase())) {
 				detectMode = true;
 				resolve(true);
 			} else {
