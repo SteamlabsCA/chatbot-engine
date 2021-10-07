@@ -17,7 +17,7 @@ function appendMessage(inputPrompt) {
 
 	// Bot is typing Response
 	let $bot_response =
-		"<li class='bot_response'><img src='https://cdn.glitch.com/a1898aab-94e6-4c8f-8dd2-5de4e5ff6a2b%2Fbot.png?v=1622144125211' class='bot_profile'></img><span class='content_container'><p class='bot_p loading'></p><span class='name_date'><p class='bold_p'>Bot </p><p class='p_time'>" +
+		"<li class='bot_response'><img src='https://cdn.glitch.com/a1898aab-94e6-4c8f-8dd2-5de4e5ff6a2b%2Fbot.png?v=1622144125211' class='bot_profile'></img><span class='content_container'><p class='bot_p loading'></p><span class='tooltiptext init-hide'></span><span class='name_date'><p class='bold_p'>Bot </p><p class='p_time'>" +
 		date.toLocaleTimeString() +
 		'</p></span></span></li>';
 	$('.chat_response').append($bot_response);

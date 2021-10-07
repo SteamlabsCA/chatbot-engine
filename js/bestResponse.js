@@ -47,7 +47,13 @@ async function bestResponse(inputPrompt, teacher, responseList) {
 			alert("The input you chose isn't available! Please Refresh the Page.");
 		}
 	}
-	return response;
+
+	let splitStr = response.split('*');
+	let res = {
+		response: splitStr[0],
+		score: parseFloat(splitStr[1].replace(/[\][]/g, '')),
+	};
+	return res;
 }
 //----End: Pick Response----
 

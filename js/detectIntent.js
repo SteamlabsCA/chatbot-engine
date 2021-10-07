@@ -7,6 +7,7 @@ function detectIntent(inputPrompt, intentList) {
 		responseList: intentList,
 		language: language,
 		consider: 1,
+		apiKey: teacherKey,
 	};
 
 	return new Promise((resolve, reject) => {
@@ -24,7 +25,7 @@ function detectIntent(inputPrompt, intentList) {
 
 		posting.done(function (responseData) {
 			detectMode = true;
-			resolve(responseData);
+			resolve(responseData.split('*')[0].slice(0, -1));
 		});
 		posting.fail(function (err) {
 			console.log(err);
